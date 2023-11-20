@@ -8,7 +8,7 @@ class Character {
   List<CharacterClass> characterClasses;
 
   Character({
-    required this.chracterName,
+    this.chracterName = "",
     required this.totalLevel,
     required this.chracterRace,
     required this.characterClasses,

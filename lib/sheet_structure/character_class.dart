@@ -1,10 +1,9 @@
 class CharacterClass {
-  String className;
+  int classType;
   int classLevel;
 
-  CharacterClass ({
-    required this.className,
+  CharacterClass({
+    required this.classType,
     required this.classLevel,
   });
-
 }

@@ -8,8 +8,62 @@ class BuildPage extends StatefulWidget {
 }
 
 class _BuildPageState extends State<BuildPage> {
+  late PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: 0);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    final screenSize = MediaQuery.of(context).size;
+
+    if (screenSize.width > 2500) {
+      return Row(
+        children: [
+          Container(
+            width: 200,
+            child: Page1(),
+          ),
+          Expanded(
+            child: Page2(),
+          ),
+          Expanded(
+            child: Page3(),
+          ),
+        ],
+      );
+    } else {
+      // 작은 화면의 경우
+      return PageView.builder(
+        controller: _pageController,
+        itemCount: 2,
+        itemBuilder: (context, index) {
+          if (index == 0) {
+            return Row(
+              children: [
+                Container(
+                  width: 200,
+                  child: Page1(),
+                ),
+                Expanded(
+                  child: Page2(),
+                ),
+              ],
+            );
+          } else {
+            return Page3();
+          }
+        },
+      );
+    }
   }
 }

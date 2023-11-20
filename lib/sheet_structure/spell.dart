@@ -10,6 +10,8 @@ class Spell {
   int damageType;
   int duration;
 
+  String spellDescription;
+
   Spell({
     required this.slotConsume,
     required this.shortRest,
@@ -20,5 +22,6 @@ class Spell {
     required this.damage,
     required this.damageType,
     required this.duration,
+    required this.spellDescription,
   });
 }

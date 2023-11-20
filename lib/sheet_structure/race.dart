@@ -1,12 +1,12 @@
-import "package:appdev232_project_21700185/sheet/spell.dart";
-import "package:appdev232_project_21700185/sheet/trait.dart";
-import "package:appdev232_project_21700185/sheet/proficiency.dart";
+import 'package:appdev232_project_21700185/sheet_structure/spell.dart';
+import 'package:appdev232_project_21700185/sheet_structure/trait.dart';
+import 'package:appdev232_project_21700185/sheet_structure/proficiency.dart';
 
 class Race {
   int speedType;
   int weightCapacity;
   int raceAddedHealth;
-  
+
   List<Proficiency> raceProf;
   List<Trait> raceTraits;
   List<Spell> raceSpells;
