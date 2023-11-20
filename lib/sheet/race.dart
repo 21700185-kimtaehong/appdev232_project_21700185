@@ -3,7 +3,7 @@ import "package:appdev232_project_21700185/sheet/trait.dart";
 import "package:appdev232_project_21700185/sheet/proficiency.dart";
 
 class Race {
-  int movementSpeed;
+  int speedType;
   int weightCapacity;
   int raceAddedHealth;
   
@@ -13,7 +13,7 @@ class Race {
   List<int> raceRegists;
 
   Race({
-    required this.movementSpeed,
+    required this.speedType,
     required this.weightCapacity,
     required this.raceAddedHealth,
     required this.raceProf,
