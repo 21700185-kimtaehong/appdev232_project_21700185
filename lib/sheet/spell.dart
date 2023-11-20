@@ -2,7 +2,7 @@ class Spell {
   bool slotConsume;
   bool shortRest;
   bool longRest;
-  bool isConcentrate;
+  bool needConcentrate;
 
   int spellLevel;
   int saveAbility;
