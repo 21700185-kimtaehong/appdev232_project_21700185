@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:appdev232_project_21700185/sheet_structure/character.dart';
 
 class BuildPage extends StatefulWidget {
   const BuildPage({Key? key}) : super(key: key);
@@ -9,6 +10,7 @@ class BuildPage extends StatefulWidget {
 
 class _BuildPageState extends State<BuildPage> {
   late PageController _pageController;
+  late Character character;
 
   @override
   void initState() {

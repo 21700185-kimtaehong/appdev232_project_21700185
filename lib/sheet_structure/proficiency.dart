@@ -1,10 +1,13 @@
 class Proficiency {
   String profName;
-  int baseAbility;
+  int baseAbilityType;
+  bool isSkilled;
+  bool isSpecialized;
 
-
-  Proficiency ({
+  Proficiency({
     required this.profName,
-    required this.baseAbility,
+    required this.baseAbilityType,
+    this.isSkilled = false,
+    this.isSpecialized = false,
   });
 }

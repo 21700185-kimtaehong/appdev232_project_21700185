@@ -1,16 +1,17 @@
+import 'package:appdev232_project_21700185/sheet_structure/proficiency.dart';
+
 import 'character_class.dart';
-import 'race.dart';
 
 class Character {
   String chracterName;
-  int totalLevel;
-  Race chracterRace;
+  int raceType;
+  List<Proficiency> characterProficiencies;
   List<CharacterClass> characterClasses;
 
   Character({
     this.chracterName = "",
-    required this.totalLevel,
-    required this.chracterRace,
+    this.raceType = 0,
+    required this.characterProficiencies,
     required this.characterClasses,
   });
 }
