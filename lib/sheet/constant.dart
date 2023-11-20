@@ -1,4 +1,6 @@
 //0~9: ABILITY TYPE
+// ignore_for_file: constant_identifier_names
+
 const int STR = 1;
 const int DEX = 2;
 const int CON = 3;
