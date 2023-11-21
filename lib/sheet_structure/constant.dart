@@ -62,3 +62,15 @@ const int LARGESIZE = 65;
 const int NORMALACTION = 66;
 const int BONUSACTION = 67;
 const int RESPONSEACTION = 68;
+
+const int ACOLYTE = 70; //복사
+const int CHARLATAN = 71; //사기꾼
+const int CRIMINAL = 72; //범죄자
+const int ENTERTAINER= 73; //연예인
+const int FOLKHERO = 74; //민중 영웅
+const int GUILDARTISAN= 75; //길드장인
+const int NOBLE = 76; //귀족
+const int OUTLANDER = 77; //이방인
+const int SAGE = 78; //학자
+const int SOLDIER = 79; //군인
+const int URCHIN = 80; //부랑아

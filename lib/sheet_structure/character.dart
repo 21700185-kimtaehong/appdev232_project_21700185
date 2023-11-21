@@ -4,14 +4,13 @@ import 'character_class.dart';
 
 class Character {
   String chracterName;
-  int raceType;
+  late int raceType;
+  late int backgroundType;
   List<Proficiency> characterProficiencies;
-  List<CharacterClass> characterClasses;
+  late List<CharacterClass> characterClasses;
 
   Character({
     this.chracterName = "",
-    this.raceType = 0,
     required this.characterProficiencies,
-    required this.characterClasses,
   });
 }
