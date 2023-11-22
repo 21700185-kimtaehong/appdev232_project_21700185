@@ -10,6 +10,7 @@ class Spell {
   int damageType;
   int duration;
 
+  String spellImagePath;
   String spellDescription;
 
   Spell({
@@ -22,6 +23,7 @@ class Spell {
     required this.damage,
     required this.damageType,
     required this.duration,
-    required this.spellDescription,
+    this.spellImagePath = "",
+    this.spellDescription = "",
   });
 }
