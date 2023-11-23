@@ -41,6 +41,13 @@ class CharacterClass extends Character {
     }
   }
 
+  void upClassLevel() {
+    if (classLevel < 12 && outerCharacter.totalLevel < 12) {
+      classLevel++;
+      outerCharacter.totalLevel++;
+    }
+  }
+
   // void addProficiency(List<Proficiency> proficiencies) {
   //   for (Proficiency proficiency in proficiencies) {
   //     if (proficiency.isSkilled >
@@ -52,18 +59,18 @@ class CharacterClass extends Character {
   // }
 }
 
-CharacterClass bard = CharacterClass(classType: BARD, isCaster: true);
-CharacterClass barbarian = CharacterClass(classType: BARBARIAN);
-CharacterClass cleric = CharacterClass(classType: CLERIC, isCaster: true);
-CharacterClass druid =
-    CharacterClass(classType: DRUID, isCaster: true, isHalfCaster: true);
-CharacterClass fighter = CharacterClass(classType: FIGHTER);
-CharacterClass monk = CharacterClass(classType: MONK);
-CharacterClass paladin =
-    CharacterClass(classType: PALADIN, isCaster: true, isHalfCaster: true);
-CharacterClass ranger =
-    CharacterClass(classType: RANGER, isCaster: true, isHalfCaster: true);
-CharacterClass rogue = CharacterClass(classType: ROGUE);
-CharacterClass sorcerer = CharacterClass(classType: SORCERER, isCaster: true);
-CharacterClass warlock = CharacterClass(classType: WARLOCK);
-CharacterClass wizard = CharacterClass(classType: WIZARD, isCaster: true);
+// CharacterClass bard = CharacterClass(classType: BARD, isCaster: true);
+// CharacterClass barbarian = CharacterClass(classType: BARBARIAN);
+// CharacterClass cleric = CharacterClass(classType: CLERIC, isCaster: true);
+// CharacterClass druid =
+//     CharacterClass(classType: DRUID, isCaster: true, isHalfCaster: true);
+// CharacterClass fighter = CharacterClass(classType: FIGHTER);
+// CharacterClass monk = CharacterClass(classType: MONK);
+// CharacterClass paladin =
+//     CharacterClass(classType: PALADIN, isCaster: true, isHalfCaster: true);
+// CharacterClass ranger =
+//     CharacterClass(classType: RANGER, isCaster: true, isHalfCaster: true);
+// CharacterClass rogue = CharacterClass(classType: ROGUE);
+// CharacterClass sorcerer = CharacterClass(classType: SORCERER, isCaster: true);
+// CharacterClass warlock = CharacterClass(classType: WARLOCK);
+// CharacterClass wizard = CharacterClass(classType: WIZARD, isCaster: true);

@@ -1,13 +1,14 @@
 import 'package:appdev232_project_21700185/sheet_structure/spell.dart';
 import 'package:appdev232_project_21700185/sheet_structure/trait.dart';
-import 'package:appdev232_project_21700185/sheet_structure/proficiency.dart';
+
+import 'action.dart';
 
 class Race {
   int speedType;
   int weightCapacity;
   int raceAddedHealth;
 
-  List<Proficiency> raceProf;
+  List<Action> raceActions;
   List<Trait> raceTraits;
   List<Spell> raceSpells;
   List<int> raceRegists;
@@ -16,9 +17,21 @@ class Race {
     required this.speedType,
     required this.weightCapacity,
     required this.raceAddedHealth,
-    required this.raceProf,
+    required this.raceActions,
     required this.raceTraits,
     required this.raceRegists,
     required this.raceSpells,
   });
+
+  void addAction(List<Action> actions) {
+    for (Action action in actions) {
+      raceActions.add(action);
+    }
+  }
+
+  void addTrait(List<Trait> traits) {
+    for (Trait trait in traits) {
+      raceTraits.add(trait);
+    }
+  }
 }
