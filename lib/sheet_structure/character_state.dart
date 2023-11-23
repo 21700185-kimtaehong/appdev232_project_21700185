@@ -6,8 +6,8 @@ import 'package:appdev232_project_21700185/sheet_structure/character.dart';
 import 'package:appdev232_project_21700185/sheet_structure/constant.dart';
 
 class CharacterState with ChangeNotifier {
-  Character _currCharacter =
-      Character(characterProficiencies: defaultProficiencyState);
+  // ignore: prefer_final_fields
+  Character _currCharacter = Character();
   Character get currCharacter => _currCharacter;
 
   void setRace(int raceType) {
@@ -69,4 +69,5 @@ class CharacterState with ChangeNotifier {
     }
     notifyListeners();
   }
+
 }
