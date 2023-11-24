@@ -6,6 +6,7 @@ import 'weapon.dart';
 class Character {
   String chracterName;
   int totalLevel;
+  int hitpoints;
   late int raceType;
   late int backgroundType;
   late List<Proficiency> characterProficiencies;
@@ -35,6 +36,10 @@ class Character {
         characterProficiencies[targetWeapon].isSkilled = 1;
       }
     }
+  }
+
+  void updateStat() {
+
   }
 }
 

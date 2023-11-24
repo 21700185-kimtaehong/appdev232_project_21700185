@@ -19,6 +19,7 @@ class CharacterState with ChangeNotifier {
     switch (_currCharacter.raceType) {
       case HUMAN:
         _currCharacter.addWeapon([10, 13, 15, 27]);
+        break;
     }
   }
 
