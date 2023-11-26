@@ -78,15 +78,22 @@ class CharacterState with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateClassLevel(int classType, bool up) {
+  void updateLevel(int classType, bool up) {
     if (up) {
-      if () {
-        
+      if (_currCharacter.characterClasses[classType - 10].classLevel < 12 &&
+          _currCharacter.totalLevel < 12) {
+        _currCharacter.characterClasses[classType - 10].upClassLevel(up);
+        _currCharacter.totalLevel++;
+      } else {
+        print('error in updateLevel().');
       }
-    }
-    else {
-
+    } else {
+      if (_currCharacter.characterClasses[classType - 10].classLevel > 0) {
+        _currCharacter.characterClasses[classType - 10].upClassLevel(up);
+        _currCharacter.totalLevel--;
+      } else {
+        print('error in updateLevel().');
+      }
     }
   }
 }
-

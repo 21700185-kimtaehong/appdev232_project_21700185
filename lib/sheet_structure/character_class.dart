@@ -35,6 +35,14 @@ class CharacterClass {
       classTraits.add(trait);
     }
   }
+
+  void upClassLevel(bool up) {
+    if (up) {
+      classLevel++;
+    } else {
+      classLevel--;
+    }
+  }
 }
 
 // CharacterClass bard = CharacterClass(classType: BARD, isCaster: true);
