@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:appdev232_project_21700185/sheet_structure/character.dart';
+import 'package:provider/provider.dart';
+
 import 'package:appdev232_project_21700185/sheet_page/button_select.dart';
-import 'package:appdev232_project_21700185/sheet_page/background_select.dart';
+import 'package:appdev232_project_21700185/select_pages/background_select.dart';
 import 'package:appdev232_project_21700185/temp_page.dart';
+import 'package:appdev232_project_21700185/sheet_page/summary_page.dart';
 
 class BuildPage extends StatefulWidget {
   const BuildPage({Key? key}) : super(key: key);
@@ -13,7 +15,6 @@ class BuildPage extends StatefulWidget {
 
 class _BuildPageState extends State<BuildPage> {
   late PageController _pageController;
-  late Character character;
   int selectedPageIndex = 0;
 
   @override
@@ -49,12 +50,11 @@ class _BuildPageState extends State<BuildPage> {
             child: selectedPageWidget(selectedPageIndex),
           ),
           Expanded(
-            child: TempPage(),
+            child: SummaryPage(),
           ),
         ],
       );
     } else {
-      // 작은 화면의 경우
       return PageView.builder(
         controller: _pageController,
         itemCount: 2,
@@ -72,7 +72,7 @@ class _BuildPageState extends State<BuildPage> {
               ],
             );
           } else {
-            return TempPage();
+            return SummaryPage();
           }
         },
       );
@@ -84,7 +84,7 @@ class _BuildPageState extends State<BuildPage> {
       case 1:
         return BackgroundPage(context);
       default:
-        return const TempPage(); // 기본 페이지
+        return const TempPage(); // 테스트용
     }
   }
 }

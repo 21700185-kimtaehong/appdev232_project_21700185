@@ -4,6 +4,7 @@ import 'package:appdev232_project_21700185/sheet_structure/trait.dart';
 import 'action.dart';
 
 class Race {
+  int raceType;
   int speedType;
   int weightCapacity;
   int raceAddedHealth;
@@ -14,6 +15,7 @@ class Race {
   List<int> raceRegists;
 
   Race({
+    this.raceType = -1,
     required this.speedType,
     required this.weightCapacity,
     required this.raceAddedHealth,

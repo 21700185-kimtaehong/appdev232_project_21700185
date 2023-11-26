@@ -2,7 +2,7 @@ class Trait {
   String traitName;
   String traitDescription;
 
-  Trait ({
+  Trait({
     required this.traitName,
     required this.traitDescription,
   });

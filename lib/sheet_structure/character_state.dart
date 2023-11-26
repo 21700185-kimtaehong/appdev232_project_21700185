@@ -77,4 +77,16 @@ class CharacterState with ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void updateClassLevel(int classType, bool up) {
+    if (up) {
+      if () {
+        
+      }
+    }
+    else {
+
+    }
+  }
 }
+

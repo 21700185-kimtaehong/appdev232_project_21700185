@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:appdev232_project_21700185/sheet_page/button_builder.dart';
+import 'package:appdev232_project_21700185/sheet_structure/button_builder.dart';
 
 class ButtonPage extends StatefulWidget {
   final Function(int) onPageSelected;
@@ -23,6 +23,10 @@ class _ButtonPageState extends State<ButtonPage> {
             createCustomButton(
               buttonText: '배경',
               onPressed: () => widget.onPageSelected(1),
+            ),
+            createCustomButton(
+              buttonText: '종족',
+              onPressed: () => widget.onPageSelected(2),
             ),
           ],
         ),

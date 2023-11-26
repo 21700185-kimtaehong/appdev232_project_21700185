@@ -14,8 +14,14 @@ class RacePage extends StatefulWidget {
 class _RacePageState extends State<RacePage> {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double minButtonWidth = 100.0;
+    TextStyle buttonTextStyle = TextStyle(fontSize: 16.0);
+
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('종족'),
+      ),
     );
   }
 }

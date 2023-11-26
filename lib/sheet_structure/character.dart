@@ -8,7 +8,7 @@ class Character {
   int totalLevel;
   int hitpoints;
   late int raceType;
-  late int backgroundType;
+  int backgroundType;
   late List<Proficiency> characterProficiencies;
   late List<CharacterClass> characterClasses;
   late List<Weapon> characterWeapons;
@@ -17,6 +17,7 @@ class Character {
     this.hitpoints = 0,
     this.totalLevel = 0,
     this.chracterName = "",
+    this.backgroundType = -1,
   })  : characterProficiencies =
             List<Proficiency>.from(defaultProficiencyState),
         characterClasses =

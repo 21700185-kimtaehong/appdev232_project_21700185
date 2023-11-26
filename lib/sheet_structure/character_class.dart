@@ -1,9 +1,8 @@
 import 'action.dart';
 import 'spell.dart';
 import 'trait.dart';
-import 'character.dart';
 
-class CharacterClass extends Character {
+class CharacterClass {
   int classType;
   int classLevel;
   bool isCaster;
@@ -34,13 +33,6 @@ class CharacterClass extends Character {
   void addTrait(List<Trait> traits) {
     for (Trait trait in traits) {
       classTraits.add(trait);
-    }
-  }
-
-  void upClassLevel() {
-    if (classLevel < 12 && super.totalLevel < 12) {
-      classLevel++;
-      super.totalLevel++;
     }
   }
 }
