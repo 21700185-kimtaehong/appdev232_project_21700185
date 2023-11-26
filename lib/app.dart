@@ -1,4 +1,5 @@
 import 'package:appdev232_project_21700185/login.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'build.dart';
 
@@ -8,15 +9,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scrollBehavior: MyCustomScrollBehavior(),
       title: 'bg3 builder',
       initialRoute: '/build',
       routes: {
         '/build': (BuildContext context) => const BuildPage(),
         '/login': (BuildContext context) => const LoginPage(),
       },
-      theme: ThemeData.dark(useMaterial3: true).copyWith(
+      theme: ThemeData(
         primaryColor: Colors.black,
+        highlightColor: Colors.white,
+        scaffoldBackgroundColor: Colors.black,
       ),
     );
   }
+}
+
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+      };
 }

@@ -14,6 +14,7 @@ class Character {
   late List<Weapon> characterWeapons;
 
   Character({
+    this.hitpoints = 0,
     this.totalLevel = 0,
     this.chracterName = "",
   })  : characterProficiencies =
@@ -38,9 +39,7 @@ class Character {
     }
   }
 
-  void updateStat() {
-
-  }
+  void updateStat() {}
 }
 
 List<Proficiency> defaultProficiencyState = [
@@ -64,7 +63,7 @@ List<Proficiency> defaultProficiencyState = [
   Proficiency(profNum: 17, baseAbilityType: CHA), //17
 ];
 
-List<String> ProfNames = [
+List<String> profNames = [
   "운동",
   "곡예",
   "손재주",

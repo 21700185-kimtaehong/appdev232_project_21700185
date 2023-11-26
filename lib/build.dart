@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:appdev232_project_21700185/sheet_structure/character.dart';
+import 'package:appdev232_project_21700185/sheet_page/button_select.dart';
+import 'package:appdev232_project_21700185/sheet_page/background_select.dart';
+import 'package:appdev232_project_21700185/temp_page.dart';
 
 class BuildPage extends StatefulWidget {
   const BuildPage({Key? key}) : super(key: key);
@@ -11,6 +14,7 @@ class BuildPage extends StatefulWidget {
 class _BuildPageState extends State<BuildPage> {
   late PageController _pageController;
   late Character character;
+  int selectedPageIndex = 0;
 
   @override
   void initState() {
@@ -24,22 +28,28 @@ class _BuildPageState extends State<BuildPage> {
     super.dispose();
   }
 
+  void selectPage(int index) {
+    setState(() {
+      selectedPageIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
 
-    if (screenSize.width > 2500) {
+    if (screenSize.width > 1000) {
       return Row(
         children: [
-          Container(
+          SizedBox(
             width: 200,
-            child: Page1(),
+            child: ButtonPage(context, selectPage),
           ),
           Expanded(
-            child: Page2(),
+            child: selectedPageWidget(selectedPageIndex),
           ),
           Expanded(
-            child: Page3(),
+            child: TempPage(),
           ),
         ],
       );
@@ -52,20 +62,29 @@ class _BuildPageState extends State<BuildPage> {
           if (index == 0) {
             return Row(
               children: [
-                Container(
+                SizedBox(
                   width: 200,
-                  child: Page1(),
+                  child: ButtonPage(context, selectPage),
                 ),
                 Expanded(
-                  child: Page2(),
+                  child: selectedPageWidget(selectedPageIndex),
                 ),
               ],
             );
           } else {
-            return Page3();
+            return TempPage();
           }
         },
       );
+    }
+  }
+
+  Widget selectedPageWidget(int pageIndex) {
+    switch (pageIndex) {
+      case 1:
+        return BackgroundPage(context);
+      default:
+        return const TempPage(); // 기본 페이지
     }
   }
 }

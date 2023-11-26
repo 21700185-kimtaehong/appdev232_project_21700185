@@ -1,12 +1,9 @@
-import 'constant.dart';
 import 'action.dart';
 import 'spell.dart';
 import 'trait.dart';
 import 'character.dart';
-import 'proficiency.dart';
 
 class CharacterClass extends Character {
-  Character outerCharacter;
   int classType;
   int classLevel;
   bool isCaster;
@@ -17,7 +14,6 @@ class CharacterClass extends Character {
   List<Spell> classSpells;
 
   CharacterClass({
-    required this.outerCharacter,
     required this.classType,
     this.classLevel = 0,
     this.isCaster = false,
@@ -42,21 +38,11 @@ class CharacterClass extends Character {
   }
 
   void upClassLevel() {
-    if (classLevel < 12 && outerCharacter.totalLevel < 12) {
+    if (classLevel < 12 && super.totalLevel < 12) {
       classLevel++;
-      outerCharacter.totalLevel++;
+      super.totalLevel++;
     }
   }
-
-  // void addProficiency(List<Proficiency> proficiencies) {
-  //   for (Proficiency proficiency in proficiencies) {
-  //     if (proficiency.isSkilled >
-  //         super.characterProficiencies[proficiency.profNum].isSkilled) {
-  //       super.characterProficiencies[proficiency.profNum].isSkilled =
-  //           proficiency.isSkilled;
-  //     }
-  //   }
-  // }
 }
 
 // CharacterClass bard = CharacterClass(classType: BARD, isCaster: true);
