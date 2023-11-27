@@ -7,7 +7,7 @@ class Character {
   String chracterName;
   int totalLevel;
   int hitpoints;
-  late int raceType;
+  int raceType;
   int backgroundType;
   late List<Proficiency> characterProficiencies;
   late List<CharacterClass> characterClasses;
@@ -17,6 +17,7 @@ class Character {
     this.hitpoints = 0,
     this.totalLevel = 0,
     this.chracterName = "",
+    this.raceType = -1,
     this.backgroundType = -1,
   })  : characterProficiencies =
             List<Proficiency>.from(defaultProficiencyState),
@@ -98,6 +99,10 @@ List<CharacterClass> defaultCharacterClassState = [
   CharacterClass(classType: WARLOCK),
   CharacterClass(classType: WIZARD, isCaster: true)
 ];
+
+class FighterClass extends CharacterClass{
+  
+}
 
 List<Weapon> defaultWeaponState = [
   Weapon(

@@ -5,24 +5,29 @@ import 'trait.dart';
 class CharacterClass {
   int classType;
   int classLevel;
+  int numFeat;
   bool isCaster;
   bool isHalfCaster;
 
+  List<int> feats;
   List<Action> classActions;
   List<Trait> classTraits;
   List<Spell> classSpells;
 
   CharacterClass({
     required this.classType,
+    this.numFeat = 0,
     this.classLevel = 0,
     this.isCaster = false,
     this.isHalfCaster = false,
+    List<int>? feats,
     List<Action>? classActions,
     List<Trait>? classTraits,
     List<Spell>? classSpells,
   })  : classActions = classActions ?? [],
         classTraits = classTraits ?? [],
-        classSpells = classSpells ?? [];
+        classSpells = classSpells ?? [],
+        feats = feats ?? [];
 
   void addAction(List<Action> actions) {
     for (Action action in actions) {
