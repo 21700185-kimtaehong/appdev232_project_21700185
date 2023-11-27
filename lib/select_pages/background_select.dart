@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:appdev232_project_21700185/sheet_structure/character_state.dart';
-import 'package:appdev232_project_21700185/sheet_structure/constant.dart';
+import 'package:appdev232_project_21700185/constant/constant_code.dart';
 
 class BackgroundPage extends StatefulWidget {
   const BackgroundPage(BuildContext context, {Key? key}) : super(key: key);

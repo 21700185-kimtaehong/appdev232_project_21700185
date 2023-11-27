@@ -1,4 +1,4 @@
-import 'constant.dart';
+import 'constant_code.dart';
 
 String backgroundText(int backgroundType) {
   switch (backgroundType) {
@@ -97,4 +97,3 @@ String raceText(int raceType) {
       return '';
   }
 }
-

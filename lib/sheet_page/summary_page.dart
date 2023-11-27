@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:appdev232_project_21700185/sheet_structure/character_state.dart';
-import 'package:appdev232_project_21700185/sheet_structure/constant_text.dart';
+import 'package:appdev232_project_21700185/constant/constant_background_race.dart';
 
 class SummaryPage extends StatefulWidget {
   const SummaryPage({super.key});
@@ -56,4 +56,3 @@ class _SummaryPageState extends State<SummaryPage> {
     );
   }
 }
-

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:appdev232_project_21700185/sheet_structure/character.dart';
-import 'package:appdev232_project_21700185/sheet_structure/constant.dart';
+import 'package:appdev232_project_21700185/constant/constant_code.dart';
 
 class CharacterState with ChangeNotifier {
   // ignore: prefer_final_fields
@@ -94,6 +94,36 @@ class CharacterState with ChangeNotifier {
       } else {
         print('error in updateLevel().');
       }
+    }
+    updateCharacterStat();
+    _currCharacter.characterClasses[classType - 10].updateClassStat();
+    notifyListeners();
+  }
+
+  void updateCharacterStat() {
+    switch (_currCharacter.totalLevel) {
+      case 0:
+        _currCharacter.hitpoints = 0;
+        _currCharacter.proficiencyBonus = 0;
+        break;
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        _currCharacter.proficiencyBonus = 2;
+        break;
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+        _currCharacter.proficiencyBonus = 3;
+        break;
+      case 9:
+      case 10:
+      case 11:
+      case 12:
+        _currCharacter.proficiencyBonus = 4;
+        break;
     }
   }
 }

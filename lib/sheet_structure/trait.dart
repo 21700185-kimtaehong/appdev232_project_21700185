@@ -1,9 +1,11 @@
 class Trait {
   String traitName;
   String traitDescription;
+  String traitImageUrl;
 
   Trait({
-    required this.traitName,
-    required this.traitDescription,
+    this.traitName = "",
+    this.traitDescription = "",
+    this.traitImageUrl = "",
   });
 }

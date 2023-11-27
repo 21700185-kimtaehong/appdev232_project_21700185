@@ -1,4 +1,4 @@
-import 'constant.dart';
+import '../constant/constant_code.dart';
 import 'proficiency.dart';
 import 'character_class.dart';
 import 'weapon.dart';
@@ -7,23 +7,27 @@ class Character {
   String chracterName;
   int totalLevel;
   int hitpoints;
+  int proficiencyBonus;
   int raceType;
   int backgroundType;
+  late List<bool> activeClasses;
   late List<Proficiency> characterProficiencies;
   late List<CharacterClass> characterClasses;
   late List<Weapon> characterWeapons;
 
   Character({
-    this.hitpoints = 0,
-    this.totalLevel = 0,
     this.chracterName = "",
+    this.totalLevel = 0,
+    this.hitpoints = 0,
+    this.proficiencyBonus = 0,
     this.raceType = -1,
     this.backgroundType = -1,
   })  : characterProficiencies =
             List<Proficiency>.from(defaultProficiencyState),
         characterClasses =
             List<CharacterClass>.from(defaultCharacterClassState),
-        characterWeapons = List<Weapon>.from(defaultWeaponState);
+        characterWeapons = List<Weapon>.from(defaultWeaponState),
+        activeClasses = List<bool>.from(defaultActiveClassState);
 
   void addProficiency(List<int> targetProfs) {
     for (int targetProf in targetProfs) {
@@ -40,8 +44,6 @@ class Character {
       }
     }
   }
-
-  void updateStat() {}
 }
 
 List<Proficiency> defaultProficiencyState = [
@@ -99,10 +101,6 @@ List<CharacterClass> defaultCharacterClassState = [
   CharacterClass(classType: WARLOCK),
   CharacterClass(classType: WIZARD, isCaster: true)
 ];
-
-class FighterClass extends CharacterClass{
-  
-}
 
 List<Weapon> defaultWeaponState = [
   Weapon(
@@ -259,6 +257,19 @@ List<Weapon> defaultWeaponState = [
       melee: false),
 ];
 
+List<bool> defaultActiveClassState = [
+  false, // 0 bard
+  false, // 1 barbarian
+  false, // 2 cleric
+  false, // 3 druid
+  false, // 4 fighter
+  false, // 5 monk
+  false, // 6 paladin
+  false, // 7 ranger
+  false, // 8 sorcerer
+  false, // 9 warlock
+  false, // 10 wizard
+];
 // List<Proficiency> defaultProficiencyState = [
 //   Proficiency(profName: "운동", profNum: 0, baseAbilityType: STR), //0
 //   Proficiency(profName: "곡예", profNum: 1, baseAbilityType: DEX), //1

@@ -6,6 +6,7 @@ class CharacterClass {
   int classType;
   int classLevel;
   int numFeat;
+  int extraAttackNum;
   bool isCaster;
   bool isHalfCaster;
 
@@ -17,6 +18,7 @@ class CharacterClass {
   CharacterClass({
     required this.classType,
     this.numFeat = 0,
+    this.extraAttackNum = 0,
     this.classLevel = 0,
     this.isCaster = false,
     this.isHalfCaster = false,
@@ -48,6 +50,8 @@ class CharacterClass {
       classLevel--;
     }
   }
+
+  void updateClassStat() {}
 }
 
 // CharacterClass bard = CharacterClass(classType: BARD, isCaster: true);

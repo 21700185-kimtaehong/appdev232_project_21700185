@@ -1,4 +1,4 @@
-import 'constant.dart';
+import '../constant/constant_code.dart';
 
 class Ability {
   int totalPoint;
