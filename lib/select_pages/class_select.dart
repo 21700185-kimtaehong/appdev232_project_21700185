@@ -16,7 +16,7 @@ class _ClassPageState extends State<ClassPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('종족'),
+        title: const Text('클래스'),
       ),
     );
   }
