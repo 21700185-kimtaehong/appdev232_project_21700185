@@ -2,18 +2,28 @@ import '../constant/constant_code.dart';
 import 'proficiency.dart';
 import 'character_class.dart';
 import 'weapon.dart';
+import 'character_classes_default.dart';
 
 class Character {
   String chracterName;
+
   int totalLevel;
   int hitpoints;
   int proficiencyBonus;
+
   int raceType;
   int backgroundType;
+
+  int fightingStyleNum;
+  int manoeuvresNum;
+
   late List<bool> activeClasses;
   late List<Proficiency> characterProficiencies;
   late List<CharacterClass> characterClasses;
   late List<Weapon> characterWeapons;
+
+  late List<bool> selectedFightingStyles;
+  late List<bool> selectedManoeuvres;
 
   Character({
     this.chracterName = "",
@@ -22,6 +32,8 @@ class Character {
     this.proficiencyBonus = 0,
     this.raceType = -1,
     this.backgroundType = -1,
+    this.fightingStyleNum = 0,
+    this.manoeuvresNum = 0,
   })  : characterProficiencies =
             List<Proficiency>.from(defaultProficiencyState),
         characterClasses =
@@ -42,6 +54,13 @@ class Character {
       if (characterProficiencies[targetWeapon].isSkilled < 1) {
         characterProficiencies[targetWeapon].isSkilled = 1;
       }
+    }
+  }
+
+  void updateFightingStyles (){
+    List<bool> newFightingSytles = [false, false, false, false, false, false];
+    for (int i=0; i<newFightingSytles.length; i++) {
+      newFightingSytles[i] = ()
     }
   }
 }

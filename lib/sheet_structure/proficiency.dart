@@ -1,15 +1,17 @@
 class Proficiency {
   int profNum;
   int baseAbilityType;
-  double isSkilled;
-  bool isSpecialized;
-  bool isSelectable;
+  int isSkilled;
+  int isDoubleSkilled;
+  int isSpecialized;
+  bool isJOAT;
 
   Proficiency({
     required this.profNum,
     required this.baseAbilityType,
-    this.isSkilled = 0.0,
-    this.isSpecialized = false,
-    this.isSelectable = true,
+    this.isSkilled = 0,
+    this.isSpecialized = 0,
+    this.isDoubleSkilled = 0,
+    this.isJOAT = false,
   });
 }

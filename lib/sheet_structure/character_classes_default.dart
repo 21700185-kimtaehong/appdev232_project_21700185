@@ -15,9 +15,11 @@ class FighterClass extends CharacterClass {
   int superiorDiceNum;
   int superiorDiceSize;
 
+  bool isSubClassSelectable;
+
   late List<int> classProficiencies;
-  late List<int> selectedFightingStyles;
-  late List<int> selectedManoeuvres;
+  late List<bool> selectedClassActions;
+  late List<bool> selectedClassTraits;
 
   FighterClass({
     this.hitPointBase = 10,
@@ -28,6 +30,7 @@ class FighterClass extends CharacterClass {
     this.manoeuvresNum = 0,
     this.superiorDiceNum = 0,
     this.superiorDiceSize = 0,
+    this.isSubClassSelectable = false,
     List<int>? classProficiencies,
     List<int>? selectedFightingStyles,
     List<int>? selectedManoeuvres,
@@ -56,8 +59,10 @@ class FighterClass extends CharacterClass {
         superiorDiceNum = 0;
         superiorDiceSize = 0;
         super.isHalfCaster = false;
+        isSubClassSelectable = false;
       case 3:
-        subClassType = -1;
+        isSubClassSelectable = true;
+       
     }
   }
 

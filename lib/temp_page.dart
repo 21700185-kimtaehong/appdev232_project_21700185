@@ -7,7 +7,7 @@ class TempPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('디폴트 페이지 for page 2'),
+        title: Text('default page for page 2'),
       ),
       body: const Center(
         child: Text('임시'),
