@@ -22,26 +22,26 @@ const int WARLOCK = 20;
 const int WIZARD = 21;
 
 //30~59: RACE TYPE
-const int HIGHELF = 30;
+const int HIGHELF = 30; //
 const int WOODELF = 31;
-const int ASMODEUSTIF = 32;
+const int ASMODEUSTIF = 32; //
 const int MEPHISTOPHELESTIF = 33;
 const int ZARIELTIF = 34;
-const int SELDARINEDROW = 35;
+const int SELDARINEDROW = 35; //
 const int LOLTHDROW = 36;
-const int HUMAN = 37;
-const int GITHYANKI = 38;
-const int GOLDDWARF = 39;
+const int HUMAN = 37; //
+const int GITHYANKI = 38; //
+const int GOLDDWARF = 39; //
 const int SHIELDDWARF = 40;
 const int DUERGA = 41;
-const int HIGHHALF = 42;
+const int HIGHHALF = 42; //
 const int WOODHALF = 43;
 const int DROWHALF = 44;
-const int LIGHTFOOTHAL = 45;
+const int LIGHTFOOTHAL = 45; //
 const int STRONGHEARTHAL = 46;
-const int FORESTGNOME = 47;
+const int FORESTGNOME = 47; //
 const int DEEPGNOME = 48;
-const int BLACKBORN = 49;
+const int BLACKBORN = 49; //
 const int BLUEBORN = 50;
 const int BRASSBORN = 51;
 const int BRONZEBORN = 52;
@@ -51,7 +51,7 @@ const int GREENBORN = 55;
 const int REDBORN = 56;
 const int SILVERBORN = 57;
 const int WHITEBORN = 58;
-const int HALFORC = 59;
+const int HALFORC = 59; //
 
 //60~69: CHARACTER SPEED, SIZE, ACTION TYPE
 const int SLOWMOVEMENT = 60;
@@ -76,3 +76,4 @@ const int SAGE = 78; //학자
 const int SOLDIER = 79; //군인
 const int URCHIN = 80; //부랑아
 const int HAUNTED = 81; //사로잡힌 자
+

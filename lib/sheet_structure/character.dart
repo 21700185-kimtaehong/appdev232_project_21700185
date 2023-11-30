@@ -2,6 +2,8 @@ import '../constant/constant_code.dart';
 import 'proficiency.dart';
 import 'character_class.dart';
 import 'weapon.dart';
+import 'race.dart';
+import 'ability.dart';
 import 'character_classes_default.dart';
 
 class Character {
@@ -14,8 +16,14 @@ class Character {
   int raceType;
   int backgroundType;
 
+  int startingClassType;
+
   int fightingStyleNum;
   int manoeuvresNum;
+
+  Ability characterAbility = Ability();
+
+  late Race activeRace;
 
   late List<bool> activeClasses;
   late List<Proficiency> characterProficiencies;
@@ -32,6 +40,7 @@ class Character {
     this.proficiencyBonus = 0,
     this.raceType = -1,
     this.backgroundType = -1,
+    this.startingClassType = -1,
     this.fightingStyleNum = 0,
     this.manoeuvresNum = 0,
   })  : characterProficiencies =
@@ -49,41 +58,35 @@ class Character {
     }
   }
 
-  void addWeapon(List<int> targetWeapons) {
-    for (int targetWeapon in targetWeapons) {
-      if (characterProficiencies[targetWeapon].isSkilled < 1) {
-        characterProficiencies[targetWeapon].isSkilled = 1;
-      }
-    }
+  void activeClass(int classType) {
+    activeClasses[classType - 10] = true;
+    characterClasses[classType - 10].upClassLevel(true);
   }
 
-  void updateFightingStyles (){
-    List<bool> newFightingSytles = [false, false, false, false, false, false];
-    for (int i=0; i<newFightingSytles.length; i++) {
-      newFightingSytles[i] = ()
-    }
+  void updateFightingStyles(int index) {
+    selectedFightingStyles[index] = !selectedFightingStyles[index];
   }
 }
 
 List<Proficiency> defaultProficiencyState = [
-  Proficiency(profNum: 0, baseAbilityType: STR), //0
-  Proficiency(profNum: 1, baseAbilityType: DEX), //1
-  Proficiency(profNum: 2, baseAbilityType: DEX), //2
-  Proficiency(profNum: 3, baseAbilityType: DEX), //3
-  Proficiency(profNum: 4, baseAbilityType: INT), //4
-  Proficiency(profNum: 5, baseAbilityType: INT), //5
-  Proficiency(profNum: 6, baseAbilityType: INT), //6
-  Proficiency(profNum: 7, baseAbilityType: INT), //7
-  Proficiency(profNum: 8, baseAbilityType: INT), //8
-  Proficiency(profNum: 9, baseAbilityType: WIS), //9
-  Proficiency(profNum: 10, baseAbilityType: WIS), //10
-  Proficiency(profNum: 11, baseAbilityType: WIS), //11
-  Proficiency(profNum: 12, baseAbilityType: WIS), //12
-  Proficiency(profNum: 13, baseAbilityType: WIS), //13
-  Proficiency(profNum: 14, baseAbilityType: CHA), //14
-  Proficiency(profNum: 15, baseAbilityType: CHA), //15
-  Proficiency(profNum: 16, baseAbilityType: CHA), //16
-  Proficiency(profNum: 17, baseAbilityType: CHA), //17
+  Proficiency(profNum: 0, baseAbilityType: STR, isSelectable: true), //0 운동
+  Proficiency(profNum: 1, baseAbilityType: DEX, isSelectable: true), //1 곡예
+  Proficiency(profNum: 2, baseAbilityType: DEX, isSelectable: true), //2 손재주
+  Proficiency(profNum: 3, baseAbilityType: DEX, isSelectable: true), //3 은신
+  Proficiency(profNum: 4, baseAbilityType: INT, isSelectable: true), //4 비전
+  Proficiency(profNum: 5, baseAbilityType: INT, isSelectable: true), //5 역사
+  Proficiency(profNum: 6, baseAbilityType: INT, isSelectable: true), //6 조사
+  Proficiency(profNum: 7, baseAbilityType: INT, isSelectable: true), //7 자연
+  Proficiency(profNum: 8, baseAbilityType: INT, isSelectable: true), //8 종교
+  Proficiency(profNum: 9, baseAbilityType: WIS, isSelectable: true), //9 동물조련
+  Proficiency(profNum: 10, baseAbilityType: WIS, isSelectable: true), //10 통찰
+  Proficiency(profNum: 11, baseAbilityType: WIS, isSelectable: true), //11 의학
+  Proficiency(profNum: 12, baseAbilityType: WIS, isSelectable: true), //12 감지
+  Proficiency(profNum: 13, baseAbilityType: WIS, isSelectable: true), //13 생존
+  Proficiency(profNum: 14, baseAbilityType: CHA, isSelectable: true), //14 공연
+  Proficiency(profNum: 15, baseAbilityType: CHA, isSelectable: true), //15 기만
+  Proficiency(profNum: 16, baseAbilityType: CHA, isSelectable: true), //16 위협
+  Proficiency(profNum: 17, baseAbilityType: CHA, isSelectable: true), //17 설득
 ];
 
 List<String> profNames = [
@@ -112,9 +115,11 @@ List<CharacterClass> defaultCharacterClassState = [
   CharacterClass(classType: BARBARIAN),
   CharacterClass(classType: CLERIC, isCaster: true),
   CharacterClass(classType: DRUID, isCaster: true, isHalfCaster: true),
-  CharacterClass(classType: FIGHTER),
+  //CharacterClass(classType: FIGHTER),
+  FighterClass(),
   CharacterClass(classType: MONK),
   CharacterClass(classType: PALADIN, isCaster: true, isHalfCaster: true),
+  CharacterClass(classType: ROGUE),
   CharacterClass(classType: RANGER, isCaster: true, isHalfCaster: true),
   CharacterClass(classType: SORCERER, isCaster: true),
   CharacterClass(classType: WARLOCK),
@@ -285,9 +290,10 @@ List<bool> defaultActiveClassState = [
   false, // 5 monk
   false, // 6 paladin
   false, // 7 ranger
-  false, // 8 sorcerer
-  false, // 9 warlock
-  false, // 10 wizard
+  false, // 8 rogue
+  false, // 9 sorcerer
+  false, // 10 warlock
+  false, // 11 wizard
 ];
 // List<Proficiency> defaultProficiencyState = [
 //   Proficiency(profName: "운동", profNum: 0, baseAbilityType: STR), //0

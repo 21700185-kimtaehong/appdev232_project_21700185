@@ -1,9 +1,9 @@
-class Action {
+class CharacterAction {
   String actionName;
   String actionDescription;
   String imageUrl = "";
 
-  Action({
+  CharacterAction({
     this.actionName = "",
     this.actionDescription = "",
     this.imageUrl = "",

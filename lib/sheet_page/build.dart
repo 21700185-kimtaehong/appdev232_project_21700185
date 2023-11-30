@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:appdev232_project_21700185/sheet_page/button_select.dart';
 import 'package:appdev232_project_21700185/select_pages/background_select.dart';
+import 'package:appdev232_project_21700185/select_pages/race_select.dart';
 import 'package:appdev232_project_21700185/temp_page.dart';
 import 'package:appdev232_project_21700185/sheet_page/summary_page.dart';
 
@@ -83,6 +84,8 @@ class _BuildPageState extends State<BuildPage> {
     switch (pageIndex) {
       case 1:
         return BackgroundPage(context);
+      case 2:
+        return RacePage(context);
       default:
         return const TempPage(); // 테스트용
     }

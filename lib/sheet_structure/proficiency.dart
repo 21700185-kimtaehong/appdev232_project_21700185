@@ -4,7 +4,8 @@ class Proficiency {
   int isSkilled;
   int isDoubleSkilled;
   int isSpecialized;
-  bool isJOAT;
+  bool isJOAT; // jack of all trades
+  bool isSelectable;
 
   Proficiency({
     required this.profNum,
@@ -13,5 +14,6 @@ class Proficiency {
     this.isSpecialized = 0,
     this.isDoubleSkilled = 0,
     this.isJOAT = false,
+    this.isSelectable = false,
   });
 }

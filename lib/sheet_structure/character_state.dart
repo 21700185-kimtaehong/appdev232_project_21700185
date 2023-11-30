@@ -1,8 +1,10 @@
+import 'package:appdev232_project_21700185/sheet_structure/character_classes_default.dart';
 import 'package:appdev232_project_21700185/sheet_structure/proficiency.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:appdev232_project_21700185/sheet_structure/character.dart';
+import 'package:appdev232_project_21700185/sheet_structure/race.dart';
 import 'package:appdev232_project_21700185/constant/constant_code.dart';
 
 class CharacterState with ChangeNotifier {
@@ -12,15 +14,22 @@ class CharacterState with ChangeNotifier {
 
   void setRace(int raceType) {
     _currCharacter.raceType = raceType;
-    notifyListeners();
-  }
-
-  void updateRace(int totalLevel) {
-    switch (_currCharacter.raceType) {
+    switch (raceType) {
       case HUMAN:
-        _currCharacter.addWeapon([10, 13, 15, 27]);
+        _currCharacter.activeRace = Human();
+        (_currCharacter.activeRace as Human)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case HIGHELF:
+        _currCharacter.activeRace = HighElf();
+        (_currCharacter.activeRace as HighElf)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      default:
+        print('failed while setRace()');
         break;
     }
+    notifyListeners();
   }
 
   void setBackground(int backgroundType) {
@@ -96,8 +105,18 @@ class CharacterState with ChangeNotifier {
       }
     }
     updateCharacterStat();
-    _currCharacter.characterClasses[classType - 10].updateClassStat();
-    notifyListeners();
+    switch (classType) {
+      case FIGHTER:
+        (_currCharacter.characterClasses[classType - 10] as FighterClass)
+            .updateFighterClass();
+        notifyListeners();
+        break;
+      default:
+        print("trying to update classType: ");
+        print(classType);
+        print("\n");
+        break;
+    }
   }
 
   void updateCharacterStat() {
@@ -105,24 +124,21 @@ class CharacterState with ChangeNotifier {
       case 0:
         _currCharacter.hitpoints = 0;
         _currCharacter.proficiencyBonus = 0;
+        notifyListeners();
         break;
-      case 1:
-      case 2:
-      case 3:
       case 4:
         _currCharacter.proficiencyBonus = 2;
+        notifyListeners();
         break;
-      case 5:
-      case 6:
-      case 7:
       case 8:
         _currCharacter.proficiencyBonus = 3;
+        notifyListeners();
         break;
-      case 9:
-      case 10:
-      case 11:
       case 12:
         _currCharacter.proficiencyBonus = 4;
+        notifyListeners();
+        break;
+      default:
         break;
     }
   }

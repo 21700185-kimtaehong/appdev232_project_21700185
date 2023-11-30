@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:appdev232_project_21700185/sheet_structure/button_builder.dart';
+import 'package:appdev232_project_21700185/sheet_structure/character_state.dart';
 
 class ButtonPage extends StatefulWidget {
   final Function(int) onPageSelected;
@@ -14,6 +16,9 @@ class ButtonPage extends StatefulWidget {
 class _ButtonPageState extends State<ButtonPage> {
   @override
   Widget build(BuildContext context) {
+    CharacterState characterState =
+        Provider.of<CharacterState>(context, listen: true);
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -23,10 +28,12 @@ class _ButtonPageState extends State<ButtonPage> {
             createCustomButton(
               buttonText: '배경',
               onPressed: () => widget.onPageSelected(1),
+              isValid: (characterState.currCharacter.backgroundType != -1),
             ),
             createCustomButton(
               buttonText: '종족',
               onPressed: () => widget.onPageSelected(2),
+              isValid: (characterState.currCharacter.raceType != -1),
             ),
           ],
         ),

@@ -18,55 +18,41 @@ class _BackgroundPageState extends State<BackgroundPage> {
     double minButtonWidth = 100.0;
     TextStyle buttonTextStyle = TextStyle(fontSize: 16.0);
 
+    int crossAxisCount = screenWidth < 600 ? 2 : 4;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('배경'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
+        child: GridView.count(
+          crossAxisCount: crossAxisCount,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                backgroundSelectButton(context, ACOLYTE, '복사', screenWidth,
-                    minButtonWidth, buttonTextStyle),
-                backgroundSelectButton(context, CHARLATAN, '사기꾼', screenWidth,
-                    minButtonWidth, buttonTextStyle),
-                backgroundSelectButton(context, CRIMINAL, '범죄자', screenWidth,
-                    minButtonWidth, buttonTextStyle),
-                backgroundSelectButton(context, ENTERTAINER, '연예인', screenWidth,
-                    minButtonWidth, buttonTextStyle),
-              ],
-            ),
-            SizedBox(height: 10.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                backgroundSelectButton(context, FOLKHERO, '민중 영웅', screenWidth,
-                    minButtonWidth, buttonTextStyle),
-                backgroundSelectButton(context, GUILDARTISAN, '길드 장인',
-                    screenWidth, minButtonWidth, buttonTextStyle),
-                backgroundSelectButton(context, NOBLE, '귀족', screenWidth,
-                    minButtonWidth, buttonTextStyle),
-                backgroundSelectButton(context, OUTLANDER, '이방인', screenWidth,
-                    minButtonWidth, buttonTextStyle),
-              ],
-            ),
-            SizedBox(height: 10.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                backgroundSelectButton(context, SAGE, '학자', screenWidth,
-                    minButtonWidth, buttonTextStyle),
-                backgroundSelectButton(context, SOLDIER, '군인', screenWidth,
-                    minButtonWidth, buttonTextStyle),
-                backgroundSelectButton(context, URCHIN, '부랑아', screenWidth,
-                    minButtonWidth, buttonTextStyle),
-                backgroundSelectButton(context, HAUNTED, '사로잡힌 자', screenWidth,
-                    minButtonWidth, buttonTextStyle),
-              ],
-            ),
+            backgroundSelectButton(context, ACOLYTE, '복사', screenWidth,
+                minButtonWidth, buttonTextStyle),
+            backgroundSelectButton(context, CHARLATAN, '사기꾼', screenWidth,
+                minButtonWidth, buttonTextStyle),
+            backgroundSelectButton(context, CRIMINAL, '범죄자', screenWidth,
+                minButtonWidth, buttonTextStyle),
+            backgroundSelectButton(context, ENTERTAINER, '연예인', screenWidth,
+                minButtonWidth, buttonTextStyle),
+            backgroundSelectButton(context, FOLKHERO, '민중 영웅', screenWidth,
+                minButtonWidth, buttonTextStyle),
+            backgroundSelectButton(context, GUILDARTISAN, '길드 장인', screenWidth,
+                minButtonWidth, buttonTextStyle),
+            backgroundSelectButton(context, NOBLE, '귀족', screenWidth,
+                minButtonWidth, buttonTextStyle),
+            backgroundSelectButton(context, OUTLANDER, '이방인', screenWidth,
+                minButtonWidth, buttonTextStyle),
+            backgroundSelectButton(context, SAGE, '학자', screenWidth,
+                minButtonWidth, buttonTextStyle),
+            backgroundSelectButton(context, SOLDIER, '군인', screenWidth,
+                minButtonWidth, buttonTextStyle),
+            backgroundSelectButton(context, URCHIN, '부랑아', screenWidth,
+                minButtonWidth, buttonTextStyle),
           ],
         ),
       ),
@@ -99,7 +85,10 @@ class _BackgroundPageState extends State<BackgroundPage> {
         textStyle: buttonTextStyle,
         backgroundColor: isSelected ? Colors.blue : Colors.grey,
       ),
-      child: Text(buttonText),
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Text(buttonText),
+      ),
     );
   }
 }

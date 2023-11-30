@@ -11,7 +11,7 @@ class CharacterClass {
   bool isHalfCaster;
 
   List<int> feats;
-  List<Action> classActions;
+  List<CharacterAction> classActions;
   List<Trait> classTraits;
   List<Spell> classSpells;
 
@@ -23,7 +23,7 @@ class CharacterClass {
     this.isCaster = false,
     this.isHalfCaster = false,
     List<int>? feats,
-    List<Action>? classActions,
+    List<CharacterAction>? classActions,
     List<Trait>? classTraits,
     List<Spell>? classSpells,
   })  : classActions = classActions ?? [],
@@ -31,8 +31,8 @@ class CharacterClass {
         classSpells = classSpells ?? [],
         feats = feats ?? [];
 
-  void addAction(List<Action> actions) {
-    for (Action action in actions) {
+  void addAction(List<CharacterAction> actions) {
+    for (CharacterAction action in actions) {
       classActions.add(action);
     }
   }
@@ -50,8 +50,6 @@ class CharacterClass {
       classLevel--;
     }
   }
-
-  void updateClassStat() {}
 }
 
 // CharacterClass bard = CharacterClass(classType: BARD, isCaster: true);
