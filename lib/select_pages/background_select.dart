@@ -16,7 +16,7 @@ class _BackgroundPageState extends State<BackgroundPage> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double minButtonWidth = 100.0;
-    TextStyle buttonTextStyle = TextStyle(fontSize: 16.0);
+    TextStyle buttonTextStyle = const TextStyle(fontSize: 16.0);
 
     int crossAxisCount = screenWidth < 600 ? 2 : 4;
 
@@ -61,7 +61,7 @@ class _BackgroundPageState extends State<BackgroundPage> {
 
   Widget backgroundSelectButton(
     BuildContext context,
-    int index,
+    int backgroundType,
     String buttonText,
     double screenWidth,
     double minButtonWidth,
@@ -72,15 +72,16 @@ class _BackgroundPageState extends State<BackgroundPage> {
 
     CharacterState characterState =
         Provider.of<CharacterState>(context, listen: true);
-    int curr_index = characterState.currCharacter.backgroundType;
-    bool isSelected = curr_index == index;
+    int currIndex = characterState.currCharacter.backgroundType;
+    bool isSelected = currIndex == backgroundType;
+    
 
     return ElevatedButton(
       onPressed: () {
-        characterState.setBackground(index);
+        characterState.setBackground(backgroundType);
       },
       style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         minimumSize: Size(buttonWidth, 48.0),
         textStyle: buttonTextStyle,
         backgroundColor: isSelected ? Colors.blue : Colors.grey,

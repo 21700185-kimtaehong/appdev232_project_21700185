@@ -43,12 +43,16 @@ class CharacterClass {
     }
   }
 
-  void upClassLevel(bool up) {
+  void classLevelUp(bool up) {
     if (up) {
       classLevel++;
     } else {
       classLevel--;
     }
+  }
+
+  void setZeroClassLevel() {
+    classLevel = 0;
   }
 }
 

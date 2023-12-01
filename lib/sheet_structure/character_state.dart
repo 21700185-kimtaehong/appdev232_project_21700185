@@ -87,24 +87,7 @@ class CharacterState with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateLevel(int classType, bool up) {
-    if (up) {
-      if (_currCharacter.characterClasses[classType - 10].classLevel < 12 &&
-          _currCharacter.totalLevel < 12) {
-        _currCharacter.characterClasses[classType - 10].upClassLevel(up);
-        _currCharacter.totalLevel++;
-      } else {
-        print('error in updateLevel().');
-      }
-    } else {
-      if (_currCharacter.characterClasses[classType - 10].classLevel > 0) {
-        _currCharacter.characterClasses[classType - 10].upClassLevel(up);
-        _currCharacter.totalLevel--;
-      } else {
-        print('error in updateLevel().');
-      }
-    }
-    updateCharacterStat();
+  void updateClassState(int classType) {
     switch (classType) {
       case FIGHTER:
         (_currCharacter.characterClasses[classType - 10] as FighterClass)
@@ -119,7 +102,7 @@ class CharacterState with ChangeNotifier {
     }
   }
 
-  void updateCharacterStat() {
+  void updateCommonState() {
     switch (_currCharacter.totalLevel) {
       case 0:
         _currCharacter.hitpoints = 0;
@@ -141,5 +124,37 @@ class CharacterState with ChangeNotifier {
       default:
         break;
     }
+  }
+
+  void classLevelUp(int classType, bool up) {
+    if (up) {
+      if (_currCharacter.characterClasses[classType - 10].classLevel < 12 &&
+          _currCharacter.totalLevel < 12) {
+        _currCharacter.characterClasses[classType - 10].classLevelUp(up);
+        _currCharacter.totalLevel++;
+      } else {
+        print('error in classLevelUp().');
+      }
+    } else {
+      if (_currCharacter.characterClasses[classType - 10].classLevel > 0) {
+        _currCharacter.characterClasses[classType - 10].classLevelUp(up);
+        _currCharacter.totalLevel--;
+        if (_currCharacter.characterClasses[classType - 10].classLevel == 0){
+          _currCharacter.activeClasses[classType - 10] = false;
+        }
+      } else {
+        print('error in classLevelUp().');
+      }
+    }
+    updateClassState(classType);
+    updateCommonState();
+    
+  }
+
+  void classLevelZero (int classType) {
+    _currCharacter.totalLevel -= _currCharacter.characterClasses[classType - 10].classLevel;
+    _currCharacter.characterClasses[classType - 10].setZeroClassLevel();
+    updateClassState(classType);
+    updateCommonState();
   }
 }

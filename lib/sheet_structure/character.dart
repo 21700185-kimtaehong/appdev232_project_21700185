@@ -58,9 +58,14 @@ class Character {
     }
   }
 
-  void activeClass(int classType) {
+  void activateClass(int classType) { //클래스의 레벨 0>1
     activeClasses[classType - 10] = true;
-    characterClasses[classType - 10].upClassLevel(true);
+    characterClasses[classType - 10].classLevelUp(true);
+  }
+
+  void deactivateClass(int classType) { //클래스의 레벨 n > 0
+    characterClasses[classType - 10].setZeroClassLevel();
+    activeClasses[classType - 10] = false;
   }
 
   void updateFightingStyles(int index) {
@@ -119,8 +124,8 @@ List<CharacterClass> defaultCharacterClassState = [
   FighterClass(),
   CharacterClass(classType: MONK),
   CharacterClass(classType: PALADIN, isCaster: true, isHalfCaster: true),
-  CharacterClass(classType: ROGUE),
   CharacterClass(classType: RANGER, isCaster: true, isHalfCaster: true),
+  CharacterClass(classType: ROGUE),
   CharacterClass(classType: SORCERER, isCaster: true),
   CharacterClass(classType: WARLOCK),
   CharacterClass(classType: WIZARD, isCaster: true)

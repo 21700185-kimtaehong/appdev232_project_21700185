@@ -17,7 +17,7 @@ class _RacePageState extends State<RacePage> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double minButtonWidth = 100.0;
-    TextStyle buttonTextStyle = TextStyle(fontSize: 16.0);
+    TextStyle buttonTextStyle = const TextStyle(fontSize: 16.0);
 
     int crossAxisCount = screenWidth < 600 ? 2 : 4;
 
@@ -135,15 +135,15 @@ class _RacePageState extends State<RacePage> {
 
     CharacterState characterState =
         Provider.of<CharacterState>(context, listen: true);
-    int curr_index = characterState.currCharacter.raceType;
-    bool isSelected = curr_index == raceType;
+    int currIndex = characterState.currCharacter.raceType;
+    bool isSelected = currIndex == raceType;
 
     return ElevatedButton(
       onPressed: () {
         characterState.setRace(raceType);
       },
       style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         minimumSize: Size(buttonWidth, 48.0),
         textStyle: buttonTextStyle,
         backgroundColor: isSelected ? Colors.blue : Colors.grey,
