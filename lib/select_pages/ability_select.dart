@@ -15,5 +15,14 @@ class _AbilityPageState extends State<AbilityPage> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+
+    return Scaffold();
   }
+}
+
+Widget abilityUpdownButton(BuildContext context) {
+  CharacterState characterState =
+      Provider.of<CharacterState>(context, listen: true);
+
+  return Column();
 }
