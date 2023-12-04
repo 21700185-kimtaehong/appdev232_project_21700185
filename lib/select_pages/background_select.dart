@@ -18,7 +18,7 @@ class _BackgroundPageState extends State<BackgroundPage> {
     double minButtonWidth = 100.0;
     TextStyle buttonTextStyle = const TextStyle(fontSize: 16.0);
 
-    int crossAxisCount = screenWidth < 600 ? 2 : 4;
+    int crossAxisCount = screenWidth < 600 ? 3 : 4;
 
     return Scaffold(
       appBar: AppBar(
@@ -74,7 +74,6 @@ class _BackgroundPageState extends State<BackgroundPage> {
         Provider.of<CharacterState>(context, listen: true);
     int currIndex = characterState.currCharacter.backgroundType;
     bool isSelected = currIndex == backgroundType;
-    
 
     return ElevatedButton(
       onPressed: () {

@@ -1,3 +1,4 @@
+import 'package:appdev232_project_21700185/select_pages/class_select.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -86,6 +87,8 @@ class _BuildPageState extends State<BuildPage> {
         return BackgroundPage(context);
       case 2:
         return RacePage(context);
+      case 4:
+        return ClassPage(context);
       default:
         return const TempPage(); // 테스트용
     }

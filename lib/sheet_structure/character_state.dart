@@ -1,4 +1,4 @@
-import 'package:appdev232_project_21700185/sheet_structure/character_classes_default.dart';
+import 'package:appdev232_project_21700185/class_default/fighter_default.dart';
 import 'package:appdev232_project_21700185/sheet_structure/proficiency.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -92,12 +92,8 @@ class CharacterState with ChangeNotifier {
       case FIGHTER:
         (_currCharacter.characterClasses[classType - 10] as FighterClass)
             .updateFighterClass();
-        notifyListeners();
         break;
       default:
-        print("trying to update classType: ");
-        print(classType);
-        print("\n");
         break;
     }
   }
@@ -107,19 +103,24 @@ class CharacterState with ChangeNotifier {
       case 0:
         _currCharacter.hitpoints = 0;
         _currCharacter.proficiencyBonus = 0;
-        notifyListeners();
         break;
+      case 1:
+      case 2:
+      case 3:
       case 4:
         _currCharacter.proficiencyBonus = 2;
-        notifyListeners();
         break;
+      case 5:
+      case 6:
+      case 7:
       case 8:
         _currCharacter.proficiencyBonus = 3;
-        notifyListeners();
         break;
+      case 9:
+      case 10:
+      case 11:
       case 12:
         _currCharacter.proficiencyBonus = 4;
-        notifyListeners();
         break;
       default:
         break;
@@ -139,22 +140,38 @@ class CharacterState with ChangeNotifier {
       if (_currCharacter.characterClasses[classType - 10].classLevel > 0) {
         _currCharacter.characterClasses[classType - 10].classLevelUp(up);
         _currCharacter.totalLevel--;
-        if (_currCharacter.characterClasses[classType - 10].classLevel == 0){
+        if (_currCharacter.characterClasses[classType - 10].classLevel == 0) {
           _currCharacter.activeClasses[classType - 10] = false;
         }
       } else {
         print('error in classLevelUp().');
       }
     }
+    _currCharacter.updateCharacterLevel;
+    _currCharacter.updateFeatNum();
     updateClassState(classType);
     updateCommonState();
-    
+    notifyListeners();
   }
 
-  void classLevelZero (int classType) {
-    _currCharacter.totalLevel -= _currCharacter.characterClasses[classType - 10].classLevel;
+  void classLevelZero(int classType) {
+    _currCharacter.totalLevel -=
+        _currCharacter.characterClasses[classType - 10].classLevel;
     _currCharacter.characterClasses[classType - 10].setZeroClassLevel();
     updateClassState(classType);
     updateCommonState();
+    notifyListeners();
+  }
+
+  void activateClassState(int classType) {
+    if (_currCharacter.totalLevel < 12) {
+      _currCharacter.activateClass(classType);
+      notifyListeners();
+    }
+  }
+
+  void deactivateClassState(int classType) {
+    _currCharacter.deactivateClass(classType);
+    notifyListeners();
   }
 }

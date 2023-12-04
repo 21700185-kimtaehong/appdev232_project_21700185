@@ -5,7 +5,7 @@ import 'package:appdev232_project_21700185/sheet_structure/character_state.dart'
 import 'package:appdev232_project_21700185/constant/constant_code.dart';
 
 class ClassPage extends StatefulWidget {
-  const ClassPage({Key? key}) : super(key: key);
+  const ClassPage(BuildContext context, {Key? key}) : super(key: key);
 
   @override
   _ClassPageState createState() => _ClassPageState();
@@ -15,15 +15,30 @@ class _ClassPageState extends State<ClassPage> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double minButtonWidth = 100.0;
+    double minButtonWidth = 30.0;
     TextStyle buttonTextStyle = TextStyle(fontSize: 16.0);
 
-    int crossAxisCount = screenWidth < 600 ? 2 : 4;
+    int crossAxisCount = screenWidth < 600 ? 3 : 4;
 
     CharacterState characterState =
         Provider.of<CharacterState>(context, listen: true);
 
     List<bool> currActiveClasses = characterState.currCharacter.activeClasses;
+
+    List<String> classNames = [
+      '바드',
+      '바바리안',
+      '클레릭',
+      '드루이드',
+      '파이터',
+      '몽크',
+      '팔라딘',
+      '레인저',
+      '로그',
+      '소서러',
+      '워락',
+      '위저드'
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -39,30 +54,27 @@ class _ClassPageState extends State<ClassPage> {
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
                 children: [
-                  classSelectButton(context, BARD, '바드', screenWidth, minButtonWidth, buttonTextStyle),
-                  classSelectButton(context, BARBARIAN, '바바리안', screenWidth, minButtonWidth, buttonTextStyle),
-                  classSelectButton(context, CLERIC, '클레릭', screenWidth, minButtonWidth, buttonTextStyle),
-                  classSelectButton(context, DRUID, '드루이드', screenWidth, minButtonWidth, buttonTextStyle),
-                  classSelectButton(context, FIGHTER, '파이터', screenWidth, minButtonWidth, buttonTextStyle),
-                  classSelectButton(context, MONK, '몽크', screenWidth, minButtonWidth, buttonTextStyle),
-                  classSelectButton(context, PALADIN, '팔라딘', screenWidth, minButtonWidth, buttonTextStyle),
-                  classSelectButton(context, RANGER, '레인저', screenWidth, minButtonWidth, buttonTextStyle),
-                  classSelectButton(context, ROGUE, '로그', screenWidth, minButtonWidth, buttonTextStyle),
-                  classSelectButton(context, SORCERER, '소서러', screenWidth, minButtonWidth, buttonTextStyle),
-                  classSelectButton(context, WARLOCK, '워락', screenWidth, minButtonWidth, buttonTextStyle),
-                  classSelectButton(context, WIZARD, '위저드', screenWidth, minButtonWidth, buttonTextStyle),
+                  for (int i = 0; i < currActiveClasses.length; i++)
+                    classSelectButton(context, BARD + i, classNames[i],
+                        screenWidth, minButtonWidth, buttonTextStyle),
                 ],
               ),
             ),
+            const Divider(thickness: 1, color: Colors.white),
             Expanded(
-              child: GridView.count(
-              crossAxisCount: 1,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              children: [
-                if (currActiveClasses[1]) {
-                }
-              ],
+              child: ListView(
+                children: [
+                  for (int i = 0; i < currActiveClasses.length; i++)
+                    if (currActiveClasses[i])
+                      _buildClassLevelUpButton(
+                        context,
+                        BARD + i,
+                        classNames[i],
+                        screenWidth,
+                        minButtonWidth,
+                        buttonTextStyle,
+                      ),
+                ],
               ),
             ),
           ],
@@ -84,14 +96,15 @@ class _ClassPageState extends State<ClassPage> {
 
     CharacterState characterState =
         Provider.of<CharacterState>(context, listen: true);
-    bool isSelected = characterState.currCharacter.activeClasses[classType-10];
+    bool isSelected =
+        characterState.currCharacter.activeClasses[classType - 10];
 
     return ElevatedButton(
       onPressed: () {
         if (isSelected) {
-          characterState.currCharacter.deactivateClass(classType);
-        }else {
-          characterState.currCharacter.activateClass(classType);
+          characterState.deactivateClassState(classType);
+        } else {
+          characterState.activateClassState(classType);
         }
       },
       style: ElevatedButton.styleFrom(
@@ -110,13 +123,47 @@ class _ClassPageState extends State<ClassPage> {
   Widget _buildClassLevelUpButton(
     BuildContext context,
     int classType,
+    String className,
     double screenWidth,
     double minButtonWidth,
     TextStyle buttonTextStyle,
   ) {
     CharacterState characterState =
         Provider.of<CharacterState>(context, listen: true);
-    
-      return Row();
-    }
+
+    return Row(
+      children: [
+        Container(
+          width: 100,
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            className,
+            style: const TextStyle(color: Colors.white),
+          ),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            characterState.classLevelUp(classType, false);
+          },
+          child: const Icon(Icons.remove),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            characterState.classLevelUp(classType, true);
+          },
+          child: const Icon(Icons.add),
+        ),
+        Container(
+          width: 50,
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            characterState
+                .currCharacter.characterClasses[classType - 10].classLevel
+                .toString(),
+            style: const TextStyle(color: Colors.white),
+          ),
+        ),
+      ],
+    );
+  }
 }

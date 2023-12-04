@@ -1,6 +1,7 @@
 import 'action.dart';
 import 'spell.dart';
 import 'trait.dart';
+import 'package:appdev232_project_21700185/constant/constant_code.dart';
 
 class CharacterClass {
   int classType;
@@ -40,6 +41,37 @@ class CharacterClass {
   void addTrait(List<Trait> traits) {
     for (Trait trait in traits) {
       classTraits.add(trait);
+    }
+  }
+
+  void updateClassFeatNum() {
+    switch (classLevel) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+        numFeat = 0;
+        break;
+      case 4:
+      case 5:
+      case 6:
+      case 7:
+        numFeat = 1;
+        break;
+      case 8:
+      case 9:
+      case 10:
+      case 11:
+        numFeat = 2;
+        break;
+      case 12:
+        numFeat = 3;
+        break;
+    }
+    if (classType == FIGHTER && classLevel >= 6) {
+      numFeat += 1;
+    } else if (classType == ROGUE && classLevel >= 10) {
+      numFeat += 1;
     }
   }
 

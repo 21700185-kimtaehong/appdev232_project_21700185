@@ -4,7 +4,7 @@ import 'character_class.dart';
 import 'weapon.dart';
 import 'race.dart';
 import 'ability.dart';
-import 'character_classes_default.dart';
+import '../class_default/fighter_default.dart';
 
 class Character {
   String chracterName;
@@ -17,6 +17,7 @@ class Character {
   int backgroundType;
 
   int startingClassType;
+  int characterFeatNum;
 
   int fightingStyleNum;
   int manoeuvresNum;
@@ -41,6 +42,7 @@ class Character {
     this.raceType = -1,
     this.backgroundType = -1,
     this.startingClassType = -1,
+    this.characterFeatNum = 0,
     this.fightingStyleNum = 0,
     this.manoeuvresNum = 0,
   })  : characterProficiencies =
@@ -58,14 +60,35 @@ class Character {
     }
   }
 
-  void activateClass(int classType) { //클래스의 레벨 0>1
+  void activateClass(int classType) {
+    //클래스의 레벨 0 -> 1
     activeClasses[classType - 10] = true;
     characterClasses[classType - 10].classLevelUp(true);
+    updateCharacterLevel();
   }
 
-  void deactivateClass(int classType) { //클래스의 레벨 n > 0
+  void deactivateClass(int classType) {
+    //클래스의 레벨 n -> 0
     characterClasses[classType - 10].setZeroClassLevel();
     activeClasses[classType - 10] = false;
+    updateCharacterLevel();
+  }
+
+  void updateCharacterLevel() {
+    int tempLevel = 0;
+    for (int i = 0; i < activeClasses.length; i++) {
+      if (activeClasses[i]) tempLevel += characterClasses[i].classLevel;
+    }
+    totalLevel = tempLevel;
+  }
+
+  void updateFeatNum() {
+    characterFeatNum = 0;
+    for (int i = 0; i < activeClasses.length; i++) {
+      if (activeClasses[i]) {
+        characterFeatNum += characterClasses[i].numFeat;
+      }
+    }
   }
 
   void updateFightingStyles(int index) {
@@ -114,6 +137,8 @@ List<String> profNames = [
   "위협",
   "설득"
 ];
+
+List<String> abilityNames = ['근력', '민첩', '건강', '지능', '지혜', '매력'];
 
 List<CharacterClass> defaultCharacterClassState = [
   CharacterClass(classType: BARD, isCaster: true),

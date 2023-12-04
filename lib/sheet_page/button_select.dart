@@ -19,6 +19,9 @@ class _ButtonPageState extends State<ButtonPage> {
     CharacterState characterState =
         Provider.of<CharacterState>(context, listen: true);
 
+    bool activateFeatSelect =
+        (characterState.currCharacter.characterFeatNum > 0);
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -35,6 +38,18 @@ class _ButtonPageState extends State<ButtonPage> {
               onPressed: () => widget.onPageSelected(2),
               isValid: (characterState.currCharacter.raceType != -1),
             ),
+            createCustomButton(
+              buttonText: '클래스',
+              onPressed: () => widget.onPageSelected(4),
+              isValid:
+                  (characterState.currCharacter.activeClasses.contains(true)),
+            ),
+            if (activateFeatSelect)
+              createCustomButton(
+                buttonText: '재주',
+                onPressed: () => widget.onPageSelected(5),
+                isValid: (true),
+              ),
           ],
         ),
       ),

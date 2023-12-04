@@ -2,8 +2,8 @@ import 'package:appdev232_project_21700185/sheet_structure/proficiency.dart';
 
 import '../constant/constant_code.dart';
 import '../constant/constant_fighter.dart';
-import 'action.dart';
-import 'character_class.dart';
+import '../sheet_structure/action.dart';
+import '../sheet_structure/character_class.dart';
 
 class FighterClass extends CharacterClass {
   int hitPointBase;
@@ -110,8 +110,7 @@ class FighterClass extends CharacterClass {
           default:
             break;
         }
-        break;
-      case 4:
+      case 6:
     }
   }
 

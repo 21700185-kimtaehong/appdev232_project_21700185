@@ -19,7 +19,7 @@ class _RacePageState extends State<RacePage> {
     double minButtonWidth = 100.0;
     TextStyle buttonTextStyle = const TextStyle(fontSize: 16.0);
 
-    int crossAxisCount = screenWidth < 600 ? 2 : 4;
+    int crossAxisCount = screenWidth < 600 ? 3 : 4;
 
     CharacterState characterState =
         Provider.of<CharacterState>(context, listen: true);

@@ -7,6 +7,7 @@ const int CON = 3;
 const int INT = 4;
 const int WIS = 5;
 const int CHA = 6;
+
 //10~29: CLASS TYPE
 const int BARD = 10;
 const int BARBARIAN = 11;
