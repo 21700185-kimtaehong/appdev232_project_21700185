@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:appdev232_project_21700185/sheet_structure/character_state.dart';
 import 'package:appdev232_project_21700185/constant/constant_code.dart';
+import 'package:appdev232_project_21700185/constant/constant_names.dart';
 
 class ClassPage extends StatefulWidget {
   const ClassPage(BuildContext context, {Key? key}) : super(key: key);
@@ -24,21 +25,6 @@ class _ClassPageState extends State<ClassPage> {
         Provider.of<CharacterState>(context, listen: true);
 
     List<bool> currActiveClasses = characterState.currCharacter.activeClasses;
-
-    List<String> classNames = [
-      '바드',
-      '바바리안',
-      '클레릭',
-      '드루이드',
-      '파이터',
-      '몽크',
-      '팔라딘',
-      '레인저',
-      '로그',
-      '소서러',
-      '워락',
-      '위저드'
-    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -154,7 +140,9 @@ class _ClassPageState extends State<ClassPage> {
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.all(16.0),
             textStyle: buttonTextStyle,
-            backgroundColor: (characterState.currCharacter.totalLevel < 12) ? Colors.blue : Colors.grey,
+            backgroundColor: (characterState.currCharacter.totalLevel < 12)
+                ? Colors.blue
+                : Colors.grey,
           ),
           child: const Icon(Icons.add),
         ),

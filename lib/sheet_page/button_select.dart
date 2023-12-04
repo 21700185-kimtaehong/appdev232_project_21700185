@@ -39,6 +39,13 @@ class _ButtonPageState extends State<ButtonPage> {
               isValid: (characterState.currCharacter.raceType != -1),
             ),
             createCustomButton(
+              buttonText: '능력치',
+              onPressed: () => widget.onPageSelected(3),
+              isValid:
+                  (characterState.currCharacter.characterAbility.totalPoint ==
+                      0),
+            ),
+            createCustomButton(
               buttonText: '클래스',
               onPressed: () => widget.onPageSelected(4),
               isValid:

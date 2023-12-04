@@ -175,7 +175,54 @@ class CharacterState with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateAbilityState (){
-    
+  void updateAbilityState(
+      int abilityType, bool updown, int addedType, int amount) {
+    switch (abilityType) {
+      case STR:
+        _currCharacter.characterAbility.updateAbility(
+            _currCharacter.characterAbility.strength,
+            updown,
+            addedType,
+            amount);
+        notifyListeners();
+        break;
+      case DEX:
+        _currCharacter.characterAbility.updateAbility(
+            _currCharacter.characterAbility.dexterity,
+            updown,
+            addedType,
+            amount);
+        notifyListeners();
+        break;
+      case CON:
+        _currCharacter.characterAbility.updateAbility(
+            _currCharacter.characterAbility.constitution,
+            updown,
+            addedType,
+            amount);
+        notifyListeners();
+        break;
+      case INT:
+        _currCharacter.characterAbility.updateAbility(
+            _currCharacter.characterAbility.intelligence,
+            updown,
+            addedType,
+            amount);
+        notifyListeners();
+        break;
+      case WIS:
+        _currCharacter.characterAbility.updateAbility(
+            _currCharacter.characterAbility.wisdom, updown, addedType, amount);
+        notifyListeners();
+        break;
+      case CHA:
+        _currCharacter.characterAbility.updateAbility(
+            _currCharacter.characterAbility.charisma,
+            updown,
+            addedType,
+            amount);
+        notifyListeners();
+        break;
+    }
   }
 }

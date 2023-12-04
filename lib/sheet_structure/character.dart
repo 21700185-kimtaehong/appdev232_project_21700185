@@ -117,29 +117,6 @@ List<Proficiency> defaultProficiencyState = [
   Proficiency(profNum: 17, baseAbilityType: CHA, isSelectable: true), //17 설득
 ];
 
-List<String> profNames = [
-  "운동",
-  "곡예",
-  "손재주",
-  "은신",
-  "비전",
-  "역사",
-  "조사",
-  "자연",
-  "종교",
-  "동물조련",
-  "통찰",
-  "의학",
-  "감지",
-  "생존",
-  "공연",
-  "기만",
-  "위협",
-  "설득"
-];
-
-List<String> abilityNames = ['근력', '민첩', '건강', '지능', '지혜', '매력'];
-
 List<CharacterClass> defaultCharacterClassState = [
   CharacterClass(classType: BARD, isCaster: true),
   CharacterClass(classType: BARBARIAN),

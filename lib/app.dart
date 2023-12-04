@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.black,
         highlightColor: Colors.white,
         scaffoldBackgroundColor: Colors.black,
+        unselectedWidgetColor: Colors.white,
       ),
     );
   }
