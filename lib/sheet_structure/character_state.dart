@@ -174,4 +174,8 @@ class CharacterState with ChangeNotifier {
     _currCharacter.deactivateClass(classType);
     notifyListeners();
   }
+
+  void updateAbilityState (){
+    
+  }
 }

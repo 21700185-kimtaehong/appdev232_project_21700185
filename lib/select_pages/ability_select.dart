@@ -20,9 +20,24 @@ class _AbilityPageState extends State<AbilityPage> {
   }
 }
 
-Widget abilityUpdownButton(BuildContext context) {
+Widget abilityUpdownButton(BuildContext context, int abilityType) {
   CharacterState characterState =
       Provider.of<CharacterState>(context, listen: true);
 
-  return Column();
+  
+
+  return Row (
+    children :[
+      ElevatedButton(
+        onPressed: () {
+            
+        },
+        style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.all(16.0),
+            backgroundColor: (characterState.currCharacter.characterAbility.strength[0] > 8) ? Colors.blue : Colors.grey,
+        ),
+        child: const Icon(Icons.remove),
+      ),
+    ],
+  );
 }

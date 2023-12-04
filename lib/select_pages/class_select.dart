@@ -151,6 +151,11 @@ class _ClassPageState extends State<ClassPage> {
           onPressed: () {
             characterState.classLevelUp(classType, true);
           },
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.all(16.0),
+            textStyle: buttonTextStyle,
+            backgroundColor: (characterState.currCharacter.totalLevel < 12) ? Colors.blue : Colors.grey,
+          ),
           child: const Icon(Icons.add),
         ),
         Container(
