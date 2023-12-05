@@ -1,4 +1,3 @@
-import 'package:appdev232_project_21700185/sheet_structure/ability.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +23,9 @@ class _AbilityPageState extends State<AbilityPage> {
 
     int currAdd1type = characterState.currCharacter.characterAbility.add1type;
     int currAdd2type = characterState.currCharacter.characterAbility.add2type;
+
+    List<bool> isAdd1typeSelectable = [true, true, true, true, true, true];
+    List<bool> isAdd2typeSelectable = [true, true, true, true, true, true];
 
     return Scaffold(
       appBar: AppBar(
@@ -84,39 +86,49 @@ class _AbilityPageState extends State<AbilityPage> {
                     style: const TextStyle(color: Colors.white),
                   ),
                   abilityupButton(context, STR),
-                  Radio(
-                    value: 1,
-                    groupValue: currAdd1type,
-                    onChanged: (value) {
-                      setState(() {
-                        if (currAdd1type != -1) {
+                  Opacity(
+                    opacity: isAdd1typeSelectable[0] ? 1.0 : 0,
+                    child: Radio(
+                      value: 1,
+                      groupValue: currAdd1type,
+                      onChanged: (value) {
+                        setState(() {
+                          if (currAdd1type != -1) {
+                            characterState.updateAbilityState(
+                                currAdd1type, false, 1, 1);
+                            isAdd2typeSelectable[currAdd1type-1] = true;
+                          }
+                          currAdd1type = value!;
+                          characterState.updateAdd1type(value);
                           characterState.updateAbilityState(
-                              currAdd1type, false, 1, 1);
-                        }
-                        currAdd1type = value!;
-                        characterState.updateAdd1type(value);
-                        characterState.updateAbilityState(
-                            currAdd1type, true, 1, 1);
-                      });
-                    },
-                    activeColor: Colors.white,
+                              currAdd1type, true, 1, 1);
+                          isAdd2typeSelectable[currAdd1type-1] = false;
+                        });
+                      },
+                      activeColor: Colors.white,
+                    ),
                   ),
-                  Radio(
-                    value: 1,
-                    groupValue: currAdd2type,
-                    onChanged: (value) {
-                      setState(() {
-                        if (currAdd2type != -1) {
+                  Opacity(
+                    opacity: isAdd2typeSelectable[0] ? 1.0 : 0,
+                    child: Radio(
+                      value: 1,
+                      groupValue: currAdd2type,
+                      onChanged: (value) {
+                        setState(() {
+                          if (currAdd2type != -1) {
+                            characterState.updateAbilityState(
+                                currAdd2type, false, 1, 2);
+                            isAdd1typeSelectable[currAdd1type-1] = true;
+                          }
+                          currAdd2type = value!;
+                          characterState.updateAdd2type(value);
                           characterState.updateAbilityState(
-                              currAdd2type, false, 1, 2);
-                        }
-                        currAdd2type = value!;
-                        characterState.updateAdd2type(value);
-                        characterState.updateAbilityState(
-                            currAdd2type, true, 1, 2);
-                      });
-                    },
-                    activeColor: Colors.white,
+                              currAdd2type, true, 1, 2);
+                          isAdd1typeSelectable[currAdd1type-1] = false;
+                        });
+                      },
+                      activeColor: Colors.white,
+                    ),
                   ),
                 ],
               ),
