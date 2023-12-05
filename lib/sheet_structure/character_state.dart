@@ -225,4 +225,14 @@ class CharacterState with ChangeNotifier {
         break;
     }
   }
+
+  void updateAdd1type (int index) {
+    _currCharacter.characterAbility.updateAdd1type(index);
+    notifyListeners();
+  }
+
+  void updateAdd2type (int index) {
+    _currCharacter.characterAbility.updateAdd2type(index);
+    notifyListeners();
+  }
 }

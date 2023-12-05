@@ -25,6 +25,14 @@ class Ability {
         wisdom = List<int>.from(defaultAbilityState),
         charisma = List<int>.from(defaultAbilityState);
 
+  void updateAdd1type (int index) {
+    add1type = index;
+  }
+
+  void updateAdd2type (int index) {
+    add2type = index;
+  }
+
   void updateAbility(
       List<int> abilityType, bool updown, int addedType, int amount) {
     switch (addedType) {

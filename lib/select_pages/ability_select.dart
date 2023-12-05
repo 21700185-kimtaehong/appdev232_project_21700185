@@ -33,174 +33,307 @@ class _AbilityPageState extends State<AbilityPage> {
           padding: (ablePadding)
               ? const EdgeInsets.only(left: 32, right: 32, top: 16, bottom: 16)
               : const EdgeInsets.all(16.0),
-          child: Row(
+          child: Column(
             children: [
-              Column(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                Text('포인트', style: TextStyle(color: Colors.white)),
+                Ink(
+                  child: ElevatedButton(
+                    onPressed: () {
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,
+                    ),
+                    child: null,
+                  ),
+                ),
+                Text(characterState.currCharacter.characterAbility.totalPoint.toString(),
+                style: TextStyle(color: Colors.white)),
+                Ink(
+                  child: ElevatedButton(
+                    onPressed: () {
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,
+                    ),
+                    child: null,
+                  ),
+                ),
+                Text('+ 1', style: TextStyle(color: Colors.white)),
+                Padding(
+                  padding: EdgeInsets.only(right: 1), 
+                  child: null,
+                ),
+                Text('+ 2', style: TextStyle(color: Colors.white)),
+                
+              ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
                     abilityNames[0],
                     style: TextStyle(color: Colors.white),
                   ),
-                  Text(
-                    abilityNames[1],
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    abilityNames[2],
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    abilityNames[3],
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    abilityNames[4],
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    abilityNames[5],
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
                   abilitydownButton(context, STR),
-                  abilitydownButton(context, DEX),
-                  abilitydownButton(context, CON),
-                  abilitydownButton(context, INT),
-                  abilitydownButton(context, WIS),
-                  abilitydownButton(context, CHA),
-                ],
-              ),
-              Column(
-                children: [
                   Text(
                     characterState.currCharacter.characterAbility.strength[4]
                         .toString(),
                     style: const TextStyle(color: Colors.white),
                   ),
+                  abilityupButton(context, STR),
+                  Radio(
+                    value: 1,
+                    groupValue: currAdd1type,
+                    onChanged: (value) {
+                      setState(() {
+                        if (currAdd1type != -1) {
+                          characterState.updateAbilityState(
+                              currAdd1type, false, 1, 1);
+                        }
+                        currAdd1type = value!;
+                        characterState.updateAdd1type(value);
+                        characterState.updateAbilityState(
+                            currAdd1type, true, 1, 1);
+                      });
+                    },
+                    activeColor: Colors.white,
+                  ),
+                  Radio(
+                    value: 1,
+                    groupValue: currAdd2type,
+                    onChanged: (value) {
+                      setState(() {
+                        if (currAdd2type != -1) {
+                          characterState.updateAbilityState(
+                              currAdd2type, false, 1, 2);
+                        }
+                        currAdd2type = value!;
+                        characterState.updateAdd2type(value);
+                        characterState.updateAbilityState(
+                            currAdd2type, true, 1, 2);
+                      });
+                    },
+                    activeColor: Colors.white,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    abilityNames[1],
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  abilitydownButton(context, DEX),
                   Text(
                     characterState.currCharacter.characterAbility.dexterity[4]
                         .toString(),
                     style: const TextStyle(color: Colors.white),
                   ),
+                  abilityupButton(context, DEX),
+                  Radio(
+                    value: 2,
+                    groupValue: currAdd1type,
+                    onChanged: (value) {
+                      setState(() {
+                        if (currAdd1type != -1) {
+                          characterState.updateAbilityState(
+                              currAdd1type, false, 1, 1);
+                        }
+                        currAdd1type = value!;
+                        characterState.updateAdd1type(value);
+                        characterState.updateAbilityState(
+                            currAdd1type, true, 1, 1);
+                      });
+                    },
+                    activeColor: Colors.white,
+                  ),
+                  Radio(
+                    value: 2,
+                    groupValue: currAdd2type,
+                    onChanged: (value) {
+                      setState(() {
+                        if (currAdd2type != -1) {
+                          characterState.updateAbilityState(
+                              currAdd2type, false, 1, 2);
+                        }
+                        currAdd2type = value!;
+                        characterState.updateAdd2type(value);
+                        characterState.updateAbilityState(
+                            currAdd2type, true, 1, 2);
+                      });
+                    },
+                    activeColor: Colors.white,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
                   Text(
-                    characterState
-                        .currCharacter.characterAbility.constitution[4]
+                    abilityNames[2],
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  abilitydownButton(context, CON),
+                  Text(
+                    characterState.currCharacter.characterAbility.constitution[4]
                         .toString(),
                     style: const TextStyle(color: Colors.white),
                   ),
+                  abilityupButton(context, CON),
+                  Radio(
+                    value: 3,
+                    groupValue: currAdd1type,
+                    onChanged: (value) {
+                      setState(() {
+                        if (currAdd1type != -1) {
+                          characterState.updateAbilityState(
+                              currAdd1type, false, 1, 1);
+                        }
+                        currAdd1type = value!;
+                        characterState.updateAdd1type(value);
+                        characterState.updateAbilityState(
+                            currAdd1type, true, 1, 1);
+                      });
+                    },
+                    activeColor: Colors.white,
+                  ),
+                  Radio(
+                    value: 3,
+                    groupValue: currAdd2type,
+                    onChanged: (value) {
+                      setState(() {
+                        if (currAdd2type != -1) {
+                          characterState.updateAbilityState(
+                              currAdd2type, false, 1, 2);
+                        }
+                        currAdd2type = value!;
+                        characterState.updateAdd2type(value);
+                        characterState.updateAbilityState(
+                            currAdd2type, true, 1, 2);
+                      });
+                    },
+                    activeColor: Colors.white,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
                   Text(
-                    characterState
-                        .currCharacter.characterAbility.intelligence[4]
+                    abilityNames[3],
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  abilitydownButton(context, INT),
+                  Text(
+                    characterState.currCharacter.characterAbility.intelligence[4]
                         .toString(),
                     style: const TextStyle(color: Colors.white),
                   ),
+                  abilityupButton(context, INT),
+                  Radio(
+                    value: 4,
+                    groupValue: currAdd1type,
+                    onChanged: (value) {
+                      setState(() {
+                        if (currAdd1type != -1) {
+                          characterState.updateAbilityState(
+                              currAdd1type, false, 1, 1);
+                        }
+                        currAdd1type = value!;
+                        characterState.updateAdd1type(value);
+                        characterState.updateAbilityState(
+                            currAdd1type, true, 1, 1);
+                      });
+                    },
+                    activeColor: Colors.white,
+                  ),
+                  Radio(
+                    value: 4,
+                    groupValue: currAdd2type,
+                    onChanged: (value) {
+                      setState(() {
+                        if (currAdd2type != -1) {
+                          characterState.updateAbilityState(
+                              currAdd2type, false, 1, 2);
+                        }
+                        currAdd2type = value!;
+                        characterState.updateAdd2type(value);
+                        characterState.updateAbilityState(
+                            currAdd2type, true, 1, 2);
+                      });
+                    },
+                    activeColor: Colors.white,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    abilityNames[4],
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  abilitydownButton(context, WIS),
                   Text(
                     characterState.currCharacter.characterAbility.wisdom[4]
                         .toString(),
                     style: const TextStyle(color: Colors.white),
                   ),
+                  abilityupButton(context, WIS),
+                  Radio(
+                    value: 5,
+                    groupValue: currAdd1type,
+                    onChanged: (value) {
+                      setState(() {
+                        if (currAdd1type != -1) {
+                          characterState.updateAbilityState(
+                              currAdd1type, false, 1, 1);
+                        }
+                        currAdd1type = value!;
+                        characterState.updateAdd1type(value);
+                        characterState.updateAbilityState(
+                            currAdd1type, true, 1, 1);
+                      });
+                    },
+                    activeColor: Colors.white,
+                  ),
+                  Radio(
+                    value: 5,
+                    groupValue: currAdd2type,
+                    onChanged: (value) {
+                      setState(() {
+                        if (currAdd2type != -1) {
+                          characterState.updateAbilityState(
+                              currAdd2type, false, 1, 2);
+                        }
+                        currAdd2type = value!;
+                        characterState.updateAdd2type(value);
+                        characterState.updateAbilityState(
+                            currAdd2type, true, 1, 2);
+                      });
+                    },
+                    activeColor: Colors.white,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    abilityNames[5],
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  abilitydownButton(context, CHA),
                   Text(
                     characterState.currCharacter.characterAbility.charisma[4]
                         .toString(),
                     style: const TextStyle(color: Colors.white),
                   ),
-                ],
-              ),
-              Column(
-                children: [
-                  abilityupButton(context, STR),
-                  abilityupButton(context, DEX),
-                  abilityupButton(context, CON),
-                  abilityupButton(context, INT),
-                  abilityupButton(context, WIS),
                   abilityupButton(context, CHA),
-                ],
-              ),
-              Column(
-                children: [
-                  Radio(
-                    value: 1,
-                    groupValue: currAdd1type,
-                    onChanged: (value) {
-                      setState(() {
-                        if (currAdd1type != -1) {
-                          characterState.updateAbilityState(
-                              currAdd1type, false, 1, 1);
-                        }
-                        currAdd1type = value!;
-                        characterState.updateAbilityState(
-                            currAdd1type, true, 1, 1);
-                      });
-                    },
-                    activeColor: Colors.white,
-                  ),
-                  Radio(
-                    value: 2,
-                    groupValue: currAdd1type,
-                    onChanged: (value) {
-                      setState(() {
-                        if (currAdd1type != -1) {
-                          characterState.updateAbilityState(
-                              currAdd1type, false, 1, 1);
-                        }
-                        currAdd1type = value!;
-                        characterState.updateAbilityState(
-                            currAdd1type, true, 1, 1);
-                      });
-                    },
-                    activeColor: Colors.white,
-                  ),
-                  Radio(
-                    value: 3,
-                    groupValue: currAdd1type,
-                    onChanged: (value) {
-                      setState(() {
-                        if (currAdd1type != -1) {
-                          characterState.updateAbilityState(
-                              currAdd1type, false, 1, 1);
-                        }
-                        currAdd1type = value!;
-                        characterState.updateAbilityState(
-                            currAdd1type, true, 1, 1);
-                      });
-                    },
-                    activeColor: Colors.white,
-                  ),
-                  Radio(
-                    value: 4,
-                    groupValue: currAdd1type,
-                    onChanged: (value) {
-                      setState(() {
-                        if (currAdd1type != -1) {
-                          characterState.updateAbilityState(
-                              currAdd1type, false, 1, 1);
-                        }
-                        currAdd1type = value!;
-                        characterState.updateAbilityState(
-                            currAdd1type, true, 1, 1);
-                      });
-                    },
-                    activeColor: Colors.white,
-                  ),
-                  Radio(
-                    value: 5,
-                    groupValue: currAdd1type,
-                    onChanged: (value) {
-                      setState(() {
-                        if (currAdd1type != -1) {
-                          characterState.updateAbilityState(
-                              currAdd1type, false, 1, 1);
-                        }
-                        currAdd1type = value!;
-                        characterState.updateAbilityState(
-                            currAdd1type, true, 1, 1);
-                      });
-                    },
-                    activeColor: Colors.white,
-                  ),
                   Radio(
                     value: 6,
                     groupValue: currAdd1type,
@@ -211,92 +344,9 @@ class _AbilityPageState extends State<AbilityPage> {
                               currAdd1type, false, 1, 1);
                         }
                         currAdd1type = value!;
+                        characterState.updateAdd1type(value);
                         characterState.updateAbilityState(
                             currAdd1type, true, 1, 1);
-                      });
-                    },
-                    activeColor: Colors.white,
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Radio(
-                    value: 1,
-                    groupValue: currAdd2type,
-                    onChanged: (value) {
-                      setState(() {
-                        if (currAdd1type != -1) {
-                          characterState.updateAbilityState(
-                              currAdd1type, false, 1, 2);
-                        }
-                        currAdd1type = value!;
-                        characterState.updateAbilityState(
-                            currAdd1type, true, 1, 2);
-                      });
-                    },
-                    activeColor: Colors.white,
-                  ),
-                  Radio(
-                    value: 2,
-                    groupValue: currAdd2type,
-                    onChanged: (value) {
-                      setState(() {
-                        if (currAdd1type != -1) {
-                          characterState.updateAbilityState(
-                              currAdd1type, false, 1, 2);
-                        }
-                        currAdd1type = value!;
-                        characterState.updateAbilityState(
-                            currAdd1type, true, 1, 2);
-                      });
-                    },
-                    activeColor: Colors.white,
-                  ),
-                  Radio(
-                    value: 3,
-                    groupValue: currAdd2type,
-                    onChanged: (value) {
-                      setState(() {
-                        if (currAdd1type != -1) {
-                          characterState.updateAbilityState(
-                              currAdd1type, false, 1, 2);
-                        }
-                        currAdd1type = value!;
-                        characterState.updateAbilityState(
-                            currAdd1type, true, 1, 2);
-                      });
-                    },
-                    activeColor: Colors.white,
-                  ),
-                  Radio(
-                    value: 4,
-                    groupValue: currAdd2type,
-                    onChanged: (value) {
-                      setState(() {
-                        if (currAdd1type != -1) {
-                          characterState.updateAbilityState(
-                              currAdd1type, false, 1, 2);
-                        }
-                        currAdd1type = value!;
-                        characterState.updateAbilityState(
-                            currAdd1type, true, 1, 2);
-                      });
-                    },
-                    activeColor: Colors.white,
-                  ),
-                  Radio(
-                    value: 5,
-                    groupValue: currAdd2type,
-                    onChanged: (value) {
-                      setState(() {
-                        if (currAdd1type != -1) {
-                          characterState.updateAbilityState(
-                              currAdd1type, false, 1, 2);
-                        }
-                        currAdd1type = value!;
-                        characterState.updateAbilityState(
-                            currAdd1type, true, 1, 2);
                       });
                     },
                     activeColor: Colors.white,
@@ -306,21 +356,23 @@ class _AbilityPageState extends State<AbilityPage> {
                     groupValue: currAdd2type,
                     onChanged: (value) {
                       setState(() {
-                        if (currAdd1type != -1) {
+                        if (currAdd2type != -1) {
                           characterState.updateAbilityState(
-                              currAdd1type, false, 1, 2);
+                              currAdd2type, false, 1, 2);
                         }
-                        currAdd1type = value!;
+                        currAdd2type = value!;
+                        characterState.updateAdd2type(value);
                         characterState.updateAbilityState(
-                            currAdd1type, true, 1, 2);
+                            currAdd2type, true, 1, 2);
                       });
                     },
                     activeColor: Colors.white,
                   ),
                 ],
-              )
+              ),
             ],
-          )),
+          ),
+        ),
     );
   }
 }
