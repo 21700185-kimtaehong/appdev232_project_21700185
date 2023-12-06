@@ -2,7 +2,16 @@ import 'package:appdev232_project_21700185/sheet_structure/trait.dart';
 
 List<Trait> featsList = [
   Trait(
-      traitName: '능력치 향상',
+      traitName: '능력치 향상1',
+      traitDescription: '하나의 능력치가 2만큼, 또는 두 개의 능력치가 각각 1만큼, 최대 20까지 증가합니다.'),
+  Trait(
+      traitName: '능력치 향상2',
+      traitDescription: '하나의 능력치가 2만큼, 또는 두 개의 능력치가 각각 1만큼, 최대 20까지 증가합니다.'),
+  Trait(
+      traitName: '능력치 향상3',
+      traitDescription: '하나의 능력치가 2만큼, 또는 두 개의 능력치가 각각 1만큼, 최대 20까지 증가합니다.'),
+  Trait(
+      traitName: '능력치 향상4',
       traitDescription: '하나의 능력치가 2만큼, 또는 두 개의 능력치가 각각 1만큼, 최대 20까지 증가합니다.'),
   Trait(
       traitName: '배우',
@@ -48,9 +57,8 @@ List<Trait> featsList = [
       traitName: '단단히 무장함',
       traitDescription:
           '근력이 1 증가하고(최대 20까지), 중갑 착용 중 비마법 피해가 3 감소합니다. 필요조건: 중갑 숙련'),
-  Trait(traitName: '적당히 무장함', traitDescription: ''),
   Trait(
-      traitName: '',
+      traitName: '적당히 무장함',
       traitDescription:
           '평갑과(Medium Armor)과 방패 숙련을 얻으며 근력이나 민첩 중 하나가 1 증가합니다(최대 20까지). 필요조건: 경갑 숙련'),
   Trait(
@@ -76,9 +84,8 @@ List<Trait> featsList = [
       traitName: '마법 입문자: 클레릭',
       traitDescription:
           '클레릭 주문 목록에서 소마법(Cantrip) 2가지와 1레벨 주문 1가지를 선택해 배웁니다. 1레벨 주문은 긴 휴식 당 한 번만 시전할 수 있습니다. 선택한 3가지 주문은 모두 지혜가 주문 시전 능력치입니다.'),
-  Trait(traitName: '마법 입문자: 드루이드', traitDescription: ''),
   Trait(
-      traitName: '',
+      traitName: '마법 입문자: 드루이드',
       traitDescription:
           '드루이드 주문 목록에서 소마법(Cantrip) 2가지와 1레벨 주문 1가지를 선택해 배웁니다. 1레벨 주문은 긴 휴식 당 한 번만 시전할 수 있습니다. 선택한 3가지 주문은 모두 지혜가 주문 시전 능력치입니다.'),
   Trait(

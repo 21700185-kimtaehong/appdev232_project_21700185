@@ -132,19 +132,17 @@ class CharacterState with ChangeNotifier {
       if (_currCharacter.characterClasses[classType - 10].classLevel < 12 &&
           _currCharacter.totalLevel < 12) {
         _currCharacter.characterClasses[classType - 10].classLevelUp(up);
+        _currCharacter.characterClasses[classType - 10].updateClassFeatNum();
         _currCharacter.totalLevel++;
-      } else {
-        print('error in classLevelUp().');
       }
     } else {
       if (_currCharacter.characterClasses[classType - 10].classLevel > 0) {
         _currCharacter.characterClasses[classType - 10].classLevelUp(up);
+        _currCharacter.characterClasses[classType - 10].updateClassFeatNum();
         _currCharacter.totalLevel--;
         if (_currCharacter.characterClasses[classType - 10].classLevel == 0) {
           _currCharacter.activeClasses[classType - 10] = false;
         }
-      } else {
-        print('error in classLevelUp().');
       }
     }
     _currCharacter.updateCharacterLevel;
@@ -226,12 +224,12 @@ class CharacterState with ChangeNotifier {
     }
   }
 
-  void updateAdd1type (int index) {
+  void updateAdd1type(int index) {
     _currCharacter.characterAbility.updateAdd1type(index);
     notifyListeners();
   }
 
-  void updateAdd2type (int index) {
+  void updateAdd2type(int index) {
     _currCharacter.characterAbility.updateAdd2type(index);
     notifyListeners();
   }

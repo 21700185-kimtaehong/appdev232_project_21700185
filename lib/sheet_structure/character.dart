@@ -18,6 +18,7 @@ class Character {
 
   int startingClassType;
   int characterFeatNum;
+  List<int> selectedFeats = [];
 
   int fightingStyleNum;
   int manoeuvresNum;

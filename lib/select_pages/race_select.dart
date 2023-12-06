@@ -114,6 +114,7 @@ class _RacePageState extends State<RacePage> {
                 ],
               ),
             ),
+            Divider(color: Colors.white),
             _buildSubraceButtons(context, subRaceSetIndex, screenWidth,
                 minButtonWidth, buttonTextStyle, crossAxisCount)
           ],

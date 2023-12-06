@@ -1,5 +1,6 @@
 import 'package:appdev232_project_21700185/select_pages/ability_select.dart';
 import 'package:appdev232_project_21700185/select_pages/class_select.dart';
+import 'package:appdev232_project_21700185/select_pages/feat_select.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -92,6 +93,8 @@ class _BuildPageState extends State<BuildPage> {
         return AbilityPage(context);
       case 4:
         return ClassPage(context);
+      case 5:
+        return FeatPage(context);
       default:
         return const TempPage();
     }

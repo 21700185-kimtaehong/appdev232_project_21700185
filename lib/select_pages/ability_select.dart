@@ -24,39 +24,36 @@ class _AbilityPageState extends State<AbilityPage> {
     int currAdd1type = characterState.currCharacter.characterAbility.add1type;
     int currAdd2type = characterState.currCharacter.characterAbility.add2type;
 
-    List<bool> isAdd1typeSelectable = [true, true, true, true, true, true];
-    List<bool> isAdd2typeSelectable = [true, true, true, true, true, true];
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('능력치'),
       ),
       body: Padding(
-          padding: (ablePadding)
-              ? const EdgeInsets.only(left: 32, right: 32, top: 16, bottom: 16)
-              : const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
+        padding: (ablePadding)
+            ? const EdgeInsets.only(left: 32, right: 32, top: 16, bottom: 16)
+            : const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
                 Text('포인트', style: TextStyle(color: Colors.white)),
                 Ink(
                   child: ElevatedButton(
-                    onPressed: () {
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       primary: Colors.transparent,
                     ),
                     child: null,
                   ),
                 ),
-                Text(characterState.currCharacter.characterAbility.totalPoint.toString(),
-                style: TextStyle(color: Colors.white)),
+                Text(
+                    characterState.currCharacter.characterAbility.totalPoint
+                        .toString(),
+                    style: TextStyle(color: Colors.white)),
                 Ink(
                   child: ElevatedButton(
-                    onPressed: () {
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       primary: Colors.transparent,
                     ),
@@ -65,88 +62,85 @@ class _AbilityPageState extends State<AbilityPage> {
                 ),
                 Text('+ 1', style: TextStyle(color: Colors.white)),
                 Padding(
-                  padding: EdgeInsets.only(right: 1), 
+                  padding: EdgeInsets.only(right: 1),
                   child: null,
                 ),
                 Text('+ 2', style: TextStyle(color: Colors.white)),
-                
               ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    abilityNames[0],
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  abilitydownButton(context, STR),
-                  Text(
-                    characterState.currCharacter.characterAbility.strength[4]
-                        .toString(),
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  abilityupButton(context, STR),
-                  Opacity(
-                    opacity: isAdd1typeSelectable[0] ? 1.0 : 0,
-                    child: Radio(
-                      value: 1,
-                      groupValue: currAdd1type,
-                      onChanged: (value) {
-                        setState(() {
-                          if (currAdd1type != -1) {
-                            characterState.updateAbilityState(
-                                currAdd1type, false, 1, 1);
-                            isAdd2typeSelectable[currAdd1type-1] = true;
-                          }
-                          currAdd1type = value!;
-                          characterState.updateAdd1type(value);
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  abilityNames[0],
+                  style: TextStyle(color: Colors.white),
+                ),
+                abilitydownButton(context, STR),
+                Text(
+                  characterState.currCharacter.characterAbility.strength[4]
+                      .toString(),
+                  style: const TextStyle(color: Colors.white),
+                ),
+                abilityupButton(context, STR),
+                Opacity(
+                  opacity: (currAdd2type == 1) ? 0 : 1,
+                  child: Radio(
+                    value: 1,
+                    groupValue: currAdd1type,
+                    onChanged: (value) {
+                      setState(() {
+                        if (currAdd1type != -1) {
                           characterState.updateAbilityState(
-                              currAdd1type, true, 1, 1);
-                          isAdd2typeSelectable[currAdd1type-1] = false;
-                        });
-                      },
-                      activeColor: Colors.white,
-                    ),
+                              currAdd1type, false, 1, 1);
+                        }
+                        currAdd1type = value!;
+                        characterState.updateAdd1type(value);
+                        characterState.updateAbilityState(
+                            currAdd1type, true, 1, 1);
+                      });
+                    },
+                    activeColor: Colors.white,
                   ),
-                  Opacity(
-                    opacity: isAdd2typeSelectable[0] ? 1.0 : 0,
-                    child: Radio(
-                      value: 1,
-                      groupValue: currAdd2type,
-                      onChanged: (value) {
-                        setState(() {
-                          if (currAdd2type != -1) {
-                            characterState.updateAbilityState(
-                                currAdd2type, false, 1, 2);
-                            isAdd1typeSelectable[currAdd1type-1] = true;
-                          }
-                          currAdd2type = value!;
-                          characterState.updateAdd2type(value);
+                ),
+                Opacity(
+                  opacity: (currAdd1type == 1) ? 0 : 1,
+                  child: Radio(
+                    value: 1,
+                    groupValue: currAdd2type,
+                    onChanged: (value) {
+                      setState(() {
+                        if (currAdd2type != -1) {
                           characterState.updateAbilityState(
-                              currAdd2type, true, 1, 2);
-                          isAdd1typeSelectable[currAdd1type-1] = false;
-                        });
-                      },
-                      activeColor: Colors.white,
-                    ),
+                              currAdd2type, false, 1, 2);
+                        }
+                        currAdd2type = value!;
+                        characterState.updateAdd2type(value);
+                        characterState.updateAbilityState(
+                            currAdd2type, true, 1, 2);
+                      });
+                    },
+                    activeColor: Colors.white,
                   ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    abilityNames[1],
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  abilitydownButton(context, DEX),
-                  Text(
-                    characterState.currCharacter.characterAbility.dexterity[4]
-                        .toString(),
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  abilityupButton(context, DEX),
-                  Radio(
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  abilityNames[1],
+                  style: TextStyle(color: Colors.white),
+                ),
+                abilitydownButton(context, DEX),
+                Text(
+                  characterState.currCharacter.characterAbility.dexterity[4]
+                      .toString(),
+                  style: const TextStyle(color: Colors.white),
+                ),
+                abilityupButton(context, DEX),
+                Opacity(
+                  opacity: (currAdd2type == 2) ? 0 : 1,
+                  child: Radio(
                     value: 2,
                     groupValue: currAdd1type,
                     onChanged: (value) {
@@ -163,7 +157,10 @@ class _AbilityPageState extends State<AbilityPage> {
                     },
                     activeColor: Colors.white,
                   ),
-                  Radio(
+                ),
+                Opacity(
+                  opacity: (currAdd1type == 2) ? 0 : 1,
+                  child: Radio(
                     value: 2,
                     groupValue: currAdd2type,
                     onChanged: (value) {
@@ -180,23 +177,26 @@ class _AbilityPageState extends State<AbilityPage> {
                     },
                     activeColor: Colors.white,
                   ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    abilityNames[2],
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  abilitydownButton(context, CON),
-                  Text(
-                    characterState.currCharacter.characterAbility.constitution[4]
-                        .toString(),
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  abilityupButton(context, CON),
-                  Radio(
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  abilityNames[2],
+                  style: TextStyle(color: Colors.white),
+                ),
+                abilitydownButton(context, CON),
+                Text(
+                  characterState.currCharacter.characterAbility.constitution[4]
+                      .toString(),
+                  style: const TextStyle(color: Colors.white),
+                ),
+                abilityupButton(context, CON),
+                Opacity(
+                  opacity: (currAdd2type == 3) ? 0 : 1,
+                  child: Radio(
                     value: 3,
                     groupValue: currAdd1type,
                     onChanged: (value) {
@@ -213,7 +213,10 @@ class _AbilityPageState extends State<AbilityPage> {
                     },
                     activeColor: Colors.white,
                   ),
-                  Radio(
+                ),
+                Opacity(
+                  opacity: (currAdd1type == 3) ? 0 : 1,
+                  child: Radio(
                     value: 3,
                     groupValue: currAdd2type,
                     onChanged: (value) {
@@ -230,23 +233,26 @@ class _AbilityPageState extends State<AbilityPage> {
                     },
                     activeColor: Colors.white,
                   ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    abilityNames[3],
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  abilitydownButton(context, INT),
-                  Text(
-                    characterState.currCharacter.characterAbility.intelligence[4]
-                        .toString(),
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  abilityupButton(context, INT),
-                  Radio(
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  abilityNames[3],
+                  style: TextStyle(color: Colors.white),
+                ),
+                abilitydownButton(context, INT),
+                Text(
+                  characterState.currCharacter.characterAbility.intelligence[4]
+                      .toString(),
+                  style: const TextStyle(color: Colors.white),
+                ),
+                abilityupButton(context, INT),
+                Opacity(
+                  opacity: (currAdd2type == 4) ? 0 : 1,
+                  child: Radio(
                     value: 4,
                     groupValue: currAdd1type,
                     onChanged: (value) {
@@ -263,7 +269,10 @@ class _AbilityPageState extends State<AbilityPage> {
                     },
                     activeColor: Colors.white,
                   ),
-                  Radio(
+                ),
+                Opacity(
+                  opacity: (currAdd1type == 4) ? 0 : 1,
+                  child: Radio(
                     value: 4,
                     groupValue: currAdd2type,
                     onChanged: (value) {
@@ -280,23 +289,26 @@ class _AbilityPageState extends State<AbilityPage> {
                     },
                     activeColor: Colors.white,
                   ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    abilityNames[4],
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  abilitydownButton(context, WIS),
-                  Text(
-                    characterState.currCharacter.characterAbility.wisdom[4]
-                        .toString(),
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  abilityupButton(context, WIS),
-                  Radio(
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  abilityNames[4],
+                  style: TextStyle(color: Colors.white),
+                ),
+                abilitydownButton(context, WIS),
+                Text(
+                  characterState.currCharacter.characterAbility.wisdom[4]
+                      .toString(),
+                  style: const TextStyle(color: Colors.white),
+                ),
+                abilityupButton(context, WIS),
+                Opacity(
+                  opacity: (currAdd2type == 5) ? 0 : 1,
+                  child: Radio(
                     value: 5,
                     groupValue: currAdd1type,
                     onChanged: (value) {
@@ -313,7 +325,10 @@ class _AbilityPageState extends State<AbilityPage> {
                     },
                     activeColor: Colors.white,
                   ),
-                  Radio(
+                ),
+                Opacity(
+                  opacity: (currAdd1type == 5) ? 0 : 1,
+                  child: Radio(
                     value: 5,
                     groupValue: currAdd2type,
                     onChanged: (value) {
@@ -330,23 +345,26 @@ class _AbilityPageState extends State<AbilityPage> {
                     },
                     activeColor: Colors.white,
                   ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    abilityNames[5],
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  abilitydownButton(context, CHA),
-                  Text(
-                    characterState.currCharacter.characterAbility.charisma[4]
-                        .toString(),
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  abilityupButton(context, CHA),
-                  Radio(
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  abilityNames[5],
+                  style: TextStyle(color: Colors.white),
+                ),
+                abilitydownButton(context, CHA),
+                Text(
+                  characterState.currCharacter.characterAbility.charisma[4]
+                      .toString(),
+                  style: const TextStyle(color: Colors.white),
+                ),
+                abilityupButton(context, CHA),
+                Opacity(
+                  opacity: (currAdd2type == 6) ? 0 : 1,
+                  child: Radio(
                     value: 6,
                     groupValue: currAdd1type,
                     onChanged: (value) {
@@ -363,7 +381,10 @@ class _AbilityPageState extends State<AbilityPage> {
                     },
                     activeColor: Colors.white,
                   ),
-                  Radio(
+                ),
+                Opacity(
+                  opacity: (currAdd1type == 6) ? 0 : 1,
+                  child: Radio(
                     value: 6,
                     groupValue: currAdd2type,
                     onChanged: (value) {
@@ -380,11 +401,12 @@ class _AbilityPageState extends State<AbilityPage> {
                     },
                     activeColor: Colors.white,
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
+      ),
     );
   }
 }

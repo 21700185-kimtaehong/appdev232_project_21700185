@@ -25,11 +25,11 @@ class Ability {
         wisdom = List<int>.from(defaultAbilityState),
         charisma = List<int>.from(defaultAbilityState);
 
-  void updateAdd1type (int index) {
+  void updateAdd1type(int index) {
     add1type = index;
   }
 
-  void updateAdd2type (int index) {
+  void updateAdd2type(int index) {
     add2type = index;
   }
 
@@ -74,12 +74,14 @@ class Ability {
 //         0             1                2                3              4           5
   void updateBaseAbility(List<int> ability, bool updown) {
     if (updown) {
-      if (ability[0] < 13) {
-        totalPoint -= 1;
-        ability[0] += 1;
-      } else if (ability[0] < 15) {
-        totalPoint -= 2;
-        ability[0] += 1;
+      if (totalPoint > 0) {
+        if (ability[0] < 13) {
+          totalPoint -= 1;
+          ability[0] += 1;
+        } else if (ability[0] < 15) {
+          totalPoint -= 2;
+          ability[0] += 1;
+        }
       }
     } else {
       if (ability[0] > 13) {
