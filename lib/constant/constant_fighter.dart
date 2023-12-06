@@ -7,12 +7,19 @@ import 'package:appdev232_project_21700185/sheet_structure/armor.dart';
 import 'constant_code.dart';
 
 //fighter common
-List<CharacterAction> fighter_level1_action = [
-  CharacterAction(actionName: '재기의 바람')
+List<CharacterAction> fighterActionList = [
+  CharacterAction(actionName: '재기의 바람'),
+  CharacterAction(actionName: '행동 연쇄')
 ];
-List<CharacterAction> fighter_level2_action = [
-  CharacterAction(actionName: "행동 연쇄")
+
+List<Trait> FighterTraitList = [
+  Trait(
+      traitName: '무적',
+      traitDescription:
+          '강철 골렘만큼이나 튼튼해졌습니다. 내성 굴림을 실패할 때마다 주사위를 다시 굴려 그 결과를 사용합니다.')
 ];
+
+List<CharacterAction> fighter_level2_action = [];
 
 List<Trait> fighter_fightStyle = [
   Trait(traitName: "궁술"),
@@ -24,13 +31,6 @@ List<Trait> fighter_fightStyle = [
 ];
 
 List<List<bool>> defaultFighterFightingStyles = List.filled(6, [false, true]);
-
-List<Trait> figther_level9_trait = [
-  Trait(
-      traitName: '무적',
-      traitDescription:
-          '강철 골렘만큼이나 튼튼해졌습니다. 내성 굴림을 실패할 때마다 주사위를 다시 굴려 그 결과를 사용합니다.')
-];
 
 //battle master
 

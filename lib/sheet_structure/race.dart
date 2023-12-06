@@ -53,3 +53,28 @@ class HighElf extends Race {
   void updateRaceState(int characterLevel) {}
   HighElf() : super(raceType: HIGHELF);
 }
+
+class WoodElf extends Race {
+  void updateRaceState(int characterLevel) {}
+  WoodElf() : super(raceType: WOODELF);
+}
+
+class AsmodeusTieFling extends Race {
+  void updateRaceState(int characterLevel) {}
+  AsmodeusTieFling() : super(raceType: ASMODEUSTIF);
+}
+
+class MephistophelesTiefling extends Race {
+  void updateRaceState(int characterLevel) {}
+  MephistophelesTiefling() : super(raceType: MEPHISTOPHELESTIF);
+}
+
+class ZarielTiefling extends Race {
+  void updateRaceState(int characterLevel) {}
+  ZarielTiefling() : super(raceType: ZARIELTIF);
+}
+
+class SeldarineDrow extends Race {
+  void updateRaceState(int characterLevel) {}
+  SeldarineDrow() : super(raceType: SELDARINEDROW);
+}
