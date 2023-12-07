@@ -1,3 +1,5 @@
+import 'package:provider/provider.dart';
+
 import 'action.dart';
 import 'spell.dart';
 import 'trait.dart';
@@ -11,10 +13,13 @@ class CharacterClass {
   bool isCaster;
   bool isHalfCaster;
 
-  List<int> feats;
   List<CharacterAction> classActions;
   List<Trait> classTraits;
   List<Spell> classSpells;
+  List<int> startingWeaponProf = [];
+  int startingArmorProf;
+  List<int> classWeaponProf = [];
+  int classArmorProf;
 
   CharacterClass({
     required this.classType,
@@ -23,14 +28,14 @@ class CharacterClass {
     this.classLevel = 0,
     this.isCaster = false,
     this.isHalfCaster = false,
-    List<int>? feats,
+    this.startingArmorProf = 0,
+    this.classArmorProf = 0,
     List<CharacterAction>? classActions,
     List<Trait>? classTraits,
     List<Spell>? classSpells,
   })  : classActions = classActions ?? [],
         classTraits = classTraits ?? [],
-        classSpells = classSpells ?? [],
-        feats = feats ?? [];
+        classSpells = classSpells ?? [];
 
   void addAction(List<CharacterAction> actions) {
     for (CharacterAction action in actions) {

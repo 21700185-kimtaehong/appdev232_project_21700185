@@ -43,12 +43,6 @@ class Race {
   }
 }
 
-class Human extends Race {
-  void updateRaceState(int characterLevel) {}
-
-  Human() : super(raceType: HUMAN, weightCapacity: 1.25);
-}
-
 class HighElf extends Race {
   void updateRaceState(int characterLevel) {}
   HighElf() : super(raceType: HIGHELF);
@@ -77,4 +71,147 @@ class ZarielTiefling extends Race {
 class SeldarineDrow extends Race {
   void updateRaceState(int characterLevel) {}
   SeldarineDrow() : super(raceType: SELDARINEDROW);
+}
+
+class LolthDrow extends Race {
+  void updateRaceState(int characterLevel) {}
+  LolthDrow() : super(raceType: LOLTHDROW);
+}
+
+class Human extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  Human() : super(raceType: HUMAN, weightCapacity: 1.25);
+}
+
+class GithYanki extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  GithYanki() : super(raceType: GITHYANKI);
+}
+
+class GoldDwarf extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  GoldDwarf() : super(raceType: GOLDDWARF);
+}
+
+class ShieldDwarf extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  ShieldDwarf() : super(raceType: SHIELDDWARF);
+}
+
+class Duerga extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  Duerga() : super(raceType: DUERGA);
+}
+
+class HighHalfElf extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  HighHalfElf() : super(raceType: HIGHHALF);
+}
+
+class WoodHalfElf extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  WoodHalfElf() : super(raceType: WOODHALF);
+}
+
+class DrowHalfElf extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  DrowHalfElf() : super(raceType: DROWHALF);
+}
+
+class LightfootHalfling extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  LightfootHalfling() : super(raceType: LIGHTFOOTHAL);
+}
+
+class StrongheartHalfling extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  StrongheartHalfling() : super(raceType: STRONGHEARTHAL);
+}
+
+class ForestGnome extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  ForestGnome() : super(raceType: FORESTGNOME);
+}
+
+class DeepGnome extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  DeepGnome() : super(raceType: DEEPGNOME);
+}
+
+class BlackBorn extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  BlackBorn() : super(raceType: BLACKBORN);
+}
+
+class BlueBorn extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  BlueBorn() : super(raceType: BLUEBORN);
+}
+
+class BrassBorn extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  BrassBorn() : super(raceType: BRASSBORN);
+}
+
+class BronzeBorn extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  BronzeBorn() : super(raceType: BRONZEBORN);
+}
+
+class CopperBorn extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  CopperBorn() : super(raceType: COPPERBORN);
+}
+
+class GoldBorn extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  GoldBorn() : super(raceType: GOLDBORN);
+}
+
+class GreenBorn extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  GreenBorn() : super(raceType: GREENBORN);
+}
+
+class RedBorn extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  RedBorn() : super(raceType: REDBORN);
+}
+
+class SilverBorn extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  SilverBorn() : super(raceType: SILVERBORN);
+}
+
+class WhiteBorn extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  WhiteBorn() : super(raceType: WHITEBORN);
+}
+
+class HalfOrc extends Race {
+  void updateRaceState(int characterLevel) {}
+
+  HalfOrc() : super(raceType: HALFORC);
 }

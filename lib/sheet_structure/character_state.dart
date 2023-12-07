@@ -233,4 +233,8 @@ class CharacterState with ChangeNotifier {
     _currCharacter.characterAbility.updateAdd2type(index);
     notifyListeners();
   }
+
+  void updateArmorProfState () {
+    
+  }
 }
