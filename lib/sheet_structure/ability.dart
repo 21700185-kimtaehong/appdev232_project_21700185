@@ -78,7 +78,7 @@ class Ability {
         if (ability[0] < 13) {
           totalPoint -= 1;
           ability[0] += 1;
-        } else if (ability[0] < 15) {
+        } else if (totalPoint > 1 && ability[0] < 15) {
           totalPoint -= 2;
           ability[0] += 1;
         }

@@ -86,9 +86,9 @@ class _BuildPageState extends State<BuildPage> {
   Widget selectedPageWidget(int pageIndex) {
     switch (pageIndex) {
       case 1:
-        return BackgroundPage(context);
-      case 2:
         return RacePage(context);
+      case 2:
+        return BackgroundPage(context);
       case 3:
         return AbilityPage(context);
       case 4:

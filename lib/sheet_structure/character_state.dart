@@ -1,4 +1,5 @@
 import 'package:appdev232_project_21700185/class_default/fighter_default.dart';
+import 'package:appdev232_project_21700185/sheet_structure/character_class.dart';
 import 'package:appdev232_project_21700185/sheet_structure/proficiency.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,18 +16,157 @@ class CharacterState with ChangeNotifier {
   void setRace(int raceType) {
     _currCharacter.raceType = raceType;
     switch (raceType) {
-      case HUMAN:
-        _currCharacter.activeRace = Human();
-        (_currCharacter.activeRace as Human)
-            .updateRaceState(_currCharacter.totalLevel);
-        break;
       case HIGHELF:
         _currCharacter.activeRace = HighElf();
         (_currCharacter.activeRace as HighElf)
             .updateRaceState(_currCharacter.totalLevel);
         break;
+      case WOODELF:
+        _currCharacter.activeRace = WoodElf();
+        (_currCharacter.activeRace as WoodElf)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case ASMODEUSTIF:
+        _currCharacter.activeRace = AsmodeusTieFling();
+        (_currCharacter.activeRace as AsmodeusTieFling)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case MEPHISTOPHELESTIF:
+        _currCharacter.activeRace = MephistophelesTiefling();
+        (_currCharacter.activeRace as MephistophelesTiefling)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case ZARIELTIF:
+        _currCharacter.activeRace = ZarielTiefling();
+        (_currCharacter.activeRace as ZarielTiefling)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case SELDARINEDROW:
+        _currCharacter.activeRace = SeldarineDrow();
+        (_currCharacter.activeRace as SeldarineDrow)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case LOLTHDROW:
+        _currCharacter.activeRace = LolthDrow();
+        (_currCharacter.activeRace as LolthDrow)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case HUMAN:
+        _currCharacter.activeRace = Human();
+        (_currCharacter.activeRace as Human)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case GITHYANKI:
+        _currCharacter.activeRace = GithYanki();
+        (_currCharacter.activeRace as GithYanki)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case GOLDDWARF:
+        _currCharacter.activeRace = GoldDwarf();
+        (_currCharacter.activeRace as GoldDwarf)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case SHIELDDWARF:
+        _currCharacter.activeRace = ShieldDwarf();
+        (_currCharacter.activeRace as ShieldDwarf)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case DUERGA:
+        _currCharacter.activeRace = Duerga();
+        (_currCharacter.activeRace as Duerga)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case HIGHHALF:
+        _currCharacter.activeRace = HighHalfElf();
+        (_currCharacter.activeRace as HighHalfElf)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case WOODHALF:
+        _currCharacter.activeRace = WoodHalfElf();
+        (_currCharacter.activeRace as WoodHalfElf)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case DROWHALF:
+        _currCharacter.activeRace = DrowHalfElf();
+        (_currCharacter.activeRace as DrowHalfElf)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case LIGHTFOOTHAL:
+        _currCharacter.activeRace = LightfootHalfling();
+        (_currCharacter.activeRace as LightfootHalfling)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case STRONGHEARTHAL:
+        _currCharacter.activeRace = StrongheartHalfling();
+        (_currCharacter.activeRace as StrongheartHalfling)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case FORESTGNOME:
+        _currCharacter.activeRace = ForestGnome();
+        (_currCharacter.activeRace as ForestGnome)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case DEEPGNOME:
+        _currCharacter.activeRace = DeepGnome();
+        (_currCharacter.activeRace as DeepGnome)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case BLACKBORN:
+        _currCharacter.activeRace = BlackBorn();
+        (_currCharacter.activeRace as BlackBorn)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case BLUEBORN:
+        _currCharacter.activeRace = BlueBorn();
+        (_currCharacter.activeRace as BlueBorn)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case BRASSBORN:
+        _currCharacter.activeRace = BrassBorn();
+        (_currCharacter.activeRace as BrassBorn)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case BRONZEBORN:
+        _currCharacter.activeRace = BronzeBorn();
+        (_currCharacter.activeRace as BronzeBorn)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case COPPERBORN:
+        _currCharacter.activeRace = CopperBorn();
+        (_currCharacter.activeRace as CopperBorn)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case GOLDBORN:
+        _currCharacter.activeRace = GoldBorn();
+        (_currCharacter.activeRace as GoldBorn)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case GREENBORN:
+        _currCharacter.activeRace = GreenBorn();
+        (_currCharacter.activeRace as GreenBorn)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case REDBORN:
+        _currCharacter.activeRace = RedBorn();
+        (_currCharacter.activeRace as RedBorn)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case SILVERBORN:
+        _currCharacter.activeRace = SilverBorn();
+        (_currCharacter.activeRace as SilverBorn)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case WHITEBORN:
+        _currCharacter.activeRace = WhiteBorn();
+        (_currCharacter.activeRace as WhiteBorn)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
+      case HALFORC:
+        _currCharacter.activeRace = HalfOrc();
+        (_currCharacter.activeRace as HalfOrc)
+            .updateRaceState(_currCharacter.totalLevel);
+        break;
       default:
-        print('failed while setRace()');
         break;
     }
     notifyListeners();
@@ -101,7 +241,6 @@ class CharacterState with ChangeNotifier {
   void updateCommonState() {
     switch (_currCharacter.totalLevel) {
       case 0:
-        _currCharacter.hitpoints = 0;
         _currCharacter.proficiencyBonus = 0;
         break;
       case 1:
@@ -148,6 +287,7 @@ class CharacterState with ChangeNotifier {
     _currCharacter.updateCharacterLevel;
     _currCharacter.updateFeatNum();
     updateClassState(classType);
+    updateHitPointState();
     updateCommonState();
     notifyListeners();
   }
@@ -163,13 +303,18 @@ class CharacterState with ChangeNotifier {
 
   void activateClassState(int classType) {
     if (_currCharacter.totalLevel < 12) {
+      if (_currCharacter.totalLevel == 0) {
+        _currCharacter.startingClassType = classType;
+      }
       _currCharacter.activateClass(classType);
+      updateHitPointState();
       notifyListeners();
     }
   }
 
   void deactivateClassState(int classType) {
     _currCharacter.deactivateClass(classType);
+    updateHitPointState();
     notifyListeners();
   }
 
@@ -234,7 +379,27 @@ class CharacterState with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateArmorProfState () {
-    
+  void updateArmorProfState() {}
+
+  void updateHitPointState() {
+    int temp = 0;
+    if (_currCharacter.totalLevel == 0) {
+    } else {
+      for (int i = 0; i < _currCharacter.activeClasses.length; i++) {
+        CharacterClass currClass = _currCharacter.characterClasses[i];
+        if (i + BARD == _currCharacter.startingClassType) {
+          temp += currClass.hitPointBase +
+              currClass.hitPointPerLevel * currClass.classLevel;
+        } else {
+          temp += currClass.hitPointPerLevel * currClass.classLevel;
+        }
+      }
+      temp += (_currCharacter.characterAbility.constitution[5] ~/ 2) *
+          _currCharacter.totalLevel;
+      if (_currCharacter.raceType != -1) {
+        temp += _currCharacter.activeRace.raceAddedHealth;
+      }
+    }
+    _currCharacter.hitpoints = temp;
   }
 }

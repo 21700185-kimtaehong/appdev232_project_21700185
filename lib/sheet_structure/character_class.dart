@@ -10,6 +10,10 @@ class CharacterClass {
   int classLevel;
   int numFeat;
   int extraAttackNum;
+
+  int hitPointBase;
+  int hitPointPerLevel;
+
   bool isCaster;
   bool isHalfCaster;
 
@@ -17,12 +21,14 @@ class CharacterClass {
   List<Trait> classTraits;
   List<Spell> classSpells;
   List<int> startingWeaponProf = [];
-  int startingArmorProf;
   List<int> classWeaponProf = [];
+  int startingArmorProf;
   int classArmorProf;
 
   CharacterClass({
     required this.classType,
+    this.hitPointBase = 0,
+    this.hitPointPerLevel = 0,
     this.numFeat = 0,
     this.extraAttackNum = 0,
     this.classLevel = 0,

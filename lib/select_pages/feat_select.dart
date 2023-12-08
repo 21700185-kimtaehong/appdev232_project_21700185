@@ -25,6 +25,7 @@ class _FeatPageState extends State<FeatPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('재주'),
+        elevation: 0,
       ),
       body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -44,7 +45,6 @@ class _FeatPageState extends State<FeatPage> {
         message: featsList[index].traitDescription,
         child: Text(
           featsList[index].traitName,
-          style: const TextStyle(color: Colors.white),
         ),
       ),
       value: currFeatSelected.contains(index),

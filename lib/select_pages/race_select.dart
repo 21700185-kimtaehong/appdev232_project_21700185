@@ -1,9 +1,11 @@
-import 'package:appdev232_project_21700185/sheet_structure/race.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:appdev232_project_21700185/sheet_structure/race.dart';
 import 'package:appdev232_project_21700185/sheet_structure/character_state.dart';
 import 'package:appdev232_project_21700185/constant/constant_code.dart';
+import 'package:appdev232_project_21700185/constant/constant_race.dart';
+import 'package:appdev232_project_21700185/constant/constant_names.dart';
 
 class RacePage extends StatefulWidget {
   const RacePage(BuildContext context, {Key? key}) : super(key: key);
@@ -78,6 +80,7 @@ class _RacePageState extends State<RacePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('종족'),
+        elevation: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -114,9 +117,14 @@ class _RacePageState extends State<RacePage> {
                 ],
               ),
             ),
-            Divider(color: Colors.white),
-            _buildSubraceButtons(context, subRaceSetIndex, screenWidth,
-                minButtonWidth, buttonTextStyle, crossAxisCount)
+            if (subRaceSetIndex != -1)
+              const Divider(color: Color.fromARGB(255, 216, 214, 214)),
+            if (subRaceSetIndex != -1)
+              _buildSubraceButtons(context, subRaceSetIndex, screenWidth,
+                  minButtonWidth, buttonTextStyle, crossAxisCount),
+            if (currRaceType != -1)
+              const Divider(color: Color.fromARGB(255, 216, 214, 214)),
+            if (currRaceType != -1) raceDescription(context, currRaceType),
           ],
         ),
       ),
@@ -172,9 +180,9 @@ class _RacePageState extends State<RacePage> {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           children: [
-            raceSelectButton(context, HIGHELF, '하이엘프', screenWidth,
+            raceSelectButton(context, HIGHELF, raceText(HIGHELF), screenWidth,
                 minButtonWidth, buttonTextStyle),
-            raceSelectButton(context, WOODELF, '우드엘프', screenWidth,
+            raceSelectButton(context, WOODELF, raceText(WOODELF), screenWidth,
                 minButtonWidth, buttonTextStyle),
           ],
         ));
@@ -185,16 +193,191 @@ class _RacePageState extends State<RacePage> {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           children: [
-            raceSelectButton(context, ASMODEUSTIF, '아스모데우스 티플링', screenWidth,
-                minButtonWidth, buttonTextStyle),
-            raceSelectButton(context, MEPHISTOPHELESTIF, '메피스토펠레스 티플링',
+            raceSelectButton(context, ASMODEUSTIF, raceText(ASMODEUSTIF),
                 screenWidth, minButtonWidth, buttonTextStyle),
-            raceSelectButton(context, ZARIELTIF, '자리엘 티플링', screenWidth,
+            raceSelectButton(
+                context,
+                MEPHISTOPHELESTIF,
+                raceText(MEPHISTOPHELESTIF),
+                screenWidth,
+                minButtonWidth,
+                buttonTextStyle),
+            raceSelectButton(context, ZARIELTIF, raceText(ZARIELTIF),
+                screenWidth, minButtonWidth, buttonTextStyle),
+          ],
+        ));
+      case 2:
+        return Expanded(
+            child: GridView.count(
+          crossAxisCount: crossAxisCount,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          children: [
+            raceSelectButton(context, SELDARINEDROW, raceText(SELDARINEDROW),
+                screenWidth, minButtonWidth, buttonTextStyle),
+            raceSelectButton(context, LOLTHDROW, raceText(LOLTHDROW),
+                screenWidth, minButtonWidth, buttonTextStyle),
+          ],
+        ));
+      case 3:
+        return Expanded(
+            child: GridView.count(
+          crossAxisCount: crossAxisCount,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          children: [
+            raceSelectButton(context, GOLDDWARF, raceText(GOLDDWARF),
+                screenWidth, minButtonWidth, buttonTextStyle),
+            raceSelectButton(context, SHIELDDWARF, raceText(SHIELDDWARF),
+                screenWidth, minButtonWidth, buttonTextStyle),
+            raceSelectButton(context, DUERGA, raceText(DUERGA), screenWidth,
                 minButtonWidth, buttonTextStyle),
+          ],
+        ));
+      case 4:
+        return Expanded(
+            child: GridView.count(
+          crossAxisCount: crossAxisCount,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          children: [
+            raceSelectButton(context, HIGHHALF, raceText(HIGHHALF), screenWidth,
+                minButtonWidth, buttonTextStyle),
+            raceSelectButton(context, WOODHALF, raceText(WOODHALF), screenWidth,
+                minButtonWidth, buttonTextStyle),
+            raceSelectButton(context, DROWHALF, raceText(DROWHALF), screenWidth,
+                minButtonWidth, buttonTextStyle),
+          ],
+        ));
+      case 5:
+        return Expanded(
+            child: GridView.count(
+          crossAxisCount: crossAxisCount,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          children: [
+            raceSelectButton(context, LIGHTFOOTHAL, raceText(LIGHTFOOTHAL),
+                screenWidth, minButtonWidth, buttonTextStyle),
+            raceSelectButton(context, STRONGHEARTHAL, raceText(STRONGHEARTHAL),
+                screenWidth, minButtonWidth, buttonTextStyle),
+          ],
+        ));
+      case 6:
+        return Expanded(
+            child: GridView.count(
+          crossAxisCount: crossAxisCount,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          children: [
+            raceSelectButton(context, FORESTGNOME, raceText(FORESTGNOME),
+                screenWidth, minButtonWidth, buttonTextStyle),
+            raceSelectButton(context, DEEPGNOME, raceText(DEEPGNOME),
+                screenWidth, minButtonWidth, buttonTextStyle),
+          ],
+        ));
+      case 7:
+        return Expanded(
+            child: GridView.count(
+          crossAxisCount: crossAxisCount,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          children: [
+            raceSelectButton(context, BLACKBORN, raceText(BLACKBORN),
+                screenWidth, minButtonWidth, buttonTextStyle),
+            raceSelectButton(context, BLUEBORN, raceText(BLUEBORN), screenWidth,
+                minButtonWidth, buttonTextStyle),
+            raceSelectButton(context, BRASSBORN, raceText(BRASSBORN),
+                screenWidth, minButtonWidth, buttonTextStyle),
+            raceSelectButton(context, BRONZEBORN, raceText(BRONZEBORN),
+                screenWidth, minButtonWidth, buttonTextStyle),
+            raceSelectButton(context, COPPERBORN, raceText(COPPERBORN),
+                screenWidth, minButtonWidth, buttonTextStyle),
+            raceSelectButton(context, GOLDBORN, raceText(GOLDBORN), screenWidth,
+                minButtonWidth, buttonTextStyle),
+            raceSelectButton(context, GREENBORN, raceText(GREENBORN),
+                screenWidth, minButtonWidth, buttonTextStyle),
+            raceSelectButton(context, REDBORN, raceText(REDBORN), screenWidth,
+                minButtonWidth, buttonTextStyle),
+            raceSelectButton(context, SILVERBORN, raceText(SILVERBORN),
+                screenWidth, minButtonWidth, buttonTextStyle),
+            raceSelectButton(context, WHITEBORN, raceText(WHITEBORN),
+                screenWidth, minButtonWidth, buttonTextStyle),
           ],
         ));
       default:
         return const SizedBox();
     }
+  }
+
+  Widget raceDescription(BuildContext context, int raceType) {
+    CharacterState characterState =
+        Provider.of<CharacterState>(context, listen: true);
+    return Expanded(
+      child: ListView(children: [
+        Text(raceText(raceType),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        const SizedBox(
+          height: 5,
+        ),
+        Text(raceDesc(raceType)),
+        const SizedBox(
+          height: 5,
+        ),
+        RichText(
+          text: TextSpan(
+            children: <TextSpan>[
+              const TextSpan(
+                text: '이동속도: ',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              TextSpan(
+                  text: raceMovementText(
+                      characterState.currCharacter.activeRace.speedType)),
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        if (characterState.currCharacter.activeRace.raceProfs.isNotEmpty)
+          RichText(
+            text: TextSpan(
+              children: <TextSpan>[
+                const TextSpan(
+                  text: '기술: ',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                for (int i = 0;
+                    i <
+                        characterState
+                            .currCharacter.activeRace.raceProfs.length;
+                    i++)
+                  TextSpan(text: '${profNames[i]} '),
+              ],
+            ),
+          ),
+        if (characterState.currCharacter.activeRace.raceProfs.isNotEmpty)
+          const SizedBox(
+            height: 5,
+          ),
+        for (int i = 0;
+            i < characterState.currCharacter.activeRace.raceTraits.length;
+            i++)
+          RichText(
+            text: TextSpan(
+              children: <TextSpan>[
+                TextSpan(
+                  text:
+                      '${characterState.currCharacter.activeRace.raceTraits[i].traitName}: ',
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                TextSpan(
+                    text: characterState.currCharacter.activeRace.raceTraits[i]
+                        .traitDescription),
+              ],
+            ),
+          ),
+      ]),
+    );
   }
 }

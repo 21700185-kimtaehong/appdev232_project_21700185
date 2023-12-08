@@ -16,7 +16,6 @@ class _AbilityPageState extends State<AbilityPage> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    bool ablePadding = (screenWidth > 500);
 
     CharacterState characterState =
         Provider.of<CharacterState>(context, listen: true);
@@ -27,59 +26,95 @@ class _AbilityPageState extends State<AbilityPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('능력치'),
+        elevation: 0,
       ),
       body: Padding(
-        padding: (ablePadding)
-            ? const EdgeInsets.only(left: 32, right: 32, top: 16, bottom: 16)
-            : const EdgeInsets.all(16.0),
-        child: Column(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text('포인트', style: TextStyle(color: Colors.white)),
-                Ink(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.transparent,
-                    ),
-                    child: null,
+                Container(
+                  width: 50,
+                ),
+                Opacity(
+                  opacity: 0,
+                  child: Container(
+                    width: 10,
                   ),
                 ),
-                Text(
+                Container(
+                  width: 30,
+                  child: Text(
                     characterState.currCharacter.characterAbility.totalPoint
                         .toString(),
-                    style: TextStyle(color: Colors.white)),
-                Ink(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.transparent,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
-                    child: null,
                   ),
                 ),
-                Text('+ 1', style: TextStyle(color: Colors.white)),
-                Padding(
-                  padding: EdgeInsets.only(right: 1),
-                  child: null,
+                Opacity(
+                  opacity: 0,
+                  child: Container(
+                    width: 30,
+                  ),
                 ),
-                Text('+ 2', style: TextStyle(color: Colors.white)),
+                Container(
+                    width: 25,
+                    child: const Tooltip(
+                      message: '능력치 보너스',
+                      child: Text(
+                        '+ 1',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )),
+                Container(
+                    width: 25,
+                    child: const Tooltip(
+                      message: '능력치 보너스',
+                      child: Text(
+                        '+ 2',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )),
               ],
+            ),
+            const SizedBox(
+              height: 5,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  abilityNames[0],
-                  style: TextStyle(color: Colors.white),
-                ),
+                Container(
+                    width: 30,
+                    child: Text(
+                      abilityNames[0],
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
                 abilitydownButton(context, STR),
-                Text(
-                  characterState.currCharacter.characterAbility.strength[4]
-                      .toString(),
-                  style: const TextStyle(color: Colors.white),
+                Container(
+                  width: 30,
+                  child: Text(
+                    characterState.currCharacter.characterAbility.strength[4]
+                        .toString(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 abilityupButton(context, STR),
                 Opacity(
@@ -88,18 +123,21 @@ class _AbilityPageState extends State<AbilityPage> {
                     value: 1,
                     groupValue: currAdd1type,
                     onChanged: (value) {
-                      setState(() {
-                        if (currAdd1type != -1) {
+                      if (currAdd2type == 1) {
+                      } else {
+                        setState(() {
+                          if (currAdd1type != -1) {
+                            characterState.updateAbilityState(
+                                currAdd1type, false, 1, 1);
+                          }
+                          currAdd1type = value!;
+                          characterState.updateAdd1type(value);
                           characterState.updateAbilityState(
-                              currAdd1type, false, 1, 1);
-                        }
-                        currAdd1type = value!;
-                        characterState.updateAdd1type(value);
-                        characterState.updateAbilityState(
-                            currAdd1type, true, 1, 1);
-                      });
+                              currAdd1type, true, 1, 1);
+                        });
+                      }
                     },
-                    activeColor: Colors.white,
+                    activeColor: Colors.grey,
                   ),
                 ),
                 Opacity(
@@ -108,34 +146,52 @@ class _AbilityPageState extends State<AbilityPage> {
                     value: 1,
                     groupValue: currAdd2type,
                     onChanged: (value) {
-                      setState(() {
-                        if (currAdd2type != -1) {
+                      if (currAdd1type == 1) {
+                      } else {
+                        setState(() {
+                          if (currAdd2type != -1) {
+                            characterState.updateAbilityState(
+                                currAdd2type, false, 1, 2);
+                          }
+                          currAdd2type = value!;
+                          characterState.updateAdd2type(value);
                           characterState.updateAbilityState(
-                              currAdd2type, false, 1, 2);
-                        }
-                        currAdd2type = value!;
-                        characterState.updateAdd2type(value);
-                        characterState.updateAbilityState(
-                            currAdd2type, true, 1, 2);
-                      });
+                              currAdd2type, true, 1, 2);
+                        });
+                      }
                     },
-                    activeColor: Colors.white,
+                    activeColor: Colors.grey,
                   ),
                 ),
               ],
             ),
+            const SizedBox(
+              height: 5,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  abilityNames[1],
-                  style: TextStyle(color: Colors.white),
-                ),
+                Container(
+                    width: 30,
+                    child: Text(
+                      abilityNames[1],
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
                 abilitydownButton(context, DEX),
-                Text(
-                  characterState.currCharacter.characterAbility.dexterity[4]
-                      .toString(),
-                  style: const TextStyle(color: Colors.white),
+                Container(
+                  width: 30,
+                  child: Text(
+                    characterState.currCharacter.characterAbility.dexterity[4]
+                        .toString(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 abilityupButton(context, DEX),
                 Opacity(
@@ -144,18 +200,21 @@ class _AbilityPageState extends State<AbilityPage> {
                     value: 2,
                     groupValue: currAdd1type,
                     onChanged: (value) {
-                      setState(() {
-                        if (currAdd1type != -1) {
+                      if (currAdd2type == 2) {
+                      } else {
+                        setState(() {
+                          if (currAdd1type != -1) {
+                            characterState.updateAbilityState(
+                                currAdd1type, false, 1, 1);
+                          }
+                          currAdd1type = value!;
+                          characterState.updateAdd1type(value);
                           characterState.updateAbilityState(
-                              currAdd1type, false, 1, 1);
-                        }
-                        currAdd1type = value!;
-                        characterState.updateAdd1type(value);
-                        characterState.updateAbilityState(
-                            currAdd1type, true, 1, 1);
-                      });
+                              currAdd1type, true, 1, 1);
+                        });
+                      }
                     },
-                    activeColor: Colors.white,
+                    activeColor: Colors.grey,
                   ),
                 ),
                 Opacity(
@@ -164,34 +223,53 @@ class _AbilityPageState extends State<AbilityPage> {
                     value: 2,
                     groupValue: currAdd2type,
                     onChanged: (value) {
-                      setState(() {
-                        if (currAdd2type != -1) {
+                      if (currAdd1type == 2) {
+                      } else {
+                        setState(() {
+                          if (currAdd2type != -1) {
+                            characterState.updateAbilityState(
+                                currAdd2type, false, 1, 2);
+                          }
+                          currAdd2type = value!;
+                          characterState.updateAdd2type(value);
                           characterState.updateAbilityState(
-                              currAdd2type, false, 1, 2);
-                        }
-                        currAdd2type = value!;
-                        characterState.updateAdd2type(value);
-                        characterState.updateAbilityState(
-                            currAdd2type, true, 1, 2);
-                      });
+                              currAdd2type, true, 1, 2);
+                        });
+                      }
                     },
-                    activeColor: Colors.white,
+                    activeColor: Colors.grey,
                   ),
                 ),
               ],
             ),
+            const SizedBox(
+              height: 5,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  abilityNames[2],
-                  style: TextStyle(color: Colors.white),
-                ),
+                Container(
+                    width: 30,
+                    child: Text(
+                      abilityNames[2],
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
                 abilitydownButton(context, CON),
-                Text(
-                  characterState.currCharacter.characterAbility.constitution[4]
-                      .toString(),
-                  style: const TextStyle(color: Colors.white),
+                Container(
+                  width: 30,
+                  child: Text(
+                    characterState
+                        .currCharacter.characterAbility.constitution[4]
+                        .toString(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 abilityupButton(context, CON),
                 Opacity(
@@ -200,18 +278,21 @@ class _AbilityPageState extends State<AbilityPage> {
                     value: 3,
                     groupValue: currAdd1type,
                     onChanged: (value) {
-                      setState(() {
-                        if (currAdd1type != -1) {
+                      if (currAdd2type == 3) {
+                      } else {
+                        setState(() {
+                          if (currAdd1type != -1) {
+                            characterState.updateAbilityState(
+                                currAdd1type, false, 1, 1);
+                          }
+                          currAdd1type = value!;
+                          characterState.updateAdd1type(value);
                           characterState.updateAbilityState(
-                              currAdd1type, false, 1, 1);
-                        }
-                        currAdd1type = value!;
-                        characterState.updateAdd1type(value);
-                        characterState.updateAbilityState(
-                            currAdd1type, true, 1, 1);
-                      });
+                              currAdd1type, true, 1, 1);
+                        });
+                      }
                     },
-                    activeColor: Colors.white,
+                    activeColor: Colors.grey,
                   ),
                 ),
                 Opacity(
@@ -220,34 +301,53 @@ class _AbilityPageState extends State<AbilityPage> {
                     value: 3,
                     groupValue: currAdd2type,
                     onChanged: (value) {
-                      setState(() {
-                        if (currAdd2type != -1) {
+                      if (currAdd1type == 3) {
+                      } else {
+                        setState(() {
+                          if (currAdd2type != -1) {
+                            characterState.updateAbilityState(
+                                currAdd2type, false, 1, 2);
+                          }
+                          currAdd2type = value!;
+                          characterState.updateAdd2type(value);
                           characterState.updateAbilityState(
-                              currAdd2type, false, 1, 2);
-                        }
-                        currAdd2type = value!;
-                        characterState.updateAdd2type(value);
-                        characterState.updateAbilityState(
-                            currAdd2type, true, 1, 2);
-                      });
+                              currAdd2type, true, 1, 2);
+                        });
+                      }
                     },
-                    activeColor: Colors.white,
+                    activeColor: Colors.grey,
                   ),
                 ),
               ],
             ),
+            const SizedBox(
+              height: 5,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  abilityNames[3],
-                  style: TextStyle(color: Colors.white),
-                ),
+                Container(
+                    width: 30,
+                    child: Text(
+                      abilityNames[3],
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
                 abilitydownButton(context, INT),
-                Text(
-                  characterState.currCharacter.characterAbility.intelligence[4]
-                      .toString(),
-                  style: const TextStyle(color: Colors.white),
+                Container(
+                  width: 30,
+                  child: Text(
+                    characterState
+                        .currCharacter.characterAbility.intelligence[4]
+                        .toString(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 abilityupButton(context, INT),
                 Opacity(
@@ -256,18 +356,21 @@ class _AbilityPageState extends State<AbilityPage> {
                     value: 4,
                     groupValue: currAdd1type,
                     onChanged: (value) {
-                      setState(() {
-                        if (currAdd1type != -1) {
+                      if (currAdd2type == 4) {
+                      } else {
+                        setState(() {
+                          if (currAdd1type != -1) {
+                            characterState.updateAbilityState(
+                                currAdd1type, false, 1, 1);
+                          }
+                          currAdd1type = value!;
+                          characterState.updateAdd1type(value);
                           characterState.updateAbilityState(
-                              currAdd1type, false, 1, 1);
-                        }
-                        currAdd1type = value!;
-                        characterState.updateAdd1type(value);
-                        characterState.updateAbilityState(
-                            currAdd1type, true, 1, 1);
-                      });
+                              currAdd1type, true, 1, 1);
+                        });
+                      }
                     },
-                    activeColor: Colors.white,
+                    activeColor: Colors.grey,
                   ),
                 ),
                 Opacity(
@@ -276,34 +379,52 @@ class _AbilityPageState extends State<AbilityPage> {
                     value: 4,
                     groupValue: currAdd2type,
                     onChanged: (value) {
-                      setState(() {
-                        if (currAdd2type != -1) {
+                      if (currAdd1type == 4) {
+                      } else {
+                        setState(() {
+                          if (currAdd2type != -1) {
+                            characterState.updateAbilityState(
+                                currAdd2type, false, 1, 2);
+                          }
+                          currAdd2type = value!;
+                          characterState.updateAdd2type(value);
                           characterState.updateAbilityState(
-                              currAdd2type, false, 1, 2);
-                        }
-                        currAdd2type = value!;
-                        characterState.updateAdd2type(value);
-                        characterState.updateAbilityState(
-                            currAdd2type, true, 1, 2);
-                      });
+                              currAdd2type, true, 1, 2);
+                        });
+                      }
                     },
-                    activeColor: Colors.white,
+                    activeColor: Colors.grey,
                   ),
                 ),
               ],
             ),
+            const SizedBox(
+              height: 5,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  abilityNames[4],
-                  style: TextStyle(color: Colors.white),
-                ),
+                Container(
+                    width: 30,
+                    child: Text(
+                      abilityNames[4],
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
                 abilitydownButton(context, WIS),
-                Text(
-                  characterState.currCharacter.characterAbility.wisdom[4]
-                      .toString(),
-                  style: const TextStyle(color: Colors.white),
+                Container(
+                  width: 30,
+                  child: Text(
+                    characterState.currCharacter.characterAbility.wisdom[4]
+                        .toString(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 abilityupButton(context, WIS),
                 Opacity(
@@ -312,18 +433,21 @@ class _AbilityPageState extends State<AbilityPage> {
                     value: 5,
                     groupValue: currAdd1type,
                     onChanged: (value) {
-                      setState(() {
-                        if (currAdd1type != -1) {
+                      if (currAdd2type == 5) {
+                      } else {
+                        setState(() {
+                          if (currAdd1type != -1) {
+                            characterState.updateAbilityState(
+                                currAdd1type, false, 1, 1);
+                          }
+                          currAdd1type = value!;
+                          characterState.updateAdd1type(value);
                           characterState.updateAbilityState(
-                              currAdd1type, false, 1, 1);
-                        }
-                        currAdd1type = value!;
-                        characterState.updateAdd1type(value);
-                        characterState.updateAbilityState(
-                            currAdd1type, true, 1, 1);
-                      });
+                              currAdd1type, true, 1, 1);
+                        });
+                      }
                     },
-                    activeColor: Colors.white,
+                    activeColor: Colors.grey,
                   ),
                 ),
                 Opacity(
@@ -332,34 +456,52 @@ class _AbilityPageState extends State<AbilityPage> {
                     value: 5,
                     groupValue: currAdd2type,
                     onChanged: (value) {
-                      setState(() {
-                        if (currAdd2type != -1) {
+                      if (currAdd1type == 5) {
+                      } else {
+                        setState(() {
+                          if (currAdd2type != -1) {
+                            characterState.updateAbilityState(
+                                currAdd2type, false, 1, 2);
+                          }
+                          currAdd2type = value!;
+                          characterState.updateAdd2type(value);
                           characterState.updateAbilityState(
-                              currAdd2type, false, 1, 2);
-                        }
-                        currAdd2type = value!;
-                        characterState.updateAdd2type(value);
-                        characterState.updateAbilityState(
-                            currAdd2type, true, 1, 2);
-                      });
+                              currAdd2type, true, 1, 2);
+                        });
+                      }
                     },
-                    activeColor: Colors.white,
+                    activeColor: Colors.grey,
                   ),
                 ),
               ],
             ),
+            const SizedBox(
+              height: 5,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  abilityNames[5],
-                  style: TextStyle(color: Colors.white),
-                ),
+                Container(
+                    width: 30,
+                    child: Text(
+                      abilityNames[5],
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
                 abilitydownButton(context, CHA),
-                Text(
-                  characterState.currCharacter.characterAbility.charisma[4]
-                      .toString(),
-                  style: const TextStyle(color: Colors.white),
+                Container(
+                  width: 30,
+                  child: Text(
+                    characterState.currCharacter.characterAbility.charisma[4]
+                        .toString(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 abilityupButton(context, CHA),
                 Opacity(
@@ -368,18 +510,21 @@ class _AbilityPageState extends State<AbilityPage> {
                     value: 6,
                     groupValue: currAdd1type,
                     onChanged: (value) {
-                      setState(() {
-                        if (currAdd1type != -1) {
+                      if (currAdd2type == 6) {
+                      } else {
+                        setState(() {
+                          if (currAdd1type != -1) {
+                            characterState.updateAbilityState(
+                                currAdd1type, false, 1, 1);
+                          }
+                          currAdd1type = value!;
+                          characterState.updateAdd1type(value);
                           characterState.updateAbilityState(
-                              currAdd1type, false, 1, 1);
-                        }
-                        currAdd1type = value!;
-                        characterState.updateAdd1type(value);
-                        characterState.updateAbilityState(
-                            currAdd1type, true, 1, 1);
-                      });
+                              currAdd1type, true, 1, 1);
+                        });
+                      }
                     },
-                    activeColor: Colors.white,
+                    activeColor: Colors.grey,
                   ),
                 ),
                 Opacity(
@@ -388,18 +533,21 @@ class _AbilityPageState extends State<AbilityPage> {
                     value: 6,
                     groupValue: currAdd2type,
                     onChanged: (value) {
-                      setState(() {
-                        if (currAdd2type != -1) {
+                      if (currAdd1type == 6) {
+                      } else {
+                        setState(() {
+                          if (currAdd2type != -1) {
+                            characterState.updateAbilityState(
+                                currAdd2type, false, 1, 2);
+                          }
+                          currAdd2type = value!;
+                          characterState.updateAdd2type(value);
                           characterState.updateAbilityState(
-                              currAdd2type, false, 1, 2);
-                        }
-                        currAdd2type = value!;
-                        characterState.updateAdd2type(value);
-                        characterState.updateAbilityState(
-                            currAdd2type, true, 1, 2);
-                      });
+                              currAdd2type, true, 1, 2);
+                        });
+                      }
                     },
-                    activeColor: Colors.white,
+                    activeColor: Colors.grey,
                   ),
                 ),
               ],

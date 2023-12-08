@@ -18,10 +18,8 @@ class MyApp extends StatelessWidget {
         '/login': (BuildContext context) => const LoginPage(),
       },
       theme: ThemeData(
-        primaryColor: Colors.black,
-        highlightColor: Colors.white,
-        scaffoldBackgroundColor: Colors.black,
-        unselectedWidgetColor: Colors.white,
+        primaryColor: Colors.lightBlue,
+        scaffoldBackgroundColor: Colors.white,
       ),
     );
   }

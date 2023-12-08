@@ -22,7 +22,7 @@ const int SORCERER = 19;
 const int WARLOCK = 20;
 const int WIZARD = 21;
 
-//30~59: RACE TYPE
+//30~60: RACE TYPE
 const int HIGHELF = 30; //
 const int WOODELF = 31;
 const int ASMODEUSTIF = 32; //
@@ -40,30 +40,20 @@ const int WOODHALF = 43;
 const int DROWHALF = 44;
 const int LIGHTFOOTHAL = 45; //
 const int STRONGHEARTHAL = 46;
-const int FORESTGNOME = 47; //
-const int DEEPGNOME = 48;
-const int BLACKBORN = 49; //
-const int BLUEBORN = 50;
-const int BRASSBORN = 51;
-const int BRONZEBORN = 52;
-const int COPPERBORN = 53;
-const int GOLDBORN = 54;
-const int GREENBORN = 55;
-const int REDBORN = 56;
-const int SILVERBORN = 57;
-const int WHITEBORN = 58;
-const int HALFORC = 59; //
-
-//60~69: CHARACTER SPEED, SIZE, ACTION TYPE
-const int SLOWMOVEMENT = 60;
-const int STANDARDMOVEMENT = 61;
-const int FASTMOVEMNET = 62;
-const int SMALLSIZE = 63;
-const int MEDIUMSIZE = 64;
-const int LARGESIZE = 65;
-const int NORMALACTION = 66;
-const int BONUSACTION = 67;
-const int RESPONSEACTION = 68;
+const int ROCKGNOME = 47;
+const int FORESTGNOME = 48; //
+const int DEEPGNOME = 49;
+const int BLACKBORN = 50; //
+const int BLUEBORN = 51;
+const int BRASSBORN = 52;
+const int BRONZEBORN = 53;
+const int COPPERBORN = 54;
+const int GOLDBORN = 55;
+const int GREENBORN = 56;
+const int REDBORN = 57;
+const int SILVERBORN = 58;
+const int WHITEBORN = 59;
+const int HALFORC = 60; //
 
 const int ACOLYTE = 70; //복사
 const int CHARLATAN = 71; //사기꾼

@@ -15,13 +15,13 @@ Widget createCustomButton({
 
   return ElevatedButton(
     style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-      foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+      backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+      foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
       shape: MaterialStateProperty.all<OutlinedBorder>(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
-          side: BorderSide(
-            color: Color.fromARGB(255, 241, 165, 2),
+          side: const BorderSide(
+            color: Colors.lightBlue,
             width: 2.0,
           ),
         ),
@@ -31,7 +31,12 @@ Widget createCustomButton({
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(buttonText),
+        Text(
+          buttonText,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         const SizedBox(width: 8.0),
         checkValid(isValid),
       ],

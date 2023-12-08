@@ -1,3 +1,5 @@
+import 'package:appdev232_project_21700185/class_default/druid_default.dart';
+
 import '../constant/constant_code.dart';
 import 'package:appdev232_project_21700185/constant/constant_weapon.dart';
 import 'proficiency.dart';
@@ -6,6 +8,9 @@ import 'weapon.dart';
 import 'race.dart';
 import 'ability.dart';
 import '../class_default/fighter_default.dart';
+import '../class_default/bard_default.dart';
+import '../class_default/barbarian_default.dart';
+import '../class_default/cleric_default.dart';
 
 class Character {
   String chracterName;
@@ -14,7 +19,6 @@ class Character {
   int hitpoints;
   int proficiencyBonus;
 
-  int raceType;
   int backgroundType;
 
   int startingClassType;
@@ -26,6 +30,7 @@ class Character {
 
   Ability characterAbility = Ability();
 
+  int raceType;
   late Race activeRace;
 
   late List<bool> activeClasses;
@@ -94,12 +99,29 @@ class Character {
   }
 
   void updateWeaponProf() {
+    characterWeaponProf = List.generate(31, (index) => false);
     for (int i = 0; i < activeClasses.length; i++) {
       if (activeClasses[i]) {
         for (int weaNum in characterClasses[i].classWeaponProf) {
           characterWeaponProf[weaNum] = true;
         }
-        for (int weaNum in )
+        if (i == startingClassType - BARD) {
+          for (int weaNum in characterClasses[i].startingWeaponProf) {
+            characterWeaponProf[weaNum] = true;
+          }
+        }
+      }
+    }
+  }
+
+  void updateArmorProf() {
+    characterArmorProf = [false, false, false, false];
+    for (int i = 0; i < activeClasses.length; i++) {
+      if (activeClasses[i]) {
+        characterWeaponProf[characterClasses[i].classArmorProf] = true;
+        if (i == startingClassType - BARD) {
+          characterWeaponProf[characterClasses[i].startingArmorProf] = true;
+        }
       }
     }
   }
@@ -107,7 +129,6 @@ class Character {
   void updateFightingStyles(int index) {
     selectedFightingStyles[index] = !selectedFightingStyles[index];
   }
-
 }
 
 List<Proficiency> defaultProficiencyState = [
@@ -123,7 +144,7 @@ List<Proficiency> defaultProficiencyState = [
   Proficiency(profNum: 9, baseAbilityType: WIS, isSelectable: true), //9 동물조련
   Proficiency(profNum: 10, baseAbilityType: WIS, isSelectable: true), //10 통찰
   Proficiency(profNum: 11, baseAbilityType: WIS, isSelectable: true), //11 의학
-  Proficiency(profNum: 12, baseAbilityType: WIS, isSelectable: true), //12 감지
+  Proficiency(profNum: 12, baseAbilityType: WIS, isSelectable: true), //12 지각
   Proficiency(profNum: 13, baseAbilityType: WIS, isSelectable: true), //13 생존
   Proficiency(profNum: 14, baseAbilityType: CHA, isSelectable: true), //14 공연
   Proficiency(profNum: 15, baseAbilityType: CHA, isSelectable: true), //15 기만
@@ -132,11 +153,10 @@ List<Proficiency> defaultProficiencyState = [
 ];
 
 List<CharacterClass> defaultCharacterClassState = [
-  CharacterClass(classType: BARD, isCaster: true),
-  CharacterClass(classType: BARBARIAN),
-  CharacterClass(classType: CLERIC, isCaster: true),
-  CharacterClass(classType: DRUID, isCaster: true, isHalfCaster: true),
-  //CharacterClass(classType: FIGHTER),
+  BardClass(),
+  BarbarianClass(),
+  ClericClass(),
+  DruidClass(),
   FighterClass(),
   CharacterClass(classType: MONK),
   CharacterClass(classType: PALADIN, isCaster: true, isHalfCaster: true),
@@ -161,27 +181,3 @@ List<bool> defaultActiveClassState = [
   false, // 10 warlock
   false, // 11 wizard
 ];
-// List<Proficiency> defaultProficiencyState = [
-//   Proficiency(profName: "운동", profNum: 0, baseAbilityType: STR), //0
-//   Proficiency(profName: "곡예", profNum: 1, baseAbilityType: DEX), //1
-//   Proficiency(profName: "손재주", profNum: 2, baseAbilityType: DEX), //2
-//   Proficiency(profName: "은신", profNum: 3, baseAbilityType: DEX), //3
-//   Proficiency(profName: "비전", profNum: 4, baseAbilityType: INT), //4
-//   Proficiency(profName: "역사", profNum: 5, baseAbilityType: INT), //5
-//   Proficiency(profName: "조사", profNum: 6, baseAbilityType: INT), //6
-//   Proficiency(profName: "자연", profNum: 7, baseAbilityType: INT), //7
-//   Proficiency(profName: "종교", profNum: 8, baseAbilityType: INT), //8
-//   Proficiency(profName: "동물조련", profNum: 9, baseAbilityType: WIS), //9
-//   Proficiency(profName: "통찰", profNum: 10, baseAbilityType: WIS), //10
-//   Proficiency(profName: "의학", profNum: 11, baseAbilityType: WIS), //11
-//   Proficiency(profName: "감지", profNum: 12, baseAbilityType: WIS), //12
-//   Proficiency(profName: "생존", profNum: 13, baseAbilityType: WIS), //13
-//   Proficiency(profName: "공연", profNum: 14, baseAbilityType: CHA), //14
-//   Proficiency(profName: "기만", profNum: 15, baseAbilityType: CHA), //15
-//   Proficiency(profName: "위협", profNum: 16, baseAbilityType: CHA), //16
-//   Proficiency(profName: "설득", profNum: 17, baseAbilityType: CHA), //17
-// ];
-
-
-
-

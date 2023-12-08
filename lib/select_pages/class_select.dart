@@ -29,6 +29,7 @@ class _ClassPageState extends State<ClassPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('클래스'),
+        elevation: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -46,7 +47,7 @@ class _ClassPageState extends State<ClassPage> {
                 ],
               ),
             ),
-            const Divider(thickness: 1, color: Colors.white),
+            const Divider(thickness: 1, color: Colors.grey),
             Expanded(
               child: ListView(
                 children: [
@@ -122,9 +123,12 @@ class _ClassPageState extends State<ClassPage> {
         Container(
           width: 100,
           padding: const EdgeInsets.all(8.0),
-          child: Text(
-            className,
-            style: const TextStyle(color: Colors.white),
+          child: SizedBox(
+            width: 30,
+            child: Text(
+              className,
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
           ),
         ),
         ElevatedButton(
@@ -133,19 +137,6 @@ class _ClassPageState extends State<ClassPage> {
           },
           child: const Icon(Icons.remove),
         ),
-        ElevatedButton(
-          onPressed: () {
-            characterState.classLevelUp(classType, true);
-          },
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.all(16.0),
-            textStyle: buttonTextStyle,
-            backgroundColor: (characterState.currCharacter.totalLevel < 12)
-                ? Colors.blue
-                : Colors.grey,
-          ),
-          child: const Icon(Icons.add),
-        ),
         Container(
           width: 50,
           padding: const EdgeInsets.all(8.0),
@@ -153,8 +144,23 @@ class _ClassPageState extends State<ClassPage> {
             characterState
                 .currCharacter.characterClasses[classType - 10].classLevel
                 .toString(),
-            style: const TextStyle(color: Colors.white),
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
           ),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            characterState.classLevelUp(classType, true);
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: (characterState.currCharacter.totalLevel < 12)
+                ? Colors.blue
+                : Colors.grey,
+          ),
+          child: const Icon(Icons.add),
         ),
       ],
     );

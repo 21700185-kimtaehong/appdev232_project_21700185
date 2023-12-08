@@ -64,7 +64,7 @@ List<Weapon> defaultWeaponState = [
       martial: true,
       melee: true),
   Weapon(
-      weaponName: "헬버드", //13
+      weaponName: "할버드", //13
       handed: Handed.twohand,
       martial: true,
       melee: true),
