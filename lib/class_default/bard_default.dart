@@ -15,7 +15,6 @@ class BardClass extends CharacterClass {
 
   int classProficiencyMaxNum;
   int classProficiencyCurrNum;
-  late List<Proficiency> classProficiencies;
 
   late List<List<bool>> selectedClassActions;
   late List<List<bool>> selectedClassTraits;
@@ -34,7 +33,6 @@ class BardClass extends CharacterClass {
     List<List<bool>>? selectedClassActions,
     List<List<bool>>? selectedClassTraits,
   })  : selectedFightingStyles = defaultFighterFightingStyles,
-        classProficiencies = defaultFighterProficiencyState,
         selectedClassActions = selectedClassActions ?? [],
         selectedClassTraits = selectedClassTraits ?? [],
         super(classType: FIGHTER, hitPointBase: 8, hitPointPerLevel: 5);
@@ -53,7 +51,6 @@ class BardClass extends CharacterClass {
         fightingStyleCurrNum = 0;
         classProficiencyMaxNum = 0;
         classProficiencyCurrNum = 0;
-        classProficiencies = defaultFighterProficiencyState;
         break;
       case 1:
         fightingStyleMaxNum = 1;

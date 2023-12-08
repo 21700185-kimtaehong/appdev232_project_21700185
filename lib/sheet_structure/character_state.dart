@@ -1,4 +1,9 @@
 import 'package:appdev232_project_21700185/class_default/fighter_default.dart';
+import 'package:appdev232_project_21700185/class_default/bard_default.dart';
+import 'package:appdev232_project_21700185/class_default/barbarian_default.dart';
+import 'package:appdev232_project_21700185/class_default/cleric_default.dart';
+import 'package:appdev232_project_21700185/class_default/druid_default.dart';
+
 import 'package:appdev232_project_21700185/sheet_structure/character_class.dart';
 import 'package:appdev232_project_21700185/sheet_structure/proficiency.dart';
 import 'package:flutter/material.dart';
@@ -176,52 +181,40 @@ class CharacterState with ChangeNotifier {
     _currCharacter.backgroundType = backgroundType;
     switch (backgroundType) {
       case ACOLYTE:
-        _currCharacter.characterProficiencies[8].isSkilled += 1;
-        _currCharacter.characterProficiencies[10].isSkilled += 1;
+        _currCharacter.backgroundProf = [8, 10];
         break;
       case CHARLATAN:
-        _currCharacter.characterProficiencies[2].isSkilled += 1;
-        _currCharacter.characterProficiencies[15].isSkilled += 1;
+        _currCharacter.backgroundProf = [2, 15];
         break;
       case CRIMINAL:
-        _currCharacter.characterProficiencies[3].isSkilled += 1;
-        _currCharacter.characterProficiencies[15].isSkilled += 1;
+        _currCharacter.backgroundProf = [3, 15];
         break;
       case ENTERTAINER:
-        _currCharacter.characterProficiencies[1].isSkilled += 1;
-        _currCharacter.characterProficiencies[14].isSkilled += 1;
+        _currCharacter.backgroundProf = [1, 14];
         break;
       case FOLKHERO:
-        _currCharacter.characterProficiencies[7].isSkilled += 1;
-        _currCharacter.characterProficiencies[9].isSkilled += 1;
+        _currCharacter.backgroundProf = [7, 9];
         break;
       case GUILDARTISAN:
-        _currCharacter.characterProficiencies[10].isSkilled += 1;
-        _currCharacter.characterProficiencies[17].isSkilled += 1;
+        _currCharacter.backgroundProf = [10, 17];
         break;
       case NOBLE:
-        _currCharacter.characterProficiencies[5].isSkilled += 1;
-        _currCharacter.characterProficiencies[17].isSkilled += 1;
+        _currCharacter.backgroundProf = [5, 17];
         break;
       case OUTLANDER:
-        _currCharacter.characterProficiencies[0].isSkilled += 1;
-        _currCharacter.characterProficiencies[2].isSkilled += 1;
+        _currCharacter.backgroundProf = [0, 2];
         break;
       case SAGE:
-        _currCharacter.characterProficiencies[4].isSkilled += 1;
-        _currCharacter.characterProficiencies[5].isSkilled += 1;
+        _currCharacter.backgroundProf = [4, 5];
         break;
       case SOLDIER:
-        _currCharacter.characterProficiencies[0].isSkilled += 1;
-        _currCharacter.characterProficiencies[16].isSkilled += 1;
+        _currCharacter.backgroundProf = [0, 16];
         break;
       case URCHIN:
-        _currCharacter.characterProficiencies[2].isSkilled += 1;
-        _currCharacter.characterProficiencies[3].isSkilled += 1;
+        _currCharacter.backgroundProf = [2, 3];
         break;
       case HAUNTED:
-        _currCharacter.characterProficiencies[11].isSkilled += 1;
-        _currCharacter.characterProficiencies[16].isSkilled += 1;
+        _currCharacter.backgroundProf = [11, 16];
         break;
     }
     notifyListeners();
@@ -229,6 +222,22 @@ class CharacterState with ChangeNotifier {
 
   void updateClassState(int classType) {
     switch (classType) {
+      case BARD:
+        (_currCharacter.characterClasses[classType - 10] as BardClass)
+            .updateBardClass();
+        break;
+      case BARBARIAN:
+        (_currCharacter.characterClasses[classType - 10] as BarbarianClass)
+            .updateBarbarianClass();
+        break;
+      case CLERIC:
+        (_currCharacter.characterClasses[classType - 10] as ClericClass)
+            .updateClericClass();
+        break;
+      case DRUID:
+        (_currCharacter.characterClasses[classType - 10] as DruidClass)
+            .updateDruidClass();
+        break;
       case FIGHTER:
         (_currCharacter.characterClasses[classType - 10] as FighterClass)
             .updateFighterClass();
@@ -394,8 +403,9 @@ class CharacterState with ChangeNotifier {
           temp += currClass.hitPointPerLevel * currClass.classLevel;
         }
       }
-      temp += (_currCharacter.characterAbility.constitution[5] ~/ 2) *
-          _currCharacter.totalLevel;
+      if (_currCharacter.characterAbility.constitution[5] > 10) {
+        temp += ((_currCharacter.characterAbility.constitution[5] - 10) ~/ 2) * _currCharacter.totalLevel;
+      }
       if (_currCharacter.raceType != -1) {
         temp += _currCharacter.activeRace.raceAddedHealth;
       }

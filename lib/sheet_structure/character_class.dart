@@ -17,6 +17,12 @@ class CharacterClass {
   bool isCaster;
   bool isHalfCaster;
 
+  List<int> classProfSelecatble;
+  List<int> classDoubleProfs = [];
+  List<int> classProficiencies = [];
+  List<int> classExpertised = [];
+  
+
   List<CharacterAction> classActions;
   List<Trait> classTraits;
   List<Spell> classSpells;
@@ -36,10 +42,12 @@ class CharacterClass {
     this.isHalfCaster = false,
     this.startingArmorProf = 0,
     this.classArmorProf = 0,
+    List<int>? classProfSelecatble,
     List<CharacterAction>? classActions,
     List<Trait>? classTraits,
     List<Spell>? classSpells,
-  })  : classActions = classActions ?? [],
+  })  : classProfSelecatble = classProfSelecatble ?? [],
+  classActions = classActions ?? [],
         classTraits = classTraits ?? [],
         classSpells = classSpells ?? [];
 

@@ -13,6 +13,7 @@ class Race {
   int raceArmorProf;
 
   late List<int> raceProfs;
+  late List<int> raceExpertised;
   late List<CharacterAction> raceActions;
   late List<Trait> raceTraits;
   late List<Spell> raceSpells;
@@ -26,12 +27,14 @@ class Race {
     this.weightCapacity = 1,
     this.raceAddedHealth = 0,
     List<int>? raceProfs,
+    List<int>? raceExpertised,
     List<int>? raceWeaponProf,
     List<CharacterAction>? raceActions,
     List<Trait>? raceTraits,
     List<Spell>? raceSpells,
     List<bool>? raceRegists,
   })  : raceProfs = raceProfs ?? [],
+        raceExpertised = raceExpertised ?? [],
         raceWeaponProf = raceWeaponProf ?? [],
         raceActions = raceActions ?? [],
         raceTraits = raceTraits ?? [],

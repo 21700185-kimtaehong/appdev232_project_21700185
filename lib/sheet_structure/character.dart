@@ -20,6 +20,7 @@ class Character {
   int proficiencyBonus;
 
   int backgroundType;
+  List<int> backgroundProf = [];
 
   int startingClassType;
   int characterFeatNum;
@@ -59,12 +60,35 @@ class Character {
             List<CharacterClass>.from(defaultCharacterClassState),
         activeClasses = List<bool>.from(defaultActiveClassState);
 
-  void addProficiency(List<int> targetProfs) {
-    for (int targetProf in targetProfs) {
-      if (characterProficiencies[targetProf].isSkilled < 1) {
-        characterProficiencies[targetProf].isSkilled = 1;
+  void updateProficiency() {
+    if (backgroundType != -1) {
+      for (int prof in backgroundProf) {
+        characterProficiencies[prof].isSkilled = true;
       }
     }
+    for (int i=0; i<activeClasses.length; i++) {
+      if (activeClasses[i]) {
+        if (characterClasses[i].classProficiencies.isNotEmpty) {
+          for (int prof in characterClasses[i].classProficiencies){
+            characterProficiencies[prof].isSkilled = true;
+          }
+        }
+        if (characterClasses[i].classDoubleProfs.isNotEmpty) {
+          for (int prof in characterClasses[i].classDoubleProfs){
+            characterProficiencies[prof].isDoubleSkilled = true;
+          }
+        }
+        if (characterClasses[i].classExpertised.isNotEmpty) {
+          for (int prof in characterClasses[i].classExpertised){
+            characterProficiencies[prof].isExpertised = true;
+          }
+        }
+      }
+    }
+  }
+
+  void updateProficiency2() {
+    
   }
 
   void activateClass(int classType) {

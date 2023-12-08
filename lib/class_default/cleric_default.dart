@@ -15,7 +15,6 @@ class ClericClass extends CharacterClass {
 
   int classProficiencyMaxNum;
   int classProficiencyCurrNum;
-  late List<Proficiency> classProficiencies;
 
   late List<List<bool>> selectedClassActions;
   late List<List<bool>> selectedClassTraits;
@@ -34,7 +33,6 @@ class ClericClass extends CharacterClass {
     List<List<bool>>? selectedClassActions,
     List<List<bool>>? selectedClassTraits,
   })  : selectedFightingStyles = defaultFighterFightingStyles,
-        classProficiencies = defaultFighterProficiencyState,
         selectedClassActions = selectedClassActions ?? [],
         selectedClassTraits = selectedClassTraits ?? [],
         super(
@@ -57,7 +55,6 @@ class ClericClass extends CharacterClass {
         fightingStyleCurrNum = 0;
         classProficiencyMaxNum = 0;
         classProficiencyCurrNum = 0;
-        classProficiencies = defaultFighterProficiencyState;
         break;
       case 1:
         fightingStyleMaxNum = 1;

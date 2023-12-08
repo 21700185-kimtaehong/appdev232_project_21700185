@@ -15,7 +15,6 @@ class FighterClass extends CharacterClass {
 
   int classProficiencyMaxNum;
   int classProficiencyCurrNum;
-  late List<Proficiency> classProficiencies;
 
   int manoeuvresMaxNum;
   int manoeuvresCurrNum;
@@ -45,7 +44,6 @@ class FighterClass extends CharacterClass {
     List<List<bool>>? selectedClassActions,
     List<List<bool>>? selectedClassTraits,
   })  : selectedFightingStyles = defaultFighterFightingStyles,
-        classProficiencies = defaultFighterProficiencyState,
         selectedManoeuvres = defaultSelectedManoeuvres,
         selectedClassActions = selectedClassActions ?? [],
         selectedClassTraits = selectedClassTraits ?? [],
@@ -72,7 +70,6 @@ class FighterClass extends CharacterClass {
         manoeuvresCurrNum = 0;
         fighterSuperiorDiceNum = 0;
         fighterSuperiorDiceSize = 8;
-        classProficiencies = defaultFighterProficiencyState;
         break;
       case 1:
         fightingStyleMaxNum = 1;

@@ -11,7 +11,6 @@ class DruidClass extends CharacterClass {
 
   int classProficiencyMaxNum;
   int classProficiencyCurrNum;
-  late List<Proficiency> classProficiencies;
 
   late List<List<bool>> selectedClassActions;
   late List<List<bool>> selectedClassTraits;
@@ -27,8 +26,7 @@ class DruidClass extends CharacterClass {
     List<List<bool>>? selectedManoeuvres,
     List<List<bool>>? selectedClassActions,
     List<List<bool>>? selectedClassTraits,
-  })  : classProficiencies = defaultFighterProficiencyState,
-        selectedClassActions = selectedClassActions ?? [],
+  })  : selectedClassActions = selectedClassActions ?? [],
         selectedClassTraits = selectedClassTraits ?? [],
         super(
             classType: DRUID,
@@ -36,7 +34,7 @@ class DruidClass extends CharacterClass {
             hitPointPerLevel: 5,
             isCaster: true);
 
-  void updateClericClass() {
+  void updateDruidClass() {
     //사용 시에는 if (~ is Fighter) {(~ as Fighter).~();} 으로 캐스팅해서 사용할 것
 
     switch (super.classLevel) {
@@ -45,7 +43,6 @@ class DruidClass extends CharacterClass {
         isSubClassSelectable = false;
         classProficiencyMaxNum = 0;
         classProficiencyCurrNum = 0;
-        classProficiencies = defaultFighterProficiencyState;
         break;
       case 1:
         classProficiencyMaxNum = 0;
