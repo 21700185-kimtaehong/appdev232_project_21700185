@@ -1,8 +1,4 @@
-import 'package:appdev232_project_21700185/sheet_structure/proficiency.dart';
-
 import '../constant/constant_code.dart';
-import '../constant/constant_fighter.dart';
-import '../sheet_structure/action.dart';
 import '../sheet_structure/character_class.dart';
 
 class ClericClass extends CharacterClass {
@@ -11,13 +7,13 @@ class ClericClass extends CharacterClass {
 
   int fightingStyleMaxNum;
   int fightingStyleCurrNum;
-  late List<List<bool>> selectedFightingStyles;
+  List<int> selectedFightingStyles = [];
 
   int classProficiencyMaxNum;
   int classProficiencyCurrNum;
 
-  late List<List<bool>> selectedClassActions;
-  late List<List<bool>> selectedClassTraits;
+  List<int> selectedClassActions = [];
+  List<int> selectedClassTraits = [];
   //[is selected, is selectable]
 
   ClericClass({
@@ -27,25 +23,28 @@ class ClericClass extends CharacterClass {
     this.fightingStyleCurrNum = 0,
     this.classProficiencyMaxNum = 0,
     this.classProficiencyCurrNum = 0,
-    List<List<bool>>? selectedFightingStyles,
-    List<Proficiency>? classProficiencies,
-    List<List<bool>>? selectedManoeuvres,
-    List<List<bool>>? selectedClassActions,
-    List<List<bool>>? selectedClassTraits,
-  })  : selectedFightingStyles = defaultFighterFightingStyles,
-        selectedClassActions = selectedClassActions ?? [],
+    List<int>? selectedFightingStyles,
+    List<int>? classProficiencies,
+    List<int>? selectedManoeuvres,
+    List<int>? selectedClassActions,
+    List<int>? selectedClassTraits,
+  })  : selectedClassActions = selectedClassActions ?? [],
         selectedClassTraits = selectedClassTraits ?? [],
         super(
-            classType: FIGHTER,
-            hitPointBase: 8,
-            hitPointPerLevel: 5,
-            isCaster: true);
+          classType: CLERIC,
+          classDescription:
+              '클레릭은 자신이 섬기는 신의 대리인으로, 강력한 신성 마법을 휘둘러 선이나 악을 행합니다.',
+          hitPointBase: 8,
+          hitPointPerLevel: 5,
+          isCaster: true,
+          classProfSelecatble: [5, 10, 11, 17, 8],
+          classProfNum: 2,
+          startingArmorProf: 2,
+          startingWeaponProf: [31],
+        );
 
   void updateClericClass() {
     //사용 시에는 if (~ is Fighter) {(~ as Fighter).~();} 으로 캐스팅해서 사용할 것
-    if (fightingStyleCurrNum > fightingStyleMaxNum) {
-      selectedFightingStyles = defaultFighterFightingStyles;
-    }
 
     switch (super.classLevel) {
       case 0:
@@ -76,9 +75,5 @@ class ClericClass extends CharacterClass {
         }
       case 6:
     }
-  }
-
-  void updateFightingStyles(List<List<bool>> newSelectedFightingStyles) {
-    selectedFightingStyles = newSelectedFightingStyles;
   }
 }

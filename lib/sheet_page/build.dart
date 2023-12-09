@@ -1,14 +1,29 @@
 import 'package:appdev232_project_21700185/select_pages/ability_select.dart';
 import 'package:appdev232_project_21700185/select_pages/class_select.dart';
 import 'package:appdev232_project_21700185/select_pages/feat_select.dart';
+import 'package:appdev232_project_21700185/sheet_page/summary2_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:appdev232_project_21700185/select_pages/class_select_pages/bard_select.dart';
+import 'package:appdev232_project_21700185/select_pages/class_select_pages/barbarian_select.dart';
+import 'package:appdev232_project_21700185/select_pages/class_select_pages/cleric_select.dart';
+import 'package:appdev232_project_21700185/select_pages/class_select_pages/druid_select.dart';
+import 'package:appdev232_project_21700185/select_pages/class_select_pages/fighter_select.dart';
+import 'package:appdev232_project_21700185/select_pages/class_select_pages/monk_select.dart';
+import 'package:appdev232_project_21700185/select_pages/class_select_pages/paladin_select.dart';
+import 'package:appdev232_project_21700185/select_pages/class_select_pages/rogue_select.dart';
+import 'package:appdev232_project_21700185/select_pages/class_select_pages/ranger_select.dart';
+import 'package:appdev232_project_21700185/select_pages/class_select_pages/sorcerer_select.dart';
+import 'package:appdev232_project_21700185/select_pages/class_select_pages/warlock_select.dart';
+import 'package:appdev232_project_21700185/select_pages/class_select_pages/wizard_select.dart';
 
 import 'package:appdev232_project_21700185/sheet_page/button_select.dart';
 import 'package:appdev232_project_21700185/select_pages/background_select.dart';
 import 'package:appdev232_project_21700185/select_pages/race_select.dart';
 import 'package:appdev232_project_21700185/temp_page.dart';
 import 'package:appdev232_project_21700185/sheet_page/summary_page.dart';
+import 'package:appdev232_project_21700185/constant/constant_code.dart';
 
 class BuildPage extends StatefulWidget {
   const BuildPage({Key? key}) : super(key: key);
@@ -53,15 +68,18 @@ class _BuildPageState extends State<BuildPage> {
           Expanded(
             child: selectedPageWidget(selectedPageIndex),
           ),
-          Expanded(
+          const Expanded(
             child: SummaryPage(),
           ),
+          const Expanded(
+            child: Summary2Page(),
+          )
         ],
       );
     } else {
       return PageView.builder(
         controller: _pageController,
-        itemCount: 2,
+        itemCount: 3,
         itemBuilder: (context, index) {
           if (index == 0) {
             return Row(
@@ -75,8 +93,10 @@ class _BuildPageState extends State<BuildPage> {
                 ),
               ],
             );
-          } else {
+          } else if (index == 1) {
             return SummaryPage();
+          } else {
+            return Summary2Page();
           }
         },
       );
@@ -85,6 +105,7 @@ class _BuildPageState extends State<BuildPage> {
 
   Widget selectedPageWidget(int pageIndex) {
     switch (pageIndex) {
+      case 0:
       case 1:
         return RacePage(context);
       case 2:
@@ -95,6 +116,30 @@ class _BuildPageState extends State<BuildPage> {
         return ClassPage(context);
       case 5:
         return FeatPage(context);
+      case BARD:
+        return BardPage(context);
+      case BARBARIAN:
+        return BarbarianPage(context);
+      case CLERIC:
+        return ClericPage(context);
+      case DRUID:
+        return DruidPage(context);
+      case FIGHTER:
+        return FighterPage(context);
+      case MONK:
+        return MonkPage(context);
+      case PALADIN:
+        return PaladinPage(context);
+      case RANGER:
+        return RangerPage(context);
+      case ROGUE:
+        return RoguePage(context);
+      case SORCERER:
+        return SorcererPage(context);
+      case WARLOCK:
+        return WarlockPage(context);
+      case WIZARD:
+        return WizardPage(context);
       default:
         return const TempPage();
     }

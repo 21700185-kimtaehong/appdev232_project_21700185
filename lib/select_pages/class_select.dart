@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:appdev232_project_21700185/sheet_structure/character_state.dart';
 import 'package:appdev232_project_21700185/constant/constant_code.dart';
 import 'package:appdev232_project_21700185/constant/constant_names.dart';
+import 'package:appdev232_project_21700185/constant/constant_weapon.dart';
 
 class ClassPage extends StatefulWidget {
   const ClassPage(BuildContext context, {Key? key}) : super(key: key);
@@ -51,16 +52,11 @@ class _ClassPageState extends State<ClassPage> {
             Expanded(
               child: ListView(
                 children: [
-                  for (int i = 0; i < currActiveClasses.length; i++)
-                    if (currActiveClasses[i])
-                      _buildClassLevelUpButton(
-                        context,
-                        BARD + i,
-                        classNames[i],
-                        screenWidth,
-                        minButtonWidth,
-                        buttonTextStyle,
-                      ),
+                  for (int i = 0;
+                      i < characterState.currCharacter.activeClasses.length;
+                      i++)
+                    if (characterState.currCharacter.activeClasses[i])
+                      classDescription(context, i + BARD),
                 ],
               ),
             ),
@@ -107,61 +103,89 @@ class _ClassPageState extends State<ClassPage> {
     );
   }
 
-  Widget _buildClassLevelUpButton(
-    BuildContext context,
-    int classType,
-    String className,
-    double screenWidth,
-    double minButtonWidth,
-    TextStyle buttonTextStyle,
-  ) {
+  Widget classDescription(BuildContext context, int classType) {
     CharacterState characterState =
         Provider.of<CharacterState>(context, listen: true);
 
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          width: 100,
-          padding: const EdgeInsets.all(8.0),
-          child: SizedBox(
-            width: 30,
-            child: Text(
-              className,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-            ),
+        Text(
+          classNames[classType - BARD],
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        Text(characterState
+            .currCharacter.characterClasses[classType - BARD].classDescription),
+        const SizedBox(
+          height: 5,
+        ),
+        const Text('직업 숙련',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        const SizedBox(
+          height: 5,
+        ),
+        RichText(
+          text: TextSpan(
+            children: <TextSpan>[
+              const TextSpan(
+                text: '무기: ',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              for (int i = 0;
+                  i <
+                      characterState
+                          .currCharacter
+                          .characterClasses[classType - BARD]
+                          .startingWeaponProf
+                          .length;
+                  i++)
+                TextSpan(
+                    text:
+                        '${defaultWeaponState[characterState.currCharacter.characterClasses[classType - BARD].startingWeaponProf[i]].weaponName} '),
+            ],
           ),
         ),
-        ElevatedButton(
-          onPressed: () {
-            characterState.classLevelUp(classType, false);
-          },
-          child: const Icon(Icons.remove),
-        ),
-        Container(
-          width: 50,
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            characterState
-                .currCharacter.characterClasses[classType - 10].classLevel
-                .toString(),
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
+        RichText(
+          text: TextSpan(
+            children: <TextSpan>[
+              const TextSpan(
+                text: '갑옷: ',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              TextSpan(
+                  text: armorNames[characterState.currCharacter
+                      .characterClasses[classType - BARD].startingArmorProf]),
+            ],
           ),
         ),
-        ElevatedButton(
-          onPressed: () {
-            characterState.classLevelUp(classType, true);
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: (characterState.currCharacter.totalLevel < 12)
-                ? Colors.blue
-                : Colors.grey,
+        RichText(
+          text: TextSpan(
+            children: <TextSpan>[
+              const TextSpan(
+                text: '기술: ',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              for (int i = 0;
+                  i <
+                      characterState
+                          .currCharacter
+                          .characterClasses[classType - BARD]
+                          .classProfSelecatble
+                          .length;
+                  i++)
+                TextSpan(
+                    text:
+                        '${profNames[characterState.currCharacter.characterClasses[classType - BARD].classProfSelecatble[i]]} '),
+              TextSpan(
+                  text:
+                      '중 택${characterState.currCharacter.characterClasses[classType - BARD].classProfNum}')
+            ],
           ),
-          child: const Icon(Icons.add),
         ),
+        const Divider(thickness: 1, color: Colors.grey),
       ],
     );
   }

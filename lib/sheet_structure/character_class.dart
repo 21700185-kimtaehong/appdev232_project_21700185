@@ -8,6 +8,8 @@ import 'package:appdev232_project_21700185/constant/constant_code.dart';
 class CharacterClass {
   int classType;
   int classLevel;
+  String classDescription;
+
   int numFeat;
   int extraAttackNum;
 
@@ -17,16 +19,16 @@ class CharacterClass {
   bool isCaster;
   bool isHalfCaster;
 
+  int classProfNum;
   List<int> classProfSelecatble;
   List<int> classDoubleProfs = [];
   List<int> classProficiencies = [];
   List<int> classExpertised = [];
-  
 
   List<CharacterAction> classActions;
   List<Trait> classTraits;
   List<Spell> classSpells;
-  List<int> startingWeaponProf = [];
+  List<int> startingWeaponProf;
   List<int> classWeaponProf = [];
   int startingArmorProf;
   int classArmorProf;
@@ -38,29 +40,41 @@ class CharacterClass {
     this.numFeat = 0,
     this.extraAttackNum = 0,
     this.classLevel = 0,
+    this.classProfNum = 0,
     this.isCaster = false,
     this.isHalfCaster = false,
     this.startingArmorProf = 0,
     this.classArmorProf = 0,
+    this.classDescription = '',
     List<int>? classProfSelecatble,
+    List<int>? startingWeaponProf,
     List<CharacterAction>? classActions,
     List<Trait>? classTraits,
     List<Spell>? classSpells,
   })  : classProfSelecatble = classProfSelecatble ?? [],
-  classActions = classActions ?? [],
+        startingWeaponProf = startingWeaponProf ?? [],
+        classActions = classActions ?? [],
         classTraits = classTraits ?? [],
         classSpells = classSpells ?? [];
 
-  void addAction(List<CharacterAction> actions) {
-    for (CharacterAction action in actions) {
-      classActions.add(action);
+  void addAction(List<CharacterAction> actions, List<int> indexes) {
+    for (int index in indexes) {
+      classActions.add(actions[index]);
     }
   }
 
-  void addTrait(List<Trait> traits) {
-    for (Trait trait in traits) {
-      classTraits.add(trait);
+  void cleanAction() {
+    classActions = [];
+  }
+
+  void addTrait(List<Trait> traits, List<int> indexes) {
+    for (int index in indexes) {
+      classTraits.add(traits[index]);
     }
+  }
+
+  void cleanTrait() {
+    classTraits = [];
   }
 
   void updateClassFeatNum() {

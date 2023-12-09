@@ -9,7 +9,7 @@ class Weapon {
 
   Weapon({
     required this.weaponName,
-    required this.handed,
+    this.handed = Handed.onehand,
     this.melee = false,
     this.martial = false,
     this.isSkilled = false,

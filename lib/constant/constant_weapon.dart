@@ -153,4 +153,7 @@ List<Weapon> defaultWeaponState = [
       handed: Handed.twohand,
       martial: false,
       melee: false),
+  Weapon(weaponName: "모든 군용 무기"), // 31
+  Weapon(weaponName: "모든 단순 무기"), // 32
+  Weapon(weaponName: "모든 무기"), // 33
 ];

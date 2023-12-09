@@ -6,12 +6,14 @@ import 'package:appdev232_project_21700185/class_default/druid_default.dart';
 
 import 'package:appdev232_project_21700185/sheet_structure/character_class.dart';
 import 'package:appdev232_project_21700185/sheet_structure/proficiency.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
 import 'package:appdev232_project_21700185/sheet_structure/character.dart';
 import 'package:appdev232_project_21700185/sheet_structure/race.dart';
 import 'package:appdev232_project_21700185/constant/constant_code.dart';
+
+import 'package:flutter/material.dart';
+import 'dart:math';
+
+import 'package:provider/provider.dart';
 
 class CharacterState with ChangeNotifier {
   // ignore: prefer_final_fields
@@ -174,6 +176,9 @@ class CharacterState with ChangeNotifier {
       default:
         break;
     }
+    updateArmorProfState();
+    updateWeaponProfState();
+    updateSkillProfState();
     notifyListeners();
   }
 
@@ -217,6 +222,7 @@ class CharacterState with ChangeNotifier {
         _currCharacter.backgroundProf = [11, 16];
         break;
     }
+    updateSkillProfState();
     notifyListeners();
   }
 
@@ -284,13 +290,16 @@ class CharacterState with ChangeNotifier {
         _currCharacter.totalLevel++;
       }
     } else {
-      if (_currCharacter.characterClasses[classType - 10].classLevel > 0) {
+      if (_currCharacter.characterClasses[classType - 10].classLevel > 1) {
         _currCharacter.characterClasses[classType - 10].classLevelUp(up);
         _currCharacter.characterClasses[classType - 10].updateClassFeatNum();
         _currCharacter.totalLevel--;
         if (_currCharacter.characterClasses[classType - 10].classLevel == 0) {
           _currCharacter.activeClasses[classType - 10] = false;
         }
+      } else if (_currCharacter.characterClasses[classType - 10].classLevel ==
+          1) {
+        deactivateClassState(classType);
       }
     }
     _currCharacter.updateCharacterLevel;
@@ -298,6 +307,7 @@ class CharacterState with ChangeNotifier {
     updateClassState(classType);
     updateHitPointState();
     updateCommonState();
+    updateSkillProfState();
     notifyListeners();
   }
 
@@ -316,14 +326,34 @@ class CharacterState with ChangeNotifier {
         _currCharacter.startingClassType = classType;
       }
       _currCharacter.activateClass(classType);
+      updateCommonState();
       updateHitPointState();
+      updateWeaponProfState();
+      updateArmorProfState();
+      updateSkillProfState();
       notifyListeners();
     }
   }
 
   void deactivateClassState(int classType) {
     _currCharacter.deactivateClass(classType);
+    if (classType == _currCharacter.startingClassType) {
+      if (_currCharacter.totalLevel == 0) {
+        _currCharacter.startingClassType = -1;
+      } else {
+        for (int i = 0; i < _currCharacter.activeClasses.length; i++) {
+          if (_currCharacter.activeClasses[i]) {
+            _currCharacter.startingClassType = i + BARD;
+          }
+        }
+      }
+    }
+
     updateHitPointState();
+    updateCommonState();
+    updateSkillProfState();
+    updateWeaponProfState();
+    updateArmorProfState();
     notifyListeners();
   }
 
@@ -336,7 +366,6 @@ class CharacterState with ChangeNotifier {
             updown,
             addedType,
             amount);
-        notifyListeners();
         break;
       case DEX:
         _currCharacter.characterAbility.updateAbility(
@@ -344,7 +373,6 @@ class CharacterState with ChangeNotifier {
             updown,
             addedType,
             amount);
-        notifyListeners();
         break;
       case CON:
         _currCharacter.characterAbility.updateAbility(
@@ -352,7 +380,7 @@ class CharacterState with ChangeNotifier {
             updown,
             addedType,
             amount);
-        notifyListeners();
+        updateHitPointState();
         break;
       case INT:
         _currCharacter.characterAbility.updateAbility(
@@ -360,12 +388,10 @@ class CharacterState with ChangeNotifier {
             updown,
             addedType,
             amount);
-        notifyListeners();
         break;
       case WIS:
         _currCharacter.characterAbility.updateAbility(
             _currCharacter.characterAbility.wisdom, updown, addedType, amount);
-        notifyListeners();
         break;
       case CHA:
         _currCharacter.characterAbility.updateAbility(
@@ -373,9 +399,10 @@ class CharacterState with ChangeNotifier {
             updown,
             addedType,
             amount);
-        notifyListeners();
         break;
     }
+    updateSkillProfState();
+    notifyListeners();
   }
 
   void updateAdd1type(int index) {
@@ -388,7 +415,131 @@ class CharacterState with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateArmorProfState() {}
+  void updateSkillProfState() {
+    _currCharacter.updateProficiency();
+    updateSkillBonusState();
+    notifyListeners();
+  }
+
+  void updateSkillBonusState() {
+    for (int i = 0; i < _currCharacter.characterProficiencies.length; i++) {
+      Proficiency currSkill = _currCharacter.characterProficiencies[i];
+      int currAbilityModifier = 0;
+      int currLevelBonus = _currCharacter.proficiencyBonus;
+      int temp = 0;
+      switch (currSkill.baseAbilityType) {
+        case STR:
+          if (_currCharacter.characterAbility.strength[5] > 10) {
+            currAbilityModifier =
+                (_currCharacter.characterAbility.strength[5] - 10) ~/ 2;
+          } else {
+            currAbilityModifier = 0;
+          }
+          break;
+        case DEX:
+          if (_currCharacter.characterAbility.dexterity[5] > 10) {
+            currAbilityModifier =
+                (_currCharacter.characterAbility.dexterity[5] - 10) ~/ 2;
+          } else {
+            currAbilityModifier = 0;
+          }
+          break;
+        case CON:
+          if (_currCharacter.characterAbility.constitution[5] > 10) {
+            currAbilityModifier =
+                (_currCharacter.characterAbility.constitution[5] - 10) ~/ 2;
+          } else {
+            currAbilityModifier = 0;
+          }
+          break;
+        case INT:
+          if (_currCharacter.characterAbility.intelligence[5] > 10) {
+            currAbilityModifier =
+                (_currCharacter.characterAbility.intelligence[5] - 10) ~/ 2;
+          } else {
+            currAbilityModifier = 0;
+          }
+          break;
+        case WIS:
+          if (_currCharacter.characterAbility.wisdom[5] > 10) {
+            currAbilityModifier =
+                (_currCharacter.characterAbility.wisdom[5] - 10) ~/ 2;
+          } else {
+            currAbilityModifier = 0;
+          }
+          break;
+        case CHA:
+          if (_currCharacter.characterAbility.charisma[5] > 10) {
+            currAbilityModifier =
+                (_currCharacter.characterAbility.charisma[5] - 10) ~/ 2;
+          } else {
+            currAbilityModifier = 0;
+          }
+          break;
+        default:
+          break;
+      }
+      temp += currAbilityModifier;
+      if (currSkill.isSkilled) {
+        temp += currLevelBonus;
+        if (currSkill.isDoubleSkilled) {
+          temp += currLevelBonus;
+          if (currSkill.isExpertised) {
+            temp += currLevelBonus;
+          }
+        }
+      } else if (_currCharacter.activeClasses[0]) {
+        if ((_currCharacter.characterClasses[0] as BardClass).joat) {
+          temp += (currLevelBonus / 2).ceil();
+        }
+      }
+      _currCharacter.characterProficiencies[i].skillBonus = temp;
+    }
+  }
+
+  void updateArmorProfState() {
+    _currCharacter.characterArmorProf = [false, false, false, false];
+    if (_currCharacter.raceType != -1) {
+      _currCharacter
+          .characterArmorProf[_currCharacter.activeRace.raceArmorProf] = true;
+    }
+    if (_currCharacter.startingClassType != -1) {
+      _currCharacter.characterArmorProf[_currCharacter
+          .characterClasses[_currCharacter.startingClassType - BARD]
+          .startingArmorProf] = true;
+    }
+    for (int i = 0; i < _currCharacter.activeClasses.length; i++) {
+      if (_currCharacter.activeClasses[i]) {
+        _currCharacter.characterArmorProf[
+            _currCharacter.characterClasses[i].classArmorProf] = true;
+      }
+    }
+  }
+
+  void updateWeaponProfState() {
+    _currCharacter.characterWeaponProf = List.filled(34, false);
+    if (_currCharacter.raceType != -1) {
+      for (int i = 0;
+          i < _currCharacter.activeRace.raceWeaponProf.length;
+          i++) {
+        _currCharacter.characterWeaponProf[
+            _currCharacter.activeRace.raceWeaponProf[i]] = true;
+      }
+    }
+    if (_currCharacter.startingClassType != -1) {
+      for (int i = 0;
+          i <
+              _currCharacter
+                  .characterClasses[_currCharacter.startingClassType - BARD]
+                  .startingWeaponProf
+                  .length;
+          i++) {
+        _currCharacter.characterWeaponProf[_currCharacter
+            .characterClasses[_currCharacter.startingClassType - BARD]
+            .startingWeaponProf[i]] = true;
+      }
+    }
+  }
 
   void updateHitPointState() {
     int temp = 0;
@@ -404,7 +555,8 @@ class CharacterState with ChangeNotifier {
         }
       }
       if (_currCharacter.characterAbility.constitution[5] > 10) {
-        temp += ((_currCharacter.characterAbility.constitution[5] - 10) ~/ 2) * _currCharacter.totalLevel;
+        temp += ((_currCharacter.characterAbility.constitution[5] - 10) ~/ 2) *
+            _currCharacter.totalLevel;
       }
       if (_currCharacter.raceType != -1) {
         temp += _currCharacter.activeRace.raceAddedHealth;

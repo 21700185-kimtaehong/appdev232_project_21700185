@@ -52,21 +52,26 @@ class Ability {
         updateAddedAbility(abilityType, updown, amount);
         break;
     }
-    if (abilityType[5] != 0) {
-      abilityType[4] = abilityType[5];
+    if (abilityType[6] != 0) {
+      abilityType[5] = abilityType[6];
     } else {
       int temp = 0;
-      if (abilityType[0] + abilityType[1] > 20) {
-        temp = 20;
+      if (abilityType[0] + abilityType[1] > 17) {
+        temp = 17;
       } else {
         temp = abilityType[0] + abilityType[1];
       }
-      if (temp + abilityType[2] > 22) {
-        temp = 22;
+      if (temp + abilityType[2] > 20) {
+        temp = 20;
       } else {
         temp += abilityType[2];
       }
-      abilityType[4] = temp + abilityType[3];
+      if (temp + abilityType[3] > 22) {
+        temp = 22;
+      } else {
+        temp += abilityType[3];
+      }
+      abilityType[5] = temp + abilityType[4];
     }
   }
 
@@ -127,4 +132,4 @@ class Ability {
   }
 }
 
-List<int> defaultAbilityState = [8, 0, 0, 0, 8, 0];
+List<int> defaultAbilityState = [8, 0, 0, 0, 0, 8, 0];

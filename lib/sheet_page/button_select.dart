@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 
 import 'package:appdev232_project_21700185/sheet_page/button_builder.dart';
 import 'package:appdev232_project_21700185/sheet_structure/character_state.dart';
+import 'package:appdev232_project_21700185/constant/constant_names.dart';
+import 'package:appdev232_project_21700185/constant/constant_code.dart';
 
 class ButtonPage extends StatefulWidget {
   final Function(int) onPageSelected;
@@ -21,6 +23,8 @@ class _ButtonPageState extends State<ButtonPage> {
 
     bool activateFeatSelect =
         (characterState.currCharacter.characterFeatNum > 0);
+
+    List<bool> currActiveClasses = characterState.currCharacter.activeClasses;
 
     return Scaffold(
       appBar: AppBar(
@@ -79,6 +83,22 @@ class _ButtonPageState extends State<ButtonPage> {
                     const SizedBox(
                       height: 5,
                     ),
+                  for (int i = 0;
+                      i < characterState.currCharacter.activeClasses.length;
+                      i++)
+                    if (characterState.currCharacter.activeClasses[i])
+                      Column(
+                        children: [
+                          createCustomButton(
+                            buttonText: classNames[i],
+                            onPressed: () => widget.onPageSelected(i + BARD),
+                            isValid: (true),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                        ],
+                      )
                 ],
               ),
             ),

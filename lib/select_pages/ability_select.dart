@@ -75,17 +75,18 @@ class _AbilityPageState extends State<AbilityPage> {
                       ),
                     )),
                 Container(
-                    width: 25,
-                    child: const Tooltip(
-                      message: '능력치 보너스',
-                      child: Text(
-                        '+ 2',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                  width: 25,
+                  child: const Tooltip(
+                    message: '능력치 보너스',
+                    child: Text(
+                      '+ 2',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
-                    )),
+                    ),
+                  ),
+                ),
               ],
             ),
             const SizedBox(
@@ -107,7 +108,7 @@ class _AbilityPageState extends State<AbilityPage> {
                 Container(
                   width: 30,
                   child: Text(
-                    characterState.currCharacter.characterAbility.strength[4]
+                    characterState.currCharacter.characterAbility.strength[5]
                         .toString(),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
@@ -184,7 +185,7 @@ class _AbilityPageState extends State<AbilityPage> {
                 Container(
                   width: 30,
                   child: Text(
-                    characterState.currCharacter.characterAbility.dexterity[4]
+                    characterState.currCharacter.characterAbility.dexterity[5]
                         .toString(),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
@@ -262,7 +263,7 @@ class _AbilityPageState extends State<AbilityPage> {
                   width: 30,
                   child: Text(
                     characterState
-                        .currCharacter.characterAbility.constitution[4]
+                        .currCharacter.characterAbility.constitution[5]
                         .toString(),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
@@ -340,7 +341,7 @@ class _AbilityPageState extends State<AbilityPage> {
                   width: 30,
                   child: Text(
                     characterState
-                        .currCharacter.characterAbility.intelligence[4]
+                        .currCharacter.characterAbility.intelligence[5]
                         .toString(),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
@@ -417,7 +418,7 @@ class _AbilityPageState extends State<AbilityPage> {
                 Container(
                   width: 30,
                   child: Text(
-                    characterState.currCharacter.characterAbility.wisdom[4]
+                    characterState.currCharacter.characterAbility.wisdom[5]
                         .toString(),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
@@ -494,7 +495,7 @@ class _AbilityPageState extends State<AbilityPage> {
                 Container(
                   width: 30,
                   child: Text(
-                    characterState.currCharacter.characterAbility.charisma[4]
+                    characterState.currCharacter.characterAbility.charisma[5]
                         .toString(),
                     textAlign: TextAlign.center,
                     style: const TextStyle(

@@ -37,8 +37,8 @@ class Character {
   late List<bool> activeClasses;
   late List<Proficiency> characterProficiencies;
   late List<CharacterClass> characterClasses;
-  late List<bool> characterWeaponProf = List.generate(31, (index) => false);
-  late List<bool> characterArmorProf = [false, false, false];
+  late List<bool> characterWeaponProf = List.generate(34, (index) => false);
+  late List<bool> characterArmorProf = [false, false, false, false];
 
   late List<bool> selectedFightingStyles;
   late List<bool> selectedManoeuvres;
@@ -61,25 +61,31 @@ class Character {
         activeClasses = List<bool>.from(defaultActiveClassState);
 
   void updateProficiency() {
+    cleanProficiency();
     if (backgroundType != -1) {
       for (int prof in backgroundProf) {
         characterProficiencies[prof].isSkilled = true;
       }
     }
-    for (int i=0; i<activeClasses.length; i++) {
+    if (raceType != -1) {
+      for (int prof in activeRace.raceProfs) {
+        characterProficiencies[prof].isSkilled = true;
+      }
+    }
+    for (int i = 0; i < activeClasses.length; i++) {
       if (activeClasses[i]) {
         if (characterClasses[i].classProficiencies.isNotEmpty) {
-          for (int prof in characterClasses[i].classProficiencies){
+          for (int prof in characterClasses[i].classProficiencies) {
             characterProficiencies[prof].isSkilled = true;
           }
         }
         if (characterClasses[i].classDoubleProfs.isNotEmpty) {
-          for (int prof in characterClasses[i].classDoubleProfs){
+          for (int prof in characterClasses[i].classDoubleProfs) {
             characterProficiencies[prof].isDoubleSkilled = true;
           }
         }
         if (characterClasses[i].classExpertised.isNotEmpty) {
-          for (int prof in characterClasses[i].classExpertised){
+          for (int prof in characterClasses[i].classExpertised) {
             characterProficiencies[prof].isExpertised = true;
           }
         }
@@ -87,8 +93,12 @@ class Character {
     }
   }
 
-  void updateProficiency2() {
-    
+  void cleanProficiency() {
+    for (int i = 0; i < characterProficiencies.length; i++) {
+      characterProficiencies[i].isSkilled = false;
+      characterProficiencies[i].isDoubleSkilled = false;
+      characterProficiencies[i].isExpertised = false;
+    }
   }
 
   void activateClass(int classType) {
@@ -102,6 +112,7 @@ class Character {
     //클래스의 레벨 n -> 0
     characterClasses[classType - 10].setZeroClassLevel();
     activeClasses[classType - 10] = false;
+    characterClasses[classType - 10].classProficiencies = [];
     updateCharacterLevel();
   }
 
@@ -122,58 +133,30 @@ class Character {
     }
   }
 
-  void updateWeaponProf() {
-    characterWeaponProf = List.generate(31, (index) => false);
-    for (int i = 0; i < activeClasses.length; i++) {
-      if (activeClasses[i]) {
-        for (int weaNum in characterClasses[i].classWeaponProf) {
-          characterWeaponProf[weaNum] = true;
-        }
-        if (i == startingClassType - BARD) {
-          for (int weaNum in characterClasses[i].startingWeaponProf) {
-            characterWeaponProf[weaNum] = true;
-          }
-        }
-      }
-    }
-  }
-
-  void updateArmorProf() {
-    characterArmorProf = [false, false, false, false];
-    for (int i = 0; i < activeClasses.length; i++) {
-      if (activeClasses[i]) {
-        characterWeaponProf[characterClasses[i].classArmorProf] = true;
-        if (i == startingClassType - BARD) {
-          characterWeaponProf[characterClasses[i].startingArmorProf] = true;
-        }
-      }
-    }
-  }
-
   void updateFightingStyles(int index) {
     selectedFightingStyles[index] = !selectedFightingStyles[index];
   }
 }
 
 List<Proficiency> defaultProficiencyState = [
-  Proficiency(profNum: 0, baseAbilityType: STR, isSelectable: true), //0 운동
-  Proficiency(profNum: 1, baseAbilityType: DEX, isSelectable: true), //1 곡예
-  Proficiency(profNum: 2, baseAbilityType: DEX, isSelectable: true), //2 손재주
-  Proficiency(profNum: 3, baseAbilityType: DEX, isSelectable: true), //3 은신
-  Proficiency(profNum: 4, baseAbilityType: INT, isSelectable: true), //4 비전
-  Proficiency(profNum: 5, baseAbilityType: INT, isSelectable: true), //5 역사
-  Proficiency(profNum: 6, baseAbilityType: INT, isSelectable: true), //6 조사
-  Proficiency(profNum: 7, baseAbilityType: INT, isSelectable: true), //7 자연
-  Proficiency(profNum: 8, baseAbilityType: INT, isSelectable: true), //8 종교
-  Proficiency(profNum: 9, baseAbilityType: WIS, isSelectable: true), //9 동물조련
-  Proficiency(profNum: 10, baseAbilityType: WIS, isSelectable: true), //10 통찰
-  Proficiency(profNum: 11, baseAbilityType: WIS, isSelectable: true), //11 의학
-  Proficiency(profNum: 12, baseAbilityType: WIS, isSelectable: true), //12 지각
-  Proficiency(profNum: 13, baseAbilityType: WIS, isSelectable: true), //13 생존
-  Proficiency(profNum: 14, baseAbilityType: CHA, isSelectable: true), //14 공연
-  Proficiency(profNum: 15, baseAbilityType: CHA, isSelectable: true), //15 기만
-  Proficiency(profNum: 16, baseAbilityType: CHA, isSelectable: true), //16 위협
-  Proficiency(profNum: 17, baseAbilityType: CHA, isSelectable: true), //17 설득
+  Proficiency(profNum: 0, baseAbilityType: STR), //0 운동
+  Proficiency(profNum: 1, baseAbilityType: DEX), //1 곡예
+  Proficiency(profNum: 2, baseAbilityType: DEX), //2 손재주
+  Proficiency(profNum: 3, baseAbilityType: DEX), //3 은신
+  Proficiency(profNum: 4, baseAbilityType: INT), //4 비전
+  Proficiency(profNum: 5, baseAbilityType: INT), //5 역사
+  Proficiency(profNum: 6, baseAbilityType: INT), //6 조사
+  Proficiency(profNum: 7, baseAbilityType: INT), //7 자연
+  Proficiency(profNum: 8, baseAbilityType: INT), //8 종교
+  Proficiency(profNum: 9, baseAbilityType: WIS), //9 동물조련
+  Proficiency(profNum: 10, baseAbilityType: WIS), //10 통찰
+  Proficiency(profNum: 11, baseAbilityType: WIS), //11 의학
+  Proficiency(profNum: 12, baseAbilityType: WIS), //12 지각
+  Proficiency(profNum: 13, baseAbilityType: WIS), //13 생존
+  Proficiency(profNum: 14, baseAbilityType: CHA), //14 공연
+  Proficiency(profNum: 15, baseAbilityType: CHA), //15 기만
+  Proficiency(profNum: 16, baseAbilityType: CHA), //16 위협
+  Proficiency(profNum: 17, baseAbilityType: CHA), //17 설득
 ];
 
 List<CharacterClass> defaultCharacterClassState = [

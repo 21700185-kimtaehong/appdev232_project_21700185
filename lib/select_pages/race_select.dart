@@ -352,7 +352,9 @@ class _RacePageState extends State<RacePage> {
                         characterState
                             .currCharacter.activeRace.raceProfs.length;
                     i++)
-                  TextSpan(text: '${profNames[i]} '),
+                  TextSpan(
+                      text:
+                          '${profNames[characterState.currCharacter.activeRace.raceProfs[i]]} '),
               ],
             ),
           ),

@@ -9,19 +9,29 @@ import 'constant_code.dart';
 //fighter common
 List<CharacterAction> fighterActionList = [
   CharacterAction(actionName: '재기의 바람'),
-  CharacterAction(actionName: '행동 연쇄')
+  CharacterAction(actionName: '행동 연쇄'),
+  CharacterAction(actionName: '무기 결속'),
 ];
 
-List<Trait> FighterTraitList = [
+List<Trait> fighterTraitList = [
   Trait(
+    // 0
+    traitName: '스펠 캐스팅',
+  ),
+  Trait(
+    // 1
+    traitName: '향상된 치명타',
+  ),
+  Trait(
+      // 2
       traitName: '무적',
       traitDescription:
-          '강철 골렘만큼이나 튼튼해졌습니다. 내성 굴림을 실패할 때마다 주사위를 다시 굴려 그 결과를 사용합니다.')
+          '강철 골렘만큼이나 튼튼해졌습니다. 내성 굴림을 실패할 때마다 주사위를 다시 굴려 그 결과를 사용합니다.'),
+  Trait(traitName: '뛰어난 운동선수'), //3
+  Trait(traitName: '전쟁마법'), // 4
 ];
 
-List<CharacterAction> fighter_level2_action = [];
-
-List<Trait> fighter_fightStyle = [
+List<Trait> fightStyles = [
   Trait(traitName: "궁술"),
   Trait(traitName: "방어술"),
   Trait(traitName: "결투술"),
@@ -29,8 +39,6 @@ List<Trait> fighter_fightStyle = [
   Trait(traitName: "보호술"),
   Trait(traitName: "쌍수 무기 전투술"),
 ];
-
-List<List<bool>> defaultFighterFightingStyles = List.filled(6, [false, true]);
 
 //battle master
 
@@ -87,27 +95,4 @@ List<CharacterAction> battleMaster_manoeuvres = [
       actionName: '넘어뜨리기 공격',
       actionDescription:
           '우월성 주사위를 소모해 대상에게 1d8의 추가 피해를 입히고 엎어짐 상태로 만들 수 있는 공격을 시도합니다. 대형 이하의 대상에게만 유효합니다.'),
-];
-
-List<List<bool>> defaultSelectedManoeuvres = List.filled(14, [false, true]);
-
-List<Proficiency> defaultFighterProficiencyState = [
-  Proficiency(profNum: 0, baseAbilityType: STR, isSelectable: true), //0 운동
-  Proficiency(profNum: 1, baseAbilityType: DEX, isSelectable: true), //1 곡예
-  Proficiency(profNum: 2, baseAbilityType: DEX), //2 손재주
-  Proficiency(profNum: 3, baseAbilityType: DEX), //3 은신
-  Proficiency(profNum: 4, baseAbilityType: INT), //4 비전
-  Proficiency(profNum: 5, baseAbilityType: INT, isSelectable: true), //5 역사
-  Proficiency(profNum: 6, baseAbilityType: INT), //6 조사
-  Proficiency(profNum: 7, baseAbilityType: INT), //7 자연
-  Proficiency(profNum: 8, baseAbilityType: INT), //8 종교
-  Proficiency(profNum: 9, baseAbilityType: WIS, isSelectable: true), //9 동물조련
-  Proficiency(profNum: 10, baseAbilityType: WIS, isSelectable: true), //10 통찰
-  Proficiency(profNum: 11, baseAbilityType: WIS), //11 의학
-  Proficiency(profNum: 12, baseAbilityType: WIS, isSelectable: true), //12 지각
-  Proficiency(profNum: 13, baseAbilityType: WIS, isSelectable: true), //13 생존
-  Proficiency(profNum: 14, baseAbilityType: CHA), //14 공연
-  Proficiency(profNum: 15, baseAbilityType: CHA), //15 기만
-  Proficiency(profNum: 16, baseAbilityType: CHA, isSelectable: true), //16 위협
-  Proficiency(profNum: 17, baseAbilityType: CHA), //17 설득
 ];

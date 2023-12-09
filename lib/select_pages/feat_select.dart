@@ -19,8 +19,13 @@ class _FeatPageState extends State<FeatPage> {
     CharacterState characterState =
         Provider.of<CharacterState>(context, listen: true);
 
-    int maxFeatNum = characterState.currCharacter.characterFeatNum;
     List<int> currFeatSelected = characterState.currCharacter.selectedFeats;
+    int currFeatNum = currFeatSelected.length;
+    int maxFeatNum = characterState.currCharacter.characterFeatNum;
+
+    if (currFeatNum > maxFeatNum) {
+      currFeatSelected.removeAt(currFeatNum - 1);
+    }
 
     return Scaffold(
       appBar: AppBar(

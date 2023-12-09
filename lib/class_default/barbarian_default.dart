@@ -1,8 +1,4 @@
-import 'package:appdev232_project_21700185/sheet_structure/proficiency.dart';
-
 import '../constant/constant_code.dart';
-import '../constant/constant_fighter.dart';
-import '../sheet_structure/action.dart';
 import '../sheet_structure/character_class.dart';
 
 class BarbarianClass extends CharacterClass {
@@ -11,13 +7,13 @@ class BarbarianClass extends CharacterClass {
 
   int fightingStyleMaxNum;
   int fightingStyleCurrNum;
-  late List<List<bool>> selectedFightingStyles;
+  List<int> selectedFightingStyles = [];
 
   int classProficiencyMaxNum;
   int classProficiencyCurrNum;
 
-  late List<List<bool>> selectedClassActions;
-  late List<List<bool>> selectedClassTraits;
+  List<int> selectedClassActions = [];
+  List<int> selectedClassTraits = [];
   //[is selected, is selectable]
 
   BarbarianClass({
@@ -27,21 +23,26 @@ class BarbarianClass extends CharacterClass {
     this.fightingStyleCurrNum = 0,
     this.classProficiencyMaxNum = 0,
     this.classProficiencyCurrNum = 0,
-    List<List<bool>>? selectedFightingStyles,
-    List<Proficiency>? classProficiencies,
-    List<List<bool>>? selectedManoeuvres,
-    List<List<bool>>? selectedClassActions,
-    List<List<bool>>? selectedClassTraits,
-  })  : selectedFightingStyles = defaultFighterFightingStyles,
-        selectedClassActions = selectedClassActions ?? [],
+    List<int>? selectedFightingStyles,
+    List<int>? classProficiencies,
+    List<int>? selectedClassActions,
+    List<int>? selectedClassTraits,
+  })  : selectedClassActions = selectedClassActions ?? [],
         selectedClassTraits = selectedClassTraits ?? [],
-        super(classType: FIGHTER, hitPointBase: 12, hitPointPerLevel: 7);
+        super(
+          classType: BARBARIAN,
+          classDescription:
+              '강자란 예리한 본능, 원초적인 육체, 그리고 무엇보다도 채워지지도, 꺼지지도 않는 분노를 끌어안고 있는 자를 칭합니다.',
+          hitPointBase: 12,
+          hitPointPerLevel: 7,
+          classProfSelecatble: [0, 9, 16, 7, 13, 12],
+          classProfNum: 2,
+          startingArmorProf: 2,
+          startingWeaponProf: [33],
+        );
 
   void updateBarbarianClass() {
     //사용 시에는 if (~ is Fighter) {(~ as Fighter).~();} 으로 캐스팅해서 사용할 것
-    if (fightingStyleCurrNum > fightingStyleMaxNum) {
-      selectedFightingStyles = defaultFighterFightingStyles;
-    }
 
     switch (super.classLevel) {
       case 0:
@@ -72,9 +73,5 @@ class BarbarianClass extends CharacterClass {
         }
       case 6:
     }
-  }
-
-  void updateFightingStyles(List<List<bool>> newSelectedFightingStyles) {
-    selectedFightingStyles = newSelectedFightingStyles;
   }
 }
