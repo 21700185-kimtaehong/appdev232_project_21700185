@@ -36,6 +36,11 @@ class _FeatPageState extends State<FeatPage> {
           padding: const EdgeInsets.all(16.0),
           child: ListView(
             children: [
+              Text(
+                '재주 $maxFeatNum / $currFeatNum',
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              const Divider(color: Color.fromARGB(255, 216, 214, 214)),
               for (int i = 0; i < featsList.length; i++)
                 featItem(context, i, maxFeatNum, currFeatSelected),
             ],

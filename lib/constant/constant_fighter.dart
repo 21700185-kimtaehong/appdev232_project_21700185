@@ -8,16 +8,21 @@ import 'constant_code.dart';
 
 //fighter common
 List<CharacterAction> fighterActionList = [
-  CharacterAction(actionName: '재기의 바람'),
-  CharacterAction(actionName: '행동 연쇄'),
-  CharacterAction(actionName: '무기 결속'),
+  CharacterAction(
+      actionName: '재기의 바람',
+      actionDescription: '추가 행동을 소모해 1d10 + 파이터 레벨 만큼 체력을 회복합니다. 짧은 휴식 당 1회.'),
+  CharacterAction(
+      actionName: '행동 연쇄', actionDescription: '행동을 하나 더 얻습니다. 짧은 휴식 당 1회.'),
+  CharacterAction(
+      actionName: '무기 결속',
+      actionDescription: '무기를 떨어트릴 수 없으며, 투척 시 무기가 손으로 되돌아옵니다. 긴 휴식 당 1회.'),
 ];
 
 List<Trait> fighterTraitList = [
   Trait(
-    // 0
-    traitName: '스펠 캐스팅',
-  ),
+      // 0
+      traitName: '스펠 캐스팅',
+      traitDescription: '주문을 사용할 수 있게 됩니다.'),
   Trait(
     // 1
     traitName: '향상된 치명타',

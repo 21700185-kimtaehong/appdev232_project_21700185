@@ -1,3 +1,5 @@
+import 'package:appdev232_project_21700185/sheet_structure/action.dart';
+import 'package:appdev232_project_21700185/sheet_structure/trait.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:appdev232_project_21700185/sheet_structure/character_state.dart';
@@ -218,7 +220,58 @@ class _SummaryPageState extends State<SummaryPage> {
                       ),
                     ),
                     const Divider(color: Color.fromARGB(255, 216, 214, 214)),
-
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          const TextSpan(
+                            text: '행동: ',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                          for (int i = 0;
+                              i <
+                                  characterState
+                                      .currCharacter.activeClasses.length;
+                              i++)
+                            if (characterState.currCharacter.activeClasses[i])
+                              for (CharacterAction characteraction
+                                  in characterState.currCharacter
+                                      .characterClasses[i].classActions)
+                                TooltipSpan(
+                                    inlineSpan: TextSpan(
+                                        text:
+                                            '${characteraction.actionName}, '),
+                                    message:
+                                        '${characteraction.actionName}: ${characteraction.actionDescription}'),
+                        ],
+                      ),
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          const TextSpan(
+                            text: '특성: ',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                          for (int i = 0;
+                              i <
+                                  characterState
+                                      .currCharacter.activeClasses.length;
+                              i++)
+                            if (characterState.currCharacter.activeClasses[i])
+                              for (Trait characterTrait in characterState
+                                  .currCharacter
+                                  .characterClasses[i]
+                                  .classTraits)
+                                TooltipSpan(
+                                    inlineSpan: TextSpan(
+                                        text: '${characterTrait.traitName}, '),
+                                    message:
+                                        '${characterTrait.traitName}: ${characterTrait.traitDescription}'),
+                        ],
+                      ),
+                    ),
                     //add from here
                   ],
                 );
@@ -229,6 +282,20 @@ class _SummaryPageState extends State<SummaryPage> {
       ),
     );
   }
+}
+
+class TooltipSpan extends WidgetSpan {
+  TooltipSpan({
+    required String message,
+    required InlineSpan inlineSpan,
+  }) : super(
+          child: Tooltip(
+            message: message,
+            child: Text.rich(
+              inlineSpan,
+            ),
+          ),
+        );
 }
 
 // 0~18번까지 군용무기

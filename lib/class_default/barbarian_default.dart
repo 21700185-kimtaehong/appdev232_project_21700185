@@ -5,10 +5,6 @@ class BarbarianClass extends CharacterClass {
   bool isSubClassSelectable;
   int subClassType;
 
-  int fightingStyleMaxNum;
-  int fightingStyleCurrNum;
-  List<int> selectedFightingStyles = [];
-
   int classProficiencyMaxNum;
   int classProficiencyCurrNum;
 
@@ -19,8 +15,6 @@ class BarbarianClass extends CharacterClass {
   BarbarianClass({
     this.subClassType = -1, //0: battlemaster, 1: eldrich knight, 2: champion
     this.isSubClassSelectable = false,
-    this.fightingStyleMaxNum = 0,
-    this.fightingStyleCurrNum = 0,
     this.classProficiencyMaxNum = 0,
     this.classProficiencyCurrNum = 0,
     List<int>? selectedFightingStyles,
@@ -48,13 +42,10 @@ class BarbarianClass extends CharacterClass {
       case 0:
         subClassType = -1;
         isSubClassSelectable = false;
-        fightingStyleMaxNum = 0;
-        fightingStyleCurrNum = 0;
         classProficiencyMaxNum = 0;
         classProficiencyCurrNum = 0;
         break;
       case 1:
-        fightingStyleMaxNum = 1;
         classProficiencyMaxNum = 0;
       case 2:
         subClassType = -1;

@@ -62,10 +62,11 @@ class _BuildPageState extends State<BuildPage> {
       return Row(
         children: [
           SizedBox(
-            width: 200,
+            width: 150,
             child: ButtonPage(context, selectPage),
           ),
           Expanded(
+            flex: 2,
             child: selectedPageWidget(selectedPageIndex),
           ),
           const Expanded(
@@ -79,13 +80,13 @@ class _BuildPageState extends State<BuildPage> {
     } else {
       return PageView.builder(
         controller: _pageController,
-        itemCount: 3,
+        itemCount: 2,
         itemBuilder: (context, index) {
           if (index == 0) {
             return Row(
               children: [
                 SizedBox(
-                  width: 200,
+                  width: 150,
                   child: ButtonPage(context, selectPage),
                 ),
                 Expanded(
@@ -93,10 +94,17 @@ class _BuildPageState extends State<BuildPage> {
                 ),
               ],
             );
-          } else if (index == 1) {
-            return SummaryPage();
           } else {
-            return Summary2Page();
+            return const Row(
+              children: [
+                Expanded(
+                  child: SummaryPage(),
+                ),
+                Expanded(
+                  child: Summary2Page(),
+                )
+              ],
+            );
           }
         },
       );

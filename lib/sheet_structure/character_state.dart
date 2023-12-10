@@ -11,9 +11,6 @@ import 'package:appdev232_project_21700185/sheet_structure/race.dart';
 import 'package:appdev232_project_21700185/constant/constant_code.dart';
 
 import 'package:flutter/material.dart';
-import 'dart:math';
-
-import 'package:provider/provider.dart';
 
 class CharacterState with ChangeNotifier {
   // ignore: prefer_final_fields
@@ -326,6 +323,7 @@ class CharacterState with ChangeNotifier {
         _currCharacter.startingClassType = classType;
       }
       _currCharacter.activateClass(classType);
+      updateClassState(classType);
       updateCommonState();
       updateHitPointState();
       updateWeaponProfState();
@@ -349,6 +347,7 @@ class CharacterState with ChangeNotifier {
       }
     }
 
+    updateClassState(classType);
     updateHitPointState();
     updateCommonState();
     updateSkillProfState();
@@ -563,5 +562,45 @@ class CharacterState with ChangeNotifier {
       }
     }
     _currCharacter.hitpoints = temp;
+  }
+
+  void updateSubClass(int classType, int subClassType) {
+    switch (classType) {
+      case BARD:
+        (_currCharacter.characterClasses[classType - BARD] as BardClass)
+            .subClassType = subClassType;
+        break;
+      case BARBARIAN:
+        (_currCharacter.characterClasses[classType - BARD] as BarbarianClass)
+            .subClassType = subClassType;
+        break;
+      case CLERIC:
+        (_currCharacter.characterClasses[classType - BARD] as ClericClass)
+            .subClassType = subClassType;
+        break;
+      case DRUID:
+        (_currCharacter.characterClasses[classType - BARD] as DruidClass)
+            .subClassType = subClassType;
+        break;
+      case FIGHTER:
+        (_currCharacter.characterClasses[classType - BARD] as FighterClass)
+            .subClassType = subClassType;
+        (_currCharacter.characterClasses[classType - BARD] as FighterClass)
+            .updateFighterClass();
+        break;
+      default:
+        break;
+    }
+    notifyListeners();
+  }
+
+  void callNotify() {
+    notifyListeners();
+  }
+
+  void updateCharacterTrait() {
+    for (int i = 0; i < _currCharacter.activeClasses.length; i++) {
+      if (_currCharacter.activeClasses[i]) {}
+    }
   }
 }

@@ -76,7 +76,9 @@ class FighterClass extends CharacterClass {
         break;
       case 1:
         fightingStyleMaxNum = 1;
-        selectedClassActions.add(0);
+        if (!selectedClassActions.contains(0)) {
+          selectedClassActions.add(0);
+        }
         selectedClassActions.remove(1);
         break;
       case 2:
@@ -86,7 +88,9 @@ class FighterClass extends CharacterClass {
         fighterSuperiorDiceSize = 0;
         super.isHalfCaster = false;
         isSubClassSelectable = false;
-        selectedClassActions.add(1);
+        if (!selectedClassActions.contains(1)) {
+          selectedClassActions.add(1);
+        }
         selectedClassActions.remove(2);
         selectedClassTraits.remove(0);
         selectedClassTraits.remove(1);
@@ -101,11 +105,23 @@ class FighterClass extends CharacterClass {
             break;
           case 1:
             super.isHalfCaster = true;
-            selectedClassActions.add(2);
-            selectedClassTraits.add(0);
+            if (!selectedClassActions.contains(2)) {
+              selectedClassActions.add(2);
+            }
+            if (!selectedClassTraits.contains(0)) {
+              selectedClassTraits.add(0);
+            }
+            manoeuvresMaxNum = 0;
+            fighterSuperiorDiceNum = 0;
+            fighterSuperiorDiceSize = 0;
             break;
           case 2:
-            selectedClassTraits.add(1);
+            if (!selectedClassTraits.contains(1)) {
+              selectedClassTraits.add(1);
+            }
+            manoeuvresMaxNum = 0;
+            fighterSuperiorDiceNum = 0;
+            fighterSuperiorDiceSize = 0;
             break;
         }
       case 4:
@@ -125,10 +141,14 @@ class FighterClass extends CharacterClass {
             manoeuvresMaxNum = 3;
             break;
           case 1:
-            selectedClassTraits.add(3);
+            if (!selectedClassTraits.contains(3)) {
+              selectedClassTraits.add(3);
+            }
             break;
           case 2:
-            selectedClassTraits.add(4);
+            if (!selectedClassTraits.contains(4)) {
+              selectedClassTraits.add(4);
+            }
             break;
         }
         break;
@@ -136,7 +156,9 @@ class FighterClass extends CharacterClass {
         selectedClassTraits.remove(2);
         break;
       case 9:
-        selectedClassTraits.add(2);
+        if (!selectedClassTraits.contains(2)) {
+          selectedClassTraits.add(2);
+        }
         break;
       case 10:
         super.extraAttackNum = 1;
@@ -147,19 +169,26 @@ class FighterClass extends CharacterClass {
       default:
         break;
     }
+    updateFighterTraits();
+    updateFighterActions();
   }
 
   void updateFighterTraits() {
+    super.cleanTrait();
     if (selectedClassTraits.isNotEmpty) {
       super.addTrait(fighterTraitList, selectedClassTraits);
     }
-    if (fightingStyleCurrNum > 0) {
+    if (selectedFightingStyles.isNotEmpty) {
       super.addTrait(fightStyles, selectedFightingStyles);
     }
   }
 
   void updateFighterActions() {
-    if (manoeuvresCurrNum > 0) {
+    super.cleanAction();
+    if (selectedClassActions.isNotEmpty) {
+      super.addAction(fighterActionList, selectedClassActions);
+    }
+    if (selectedManoeuvres.isNotEmpty) {
       super.addAction(battleMaster_manoeuvres, selectedManoeuvres);
     }
   }
